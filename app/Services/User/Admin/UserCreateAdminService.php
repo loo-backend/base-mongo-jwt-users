@@ -1,34 +1,39 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User\Admin;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
+
 /**
- * Class UserCreateTenantService
- * @package App\Services
+ * Class UserCreateAdminService
+ * @package App\Services\User\Admin
  */
-class UserCreateTenantService
+class UserCreateAdminService
 {
 
-    /**
-     * Standard permissions rules
-     *
-     * @var array
-     */
-    private $roles =
-        ['name' => 'TENANT_ADMINISTRATOR',
-            'permissions' => [
-                'ALL'
-            ]
-        ];
 
     /**
-     * Get a validator for a User Tenant.
+     * @var array
+     */
+    private $roles;
+
+    /**
+     * UserCreateAdminService constructor.
+     */
+    public function __construct()
+    {
+        $this->roles = Role::ADMIN_STAFF_INITIAL;
+    }
+
+
+    /**
+     * Get a validator for a User Admin.
      *
      * @param array $data
      * @return mixed
@@ -67,7 +72,7 @@ class UserCreateTenantService
             $data['active'] = false;
         }
 
-        $data['is_administrator'] = false;
+        $data['is_administrator'] = true;
         unset($data['roles']);
 
         if (!$create = User::create($data) ) {

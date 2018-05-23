@@ -2,20 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Role;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 
 class UsersTenantTest extends TestCase
 {
-
-    private $roles =
-        ['name' => 'TENANT_ADMINISTRATOR',
-            'permissions' => [
-                'ALL'
-            ]
-        ];
-
 
     public $data = [];
 
@@ -41,7 +34,7 @@ class UsersTenantTest extends TestCase
         ]);
 
         $users = factory(User::class)->create();
-        $users->roles()->create($this->roles);
+        $users->roles()->create(Role::TENANT_ADMINISTRATOR);
 
     }
 
@@ -52,7 +45,7 @@ class UsersTenantTest extends TestCase
         $this->migrateAndFactory();
 
         $data = $this->data;
-        $data['roles'] = $this->roles;
+        $data['roles'] = Role::TENANT_ADMINISTRATOR;
 
 
         $user = User::where('is_administrator', false)->first();

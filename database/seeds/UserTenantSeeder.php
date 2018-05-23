@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use Illuminate\Database\Seeder;
 
 class UserTenantSeeder extends Seeder
@@ -21,11 +22,7 @@ class UserTenantSeeder extends Seeder
     public function tenantAdmin()
     {
 
-        $roles = ['name' => 'TENANT_ADMINISTRATOR',
-            'permissions' => [
-                'ALL'
-            ]
-        ];
+        $roles = Role::TENANT_ADMINISTRATOR;
 
         $users = factory(App\User::class,5)->create();
 

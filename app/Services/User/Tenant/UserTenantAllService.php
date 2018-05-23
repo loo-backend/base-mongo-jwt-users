@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User\Tenant;
 
 use App\User;
 
-/**
- * Class UserAdminAllService
- * @package App\Services
- */
-class UserAdminAllService
+class UserTenantAllService
 {
 
     /**
@@ -20,7 +16,7 @@ class UserAdminAllService
     {
 
         $filter = [
-            ['is_administrator', true]
+            ['is_administrator', false]
         ];
 
         if (!$user = User::where($filter)->paginate() ) {
