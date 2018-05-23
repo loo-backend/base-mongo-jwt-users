@@ -14,8 +14,8 @@ class UserWhereFirstService
     /**
      * Find User
      *
-     * @param $id
-     * @return bool|array
+     * @param array $data
+     * @return bool
      */
     public function whereFirst(array $data)
     {

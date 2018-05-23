@@ -1,0 +1,688 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Co",
+				"Controller"
+			],
+			[
+				"fa",
+				"factory"
+			],
+			[
+				"uns",
+				"unset"
+			],
+			[
+				"ra",
+				"rand"
+			],
+			[
+				"dum",
+				"var_dump"
+			],
+			[
+				"mt",
+				"mt_rand"
+			],
+			[
+				"bot",
+				"button\tTag"
+			],
+			[
+				"fun",
+				"fun\tfunction …"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"jso",
+				"json"
+			],
+			[
+				"js",
+				"json"
+			],
+			[
+				"is",
+				"is_array"
+			],
+			[
+				"encod",
+				"json_encode"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"setl",
+				"set_time_limit"
+			],
+			[
+				"vli",
+				"validator"
+			],
+			[
+				"d",
+				"dashboard"
+			],
+			[
+				"p",
+				"plans"
+			],
+			[
+				"a",
+				"app-layout"
+			],
+			[
+				"tex",
+				"text-underline-position"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"Me",
+				"MenuTop"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"com",
+				"components"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"ite",
+				"item"
+			],
+			[
+				"Pa",
+				"PATHS"
+			],
+			[
+				"pa",
+				"PATHS"
+			],
+			[
+				"wpb",
+				"webpack"
+			],
+			[
+				"php",
+				"phpinfo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "tests/Feature/UsersAdminTest.php",
+			"settings":
+			{
+				"buffer_size": 5755,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"ter",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 488.0
+	},
+	"console":
+	{
+		"height": 178.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/williams/Code/Loojas/backend/users/web",
+		"/home/williams/Code/Loojas/backend/users/web/database",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations",
+		"/home/williams/Code/Loojas/backend/users/web/tests",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature"
+	],
+	"file_history":
+	[
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/home/williams/Code/Testes/tenant/composer.json",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/phones.blade.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersTenantController.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserFindService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersAdminController.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/User.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserUpdateService.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/components/address-sponsors.blade.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/components/address-free.blade.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/result.blade.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Applications/Http/Services/ViewPhoneNumberService.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/app.blade.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/form.blade.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/index.blade.php",
+		"/home/williams/Code/Patterns/ComputerFacade.php",
+		"/home/williams/Code/<?php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Factories/JWTTokenBearerFactory.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Auth/AuthApiController.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminAuthApiTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserWhereFirstService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/JWTTokenService.php",
+		"/home/williams/Code/Loojas/backend/users/web/config/app.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Kernel.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserCreateService.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-auth.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/filesystems.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/database.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/constants.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/seotools.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/services.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/image.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/cache.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Validators/RegisterUserValitador.php",
+		"/home/williams/Code/Loojas/backend/users/web/.env",
+		"/home/williams/Code/Loojas/backend/users/web.old/app/Http/Controllers/UsersTenantController.php",
+		"/home/williams/Code/Loojas/web5.5/app/Http/Controllers/UsersAdminController.php",
+		"/home/williams/Code/Loojas/web5.5/routes/api.php",
+		"/home/williams/Code/Loojas/web5.6/routes/api.php",
+		"/home/williams/Code/Loojas/web5.6/app/Http/Controllers/UsersAdminControlle.php",
+		"/home/williams/Code/Loojas/web5.6/composer.json",
+		"/home/williams/Code/Loojas/backend/users/web/composer.json",
+		"/home/williams/Code/Loojas/backend/users/web/vendor/jenssegers/mongodb/src/Jenssegers/Mongodb/Eloquent/Model.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Tenant.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Role.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers/RouteServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/web.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Middleware/AuthJWT.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/channels.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/console.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_18_170418_create_tenants_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserTenantSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserAdminSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserCreateAdminService.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/AuthUsersAdminApiTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersClientTestes.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/DatabaseSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/AuthApiTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersController.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-client.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/factories/UserFactory.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserStoreSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-admin.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UserTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Auth/AdminAuthApiController.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/AdminAuthApiTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/AdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Admin.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers/AuthServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminRemoveService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminCreateService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminFindService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminUpdateService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminWhereFirstService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/AdminAllService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/AdminController.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_10_12_100000_create_admins_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/TenantSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/AdminSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_10_12_300000_create_tenants_table.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/factories/ModelFactory.php",
+		"/home/williams/Code/Lumen/bootstrap/app.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/composer.json",
+		"/home/williams/Code/Loojas/backend/users/web/tests/TestCase.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/tests/TestCase.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/UserTest.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/public/manifest.json",
+		"/home/williams/Code/forum-com-laravel/webpack.mix.js",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/config/database.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/.env",
+		"/home/williams/Code/Testes/Elasticsearch/app/User.php",
+		"/home/williams/Code/Loojas/backend/users/web/config/database.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Ticket.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Status.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Priority.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Department.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/CredentialsOpenTicket.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Attachments.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/migrations/2018_05_09_020934_create_status_collections.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/seeds/TicketReplyCollectionSeeder.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/seeds/TicketCollectionSeeder.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/seeds/StatusCollectionSeeder.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/seeds/PriorityCollectionSeeder.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/seeds/DepartmentCollectionSeeder.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/migrations/2018_05_09_021022_create_priorities_collections.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/migrations/2018_05_09_015304_create_departments_collections.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database/migrations/2018_05_09_021045_create_tickets_collections_full_text.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketClientCreateService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketSupportListAndPaginateService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketClientListAndPaginateService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Controllers/Api/TicketsClientController.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketClientFindService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketClientCreateReplyService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Services/Tickets/TicketSupportFindService.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Controllers/Api/TicketsSupportController.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/TicketReply.php",
+		"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/etc/nginx/default.conf",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/app/Http/Controllers/Api/TicketsClientController.php",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/app/Http/Controllers/Api/TicketsSupportController.php",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/routes/api-support.php",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/tests/Feature/Controllers/TicketsSupportControllerTest.php",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/.env.testing",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/tests/Feature/Controllers/TicketsClientControllerTest.php",
+		"/home/williams/Code/Loojas/Backend/api-helpdesk/web/routes/api-client.php"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 116.0,
+		"where_history":
+		[
+			"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules",
+			"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/resources/assets/js",
+			"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/resources/assets/js/src/companies/site/typescript",
+			"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations",
+			"/home/williams/Code/Loojas/backend/users/web/tests/Feature",
+			"/home/williams/Code/Loojas/backend/users/web/app",
+			"/home/williams/Code/Loojas/backend/users/web/database/seeds",
+			"/home/williams/Code/Loojas/backend/users/web/database",
+			"/home/williams/Code/Loojas/backend/users/web/app",
+			"/home/williams/Code/Loojas/backend/users/web/database",
+			"/home/williams/Code/Loojas/backend/users/web/app",
+			"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin",
+			"/home/williams/Code/Loojas/backend/users/web/database",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/database",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app/Http/Controllers/Api",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app",
+			"credentials_open_ticket",
+			"/home/williams/Code/Loojas/backend-apis/v1/helpdesk/web/app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fsdfsd",
+			"s",
+			"+55",
+			"Entre em contato a qualquer momento",
+			"JWTAuth",
+			"User",
+			"'Bearer '. ",
+			"whereFirstService",
+			"'Bearer '. ",
+			" 'Bearer '. ",
+			";\n",
+			"Bearen",
+			"users/",
+			"Authorization",
+			"users/admins",
+			"/admins",
+			"is_administrator",
+			"['is_administrator' => false]",
+			"TENANT_ADMINISTRATOR",
+			"UserCreateService",
+			"createService",
+			"UserCreateService",
+			"TENANT_ADMINISTRATOR",
+			"$this->roles",
+			"CLIENT_ADMINISTRATOR",
+			"client",
+			"CLIENT_",
+			"store",
+			"STORE_",
+			"STORE",
+			"STORE_",
+			"users/admins/users",
+			"users/admins/users/",
+			"admin/users",
+			"auth/admin",
+			"/auth/",
+			"'admins'",
+			"admin_uuid",
+			"/users",
+			"/admin/users",
+			"users",
+			"/auth/authenticate",
+			"User::",
+			"authenticate",
+			"'users'",
+			"$user",
+			"user",
+			"'user",
+			"'users'",
+			"user",
+			"user_",
+			"User::",
+			"User",
+			"user_",
+			"users",
+			"Users",
+			"users",
+			"User",
+			"/auth/authenticate",
+			"$user",
+			"$users",
+			"user",
+			"User",
+			"UserWhereFirstService",
+			"user",
+			"User",
+			"Client",
+			"client",
+			"Client",
+			"client",
+			"Client",
+			"user",
+			"User",
+			"'user",
+			"user",
+			"User",
+			"users",
+			"user",
+			"User",
+			"UsersController",
+			"users",
+			"'users",
+			"User",
+			"Services\\User",
+			"user",
+			"User",
+			"$user",
+			"user",
+			"User",
+			"$user",
+			"User",
+			"$user",
+			"User",
+			"$user",
+			"user",
+			"User",
+			"$user",
+			"User",
+			"user",
+			"User",
+			"user",
+			"User",
+			"App\\User",
+			"User",
+			"uuid",
+			"uuid'",
+			"uuid",
+			"$tenant",
+			"store",
+			"$user",
+			"$users",
+			"App\\User",
+			"'STORE_",
+			"STORE",
+			"store",
+			"STORE",
+			"store",
+			"STORE",
+			"store",
+			"STORE",
+			"store",
+			"STORE",
+			"store",
+			"STORE",
+			"UserStore",
+			"$admin",
+			"App\\Admin",
+			"$user"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Bearer",
+			"\nread_client",
+			"\nread_support",
+			"\ncredentials",
+			"\nsubmitted_by",
+			"staff_uuid",
+			"credentials_client",
+			"credentials_open_ticket",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/home/williams/Code/Loojas/backend/users/web"
+		},
+		{
+			"path": "/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza"
+		},
+		{
+			"path": "/home/williams/Code/Testes/tenant"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "tests/Feature/UsersAdminTest.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5755,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5045,
+								5045
+							]
+						],
+						"settings":
+						{
+							"SL.14.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"SL.29.region_keys":
+							[
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4422.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 144.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Default/Syntax Tests.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 337.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

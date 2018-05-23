@@ -10,9 +10,7 @@ use App\Services\UserRemoveService;
 use App\Services\UserUpdateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\Rule;
 use JWTAuth;
-use Validator;
 
 
 class UsersAdminController extends Controller
@@ -107,14 +105,10 @@ class UsersAdminController extends Controller
     {
 
 
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|confirmed|min:6|max:255'
-        ]);
+        $validator = $this->createAdminService->validator($request->all());
 
-        if ($validation->fails()) {
-            $errors = $validation->errors();
+        if ($validator->fails()) {
+            $errors = $validator->errors();
             return $errors->toJson();
         }
 
@@ -175,19 +169,14 @@ class UsersAdminController extends Controller
     public function update(Request $request, $id)
     {
 
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                Rule::unique('users', '_id')->ignore($id),
-            ],
-            'password' => 'sometimes|required|confirmed|min:6|max:255'
-        ]);
 
-        if ($validation->fails()) {
-            $errors = $validation->errors();
+        $validator = $this->updateService->validator($request->all(), intval($id));
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
             return $errors->toJson();
         }
+
 
         if (!$result = $this->findService->findBy($id)) {
             return response()->json(['error' => 'user_not_found'], 422);

@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Factories\JWTTokenBearerFactory;
-use App\Services\UserTenantAllService;
-use App\Services\UserCreateService;
+use App\Services\UserCreateTenantService;
 use App\Services\UserFindService;
 use App\Services\UserRemoveService;
+use App\Services\UserTenantAllService;
 use App\Services\UserUpdateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\Rule;
 use JWTAuth;
-use Validator;
 
+/**
+ * Class UsersTenantController
+ * @package App\Http\Controllers
+ */
 class UsersTenantController extends Controller
 {
 
 
     /**
-     * @var UserCreateService
+     * @var UserCreateTenantService
      */
     private $createService;
 
@@ -51,7 +54,7 @@ class UsersTenantController extends Controller
 
     /**
      * UsersController constructor.
-     * @param UserCreateService $createService
+     * @param UserCreateTenantService $createService
      * @param UserFindService $findService
      * @param UserTenantAllService $allService
      * @param UserRemoveService $removeService
@@ -59,7 +62,7 @@ class UsersTenantController extends Controller
      * @param JWTTokenBearerFactory $bearerFactory
      */
     public function __construct(
-        UserCreateService $createService,
+        UserCreateTenantService $createService,
         UserFindService $findService,
         UserTenantAllService $allService,
         UserRemoveService $removeService,
@@ -105,28 +108,20 @@ class UsersTenantController extends Controller
     public function store(Request $request)
     {
 
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|confirmed|min:6|max:255'
-        ]);
+        $validator = $this->createService->validator($request->all());
 
-        if ($validation->fails()) {
-            $errors = $validation->errors();
+        if ($validator->fails()) {
+            $errors = $validator->errors();
             return $errors->toJson();
         }
 
         if (!$result = $this->createService->create($request)) {
-
             return response()->json(['error' => 'user_not_created'], 500);
         }
 
-
         $credentials = $request->only('email', 'password');
 
-
         if (!$token = JWTAuth::attempt($credentials)) {
-
             return response()->json([
                 'success' => false,
                 'data' => '',
@@ -156,7 +151,6 @@ class UsersTenantController extends Controller
     {
 
         if (!$result = $this->findService->findBy($id)) {
-
             return response()->json(['error' => 'user_not_found'], 422);
         }
 
@@ -174,19 +168,14 @@ class UsersTenantController extends Controller
     public function update(Request $request, $id)
     {
 
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                Rule::unique('users', '_id')->ignore($id),
-            ],
-            'password' => 'sometimes|required|confirmed|min:6|max:255'
-        ]);
 
-        if ($validation->fails()) {
-            $errors = $validation->errors();
+        $validator = $this->updateService->validator($request->all(), intval($id));
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
             return $errors->toJson();
         }
+
 
         if (!$result = $this->findService->findBy($id)) {
             return response()->json(['error' => 'user_not_found'], 422);

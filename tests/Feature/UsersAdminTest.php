@@ -17,6 +17,18 @@ class UsersAdminTest extends TestCase
             ]
         ];
 
+    private $roles_staff_support =
+        ['roles' =>
+            ['name' => 'ADMIN_STAFF_SUPPORT_WILLS',
+                'permissions' => [
+                    'BROWSER',
+                    'READ',
+                    'ADD',
+                    'EDIT'
+                ]
+            ]
+        ];
+
 
     public $data = [];
 
@@ -130,7 +142,6 @@ class UsersAdminTest extends TestCase
             ->assertStatus(200);
 
 
-
         $response->assertJsonStructure([
             'data' => [
 
@@ -212,6 +223,23 @@ class UsersAdminTest extends TestCase
             'email' => $user->email,
             '_id' => $user->id
         ]);
+
+    }
+
+    public function testAddRolesStaffSupport()
+    {
+
+        $user = User::where('is_administrator', true)->first();
+
+        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+
+        $headers = [
+            'Accept' => 'application/vnd.laravel.v1+json',
+            'HTTP_Authorization' => 'Bearer ' . $token
+        ];
+
+        $this->put('/users/admins/'.$user->id, $this->roles_staff_support, $headers)
+            ->assertStatus(200);
 
     }
 

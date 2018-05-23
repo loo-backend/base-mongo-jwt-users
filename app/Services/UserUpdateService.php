@@ -5,6 +5,8 @@ namespace App\Services;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 /**
  * Class UserUpdateService
@@ -12,6 +14,27 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserUpdateService
 {
+
+
+    /**
+     * Get a validator for a User Admin.
+     *
+     * @param array $data
+     * @param int $id
+     * @return mixed
+     */
+    public function validator(array $data, int $id)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                Rule::unique('users', '_id')->ignore($id),
+            ],
+            'password' => 'sometimes|required|confirmed|min:6|max:255'
+        ]);
+
+    }
 
     /**
      * Remove User
