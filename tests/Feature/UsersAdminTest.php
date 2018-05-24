@@ -23,7 +23,7 @@ class UsersAdminTest extends TestCase
             'name' => str_random(10),
             'email' => str_random(6) . '@mail.com',
             'active' => true,
-            'is_administrator' => true,
+            'is_administrator' =>  User::ADMINISTRATOR,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -52,7 +52,7 @@ class UsersAdminTest extends TestCase
         $data['roles'] = Role::ADMINISTRATOR;
 
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -112,7 +112,7 @@ class UsersAdminTest extends TestCase
     public function testAllUsers()
     {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -152,7 +152,7 @@ class UsersAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
 
         $data = [
             'name' => str_random(12),
@@ -189,7 +189,7 @@ class UsersAdminTest extends TestCase
         ];
 
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -231,7 +231,7 @@ class UsersAdminTest extends TestCase
     public function testDeleteUser()
     {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator',  User::ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
 

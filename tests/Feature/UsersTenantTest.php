@@ -75,7 +75,7 @@ class UsersTenantTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('is_administrator', false)->first();
+        $user = User::where('is_administrator', User::NOT_ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -105,7 +105,7 @@ class UsersTenantTest extends TestCase
     public function testAllUsersTenants()
     {
 
-        $user = User::where('is_administrator', false)->first();
+        $user = User::where('is_administrator', User::NOT_ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -144,7 +144,7 @@ class UsersTenantTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('is_administrator', false)->first();
+        $user = User::where('is_administrator', User::NOT_ADMINISTRATOR)->first();
 
         $data = [
             'name' => str_random(12),
@@ -181,7 +181,7 @@ class UsersTenantTest extends TestCase
         ];
 
 
-        $user = User::where('is_administrator', false)->first();
+        $user = User::where('is_administrator', User::NOT_ADMINISTRATOR)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [

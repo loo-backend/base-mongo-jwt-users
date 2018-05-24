@@ -14,6 +14,9 @@ class User extends Authenticatable implements JWTSubject
 
     use SoftDeletes, Notifiable;
 
+    const ADMINISTRATOR = true;
+    const NOT_ADMINISTRATOR = false;
+
     public $table = 'users';
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -9,11 +10,6 @@ use Tests\TestCase;
 class UsersAdminAuthApiTest extends TestCase
 {
 
-    private $roles = ['name' => 'ADMINISTRATOR',
-        'permissions' => [
-            'ALL'
-        ]
-    ];
 
     public $data = [];
     public $content;
@@ -39,8 +35,8 @@ class UsersAdminAuthApiTest extends TestCase
             '--path' => "app/database/migrations"
         ]);
 
-        $users = factory(User::class)->create(['is_administrator' => true]);
-        $users->roles()->create($this->roles);
+        $users = factory(User::class)->create(['is_administrator' => User::ADMINISTRATOR]);
+        $users->roles()->create(Role::ADMINISTRATOR);
 
     }
 
@@ -71,7 +67,7 @@ class UsersAdminAuthApiTest extends TestCase
 
     public function testUserAuthenticateValid() {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
         $response = $this->post('/auth/authenticate',
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
