@@ -6,11 +6,10 @@ use App\Role;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersAdminTest extends TestCase
 {
-
 
     public $data = [];
 
@@ -18,18 +17,16 @@ class UsersAdminTest extends TestCase
     {
         parent::__construct($name, $data, $dataName);
 
-
         $this->data = [
             'name' => str_random(10),
             'email' => str_random(6) . '@mail.com',
             'active' => true,
-            'administrator' =>  User::ADMINISTRATOR_USER,
+            'administrator' =>  User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
 
     }
-
 
     public function migrateAndFactory()
     {
@@ -42,7 +39,6 @@ class UsersAdminTest extends TestCase
 
     }
 
-
     public function testUserCreate()
     {
 
@@ -52,8 +48,8 @@ class UsersAdminTest extends TestCase
         $data['roles'] = Role::ADMINISTRATOR;
 
 
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -62,7 +58,6 @@ class UsersAdminTest extends TestCase
 
         $response = $this->post('/users/admins', $data, $headers)
             ->assertStatus(200);
-
 
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
@@ -77,12 +72,11 @@ class UsersAdminTest extends TestCase
 
     }
 
-
     public function testShowUser()
     {
 
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -91,7 +85,6 @@ class UsersAdminTest extends TestCase
 
         $response = $this->get('/users/admins/'. $user->id, $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             '_id',
@@ -112,8 +105,8 @@ class UsersAdminTest extends TestCase
     public function testAllUsers()
     {
 
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -122,7 +115,6 @@ class UsersAdminTest extends TestCase
 
         $response = $this->get('/users/admins', $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             'data' => [
@@ -152,14 +144,14 @@ class UsersAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
+        $user = User::where('administrator', User::ADMIN_USER)->first();
 
         $data = [
             'name' => str_random(12),
             'email' => $user->email
         ];
 
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -168,7 +160,6 @@ class UsersAdminTest extends TestCase
 
         $this->put('/users/admins/'.$user->id, $data, $headers)
             ->assertStatus(200);
-
 
         $this->assertDatabaseMissing('users',[
             'name' => $user->name,
@@ -188,9 +179,8 @@ class UsersAdminTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -213,7 +203,7 @@ class UsersAdminTest extends TestCase
 //
 //        $user = User::where('administrator', true)->first();
 //
-//        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+//        $token = JWTAuth::fromUser($user);
 //
 //        $headers = [
 //            'Accept' => 'application/vnd.laravel.v1+json',
@@ -231,9 +221,8 @@ class UsersAdminTest extends TestCase
     public function testDeleteUser()
     {
 
-        $user = User::where('administrator',  User::ADMINISTRATOR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
-
+        $user = User::where('administrator',  User::ADMIN_USER)->first();
+        $token = JWTAuth::fromUser($user);
 
         $response = $this->withHeaders([
             'HTTP_Authorization' => 'Bearer '. $token,

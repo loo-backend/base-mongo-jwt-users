@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Factories\JWTTokenBearerFactory;
+use App\Traits\JWTTokenBearerTrait;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
@@ -10,12 +10,13 @@ use App\Services\User\Admin\UserAdminAllService;
 use App\Services\User\Admin\UserCreateAdminService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class UsersAdminController extends Controller
 {
 
+    use JWTTokenBearerTrait;
 
     /**
      * @var UserCreateAdminService
@@ -43,27 +44,19 @@ class UsersAdminController extends Controller
     private $updateService;
 
     /**
-     * @var JWTTokenBearerFactory
-     */
-    private $bearerFactory;
-
-
-    /**
      * UsersController constructor.
      * @param UserCreateAdminService $createAdminService
      * @param UserFindService $findService
      * @param UserAdminAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
-     * @param JWTTokenBearerFactory $bearerFactory
      */
     public function __construct(
         UserCreateAdminService $createAdminService,
         UserFindService $findService,
         UserAdminAllService $allService,
         UserRemoveService $removeService,
-        UserUpdateService $updateService,
-        JWTTokenBearerFactory $bearerFactory
+        UserUpdateService $updateService
     ) {
 
         $this->createAdminService = $createAdminService;
@@ -71,7 +64,6 @@ class UsersAdminController extends Controller
         $this->allService = $allService;
         $this->removeService = $removeService;
         $this->updateService = $updateService;
-        $this->bearerFactory = $bearerFactory;
     }
 
 
@@ -104,14 +96,12 @@ class UsersAdminController extends Controller
     public function store(Request $request)
     {
 
-
         $validator = $this->createAdminService->validator($request->all());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
-
 
         if (!$result = $this->createAdminService->create($request)) {
 
@@ -128,10 +118,10 @@ class UsersAdminController extends Controller
                 'data' => '',
                 'error' => 'invalid_credentials'
             ], 401);
+
         }
 
-
-        $token = $this->bearerFactory->generate($request);
+        $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
         return response()->json([
@@ -169,14 +159,12 @@ class UsersAdminController extends Controller
     public function update(Request $request, $id)
     {
 
-
         $validator = $this->updateService->validator($request->all(), intval($id));
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
-
 
         if (!$result = $this->findService->findBy($id)) {
             return response()->json(['error' => 'user_not_found'], 422);
@@ -187,7 +175,6 @@ class UsersAdminController extends Controller
         }
 
         return response()->json($result, 200);
-
 
     }
 

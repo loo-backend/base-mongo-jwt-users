@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Factories\JWTTokenBearerFactory;
+use App\Traits\JWTTokenBearerTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -10,19 +10,8 @@ use JWTFactory;
 
 class AuthApiController extends Controller
 {
-    /**
-     * @var JWTTokenBearerFactory
-     */
-    private $bearerFactory;
 
-    /**
-     * AuthApiController constructor.
-     * @param JWTTokenBearerFactory $bearerFactory
-     */
-    public function __construct(JWTTokenBearerFactory $bearerFactory)
-    {
-        $this->bearerFactory = $bearerFactory;
-    }
+    use JWTTokenBearerTrait;
 
     /**
      * @param Request $request
@@ -31,7 +20,6 @@ class AuthApiController extends Controller
 
     public function authenticate(Request $request)
     {
-
 
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
@@ -44,12 +32,13 @@ class AuthApiController extends Controller
             ], 401);
         }
 
+        $token = $this->tokenBearerGenerate($request);
+
         //Authorization || HTTP_Authorization
         return response()->json([
             'success' => true,
-            'HTTP_Authorization' => $this->bearerFactory->generate($request)
+            'HTTP_Authorization' => $token
         ], 200);
-
 
     }
 

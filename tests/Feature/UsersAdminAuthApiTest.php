@@ -6,10 +6,10 @@ use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersAdminAuthApiTest extends TestCase
 {
-
 
     public $data = [];
     public $content;
@@ -22,7 +22,7 @@ class UsersAdminAuthApiTest extends TestCase
             'name' => str_random(10),
             'email' => str_random(6) . '@mail.com',
             'active' => true,
-            'administrator' => User::ADMINISTRATOR_USER,
+            'administrator' => User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -35,7 +35,9 @@ class UsersAdminAuthApiTest extends TestCase
             '--path' => "app/database/migrations"
         ]);
 
-        $users = factory(User::class)->create(['administrator' => User::ADMINISTRATOR_USER]);
+        $users = factory(User::class)->create([
+            'administrator' => User::ADMIN_USER
+        ]);
         $users->roles()->create(Role::ADMINISTRATOR);
 
     }
@@ -47,15 +49,16 @@ class UsersAdminAuthApiTest extends TestCase
         $this->migrateAndFactory();
 
         $user = User::where('administrator', true)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->post('/users/admins', $this->data, $headers)
+        $response = $this->post('/users/admins', $this->data, $headers)
                 ->assertStatus(200);
+
 
         $this->assertDatabaseHas('users', [
             'name' => $this->data['name'],
@@ -67,7 +70,7 @@ class UsersAdminAuthApiTest extends TestCase
 
     public function testUserAuthenticateValid() {
 
-        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
+        $user = User::where('administrator', User::ADMIN_USER)->first();
         $response = $this->post('/auth/authenticate',
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
@@ -76,7 +79,6 @@ class UsersAdminAuthApiTest extends TestCase
         $response->assertJson(['HTTP_Authorization' => true]);
 
     }
-
 
     public function testUserAuthenticateInvalid() {
 
@@ -89,6 +91,5 @@ class UsersAdminAuthApiTest extends TestCase
         $response->assertJson(['error' => 'invalid_credentials']);
 
     }
-
 
 }

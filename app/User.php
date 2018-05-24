@@ -18,8 +18,10 @@ class User extends Authenticatable implements JWTSubject
 
     use SoftDeletes, Notifiable;
 
-    const ADMINISTRATOR_USER = true;
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER = '0';
 
+    const ADMIN_USER = true;
     const REGULAR_USER = false;
 
     /**
@@ -40,6 +42,8 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
         'administrator',
         'active',
+        'verified',
+        'verification_token',
         'roles'
     ];
 
@@ -49,7 +53,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'verification_token'
     ];
 
     /**
@@ -57,6 +61,36 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $dates = ['deleted_at'];
 
+    // public function setNameAttribute($name)
+    // {
+    //     $this->attributes['name'] = strtolower($name);
+    // }
+
+    // public function getNameAttribute($name)
+    // {
+    //     return ucwords($name);
+    // }
+
+    // public function setEmailAttribute($email)
+    // {
+    //     dd($email);
+    //     $this->attributes['email'] = strtolower($email);
+    // }
+
+    public function isVerified()
+    {
+        return $this->verified == User::VERIFIED_USER;
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin == User::ADMIN_USER;
+    }
+
+    public static function generateVerificationCode()
+    {
+        return str_random(40);
+    }
 
     /**
      * @return mixed

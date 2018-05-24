@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersTenantTest extends TestCase
 {
@@ -15,7 +16,6 @@ class UsersTenantTest extends TestCase
     public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-
 
         $this->data = [
             'name' => str_random(10),
@@ -49,7 +49,7 @@ class UsersTenantTest extends TestCase
 
 
         $user = User::where('administrator', false)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -71,12 +71,11 @@ class UsersTenantTest extends TestCase
 
     }
 
-
     public function testShowUser()
     {
 
         $user = User::where('administrator', User::REGULAR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -106,7 +105,7 @@ class UsersTenantTest extends TestCase
     {
 
         $user = User::where('administrator', User::REGULAR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -115,7 +114,6 @@ class UsersTenantTest extends TestCase
 
         $response = $this->get('/users/tenants', $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             'data' => [
@@ -151,7 +149,7 @@ class UsersTenantTest extends TestCase
             'email' => $user->email
         ];
 
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -160,7 +158,6 @@ class UsersTenantTest extends TestCase
 
         $this->put('/users/tenants/'.$user->id, $data, $headers)
             ->assertStatus(200);
-
 
         $this->assertDatabaseMissing('users',[
             'name' => $user->name,
@@ -180,9 +177,8 @@ class UsersTenantTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-
         $user = User::where('administrator', User::REGULAR_USER)->first();
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
 
         $headers = [
             'Accept' => 'application/vnd.laravel.v1+json',
@@ -204,7 +200,7 @@ class UsersTenantTest extends TestCase
 //    {
 //
 //        $user = User::first();
-//        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+//        $token = JWTAuth::fromUser($user);
 //
 //        $response = $this->withHeaders([
 //            'HTTP_Authorization' => 'Bearer '. $token,

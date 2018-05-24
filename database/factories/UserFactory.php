@@ -32,7 +32,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
         'administrator' => User::REGULAR_USER,
-        'active' => $active
+        'active' => $active,
+        'verified' => $faker->randomElement([true, false]),
+        'verification_token' => str_random(32)
     ];
 });
 

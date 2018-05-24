@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Factories\JWTTokenBearerFactory;
+use App\Traits\JWTTokenBearerTrait;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
@@ -19,6 +19,7 @@ use JWTAuth;
 class UsersTenantController extends Controller
 {
 
+    use JWTTokenBearerTrait;
 
     /**
      * @var UserCreateTenantService
@@ -45,10 +46,6 @@ class UsersTenantController extends Controller
      */
     private $updateService;
 
-    /**
-     * @var JWTTokenBearerFactory
-     */
-    private $bearerFactory;
 
 
     /**
@@ -58,15 +55,13 @@ class UsersTenantController extends Controller
      * @param UserTenantAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
-     * @param JWTTokenBearerFactory $bearerFactory
      */
     public function __construct(
         UserCreateTenantService $createService,
         UserFindService $findService,
         UserTenantAllService $allService,
         UserRemoveService $removeService,
-        UserUpdateService $updateService,
-        JWTTokenBearerFactory $bearerFactory
+        UserUpdateService $updateService
     ) {
 
         $this->createService = $createService;
@@ -74,7 +69,6 @@ class UsersTenantController extends Controller
         $this->allService = $allService;
         $this->removeService = $removeService;
         $this->updateService = $updateService;
-        $this->bearerFactory = $bearerFactory;
     }
 
 
@@ -128,14 +122,13 @@ class UsersTenantController extends Controller
             ], 401);
         }
 
-        $token = $this->bearerFactory->generate($request);
+        $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
         return response()->json([
             'success' => true,
             'HTTP_Authorization' => $token
         ], 200);
-
 
     }
 
@@ -167,14 +160,12 @@ class UsersTenantController extends Controller
     public function update(Request $request, $id)
     {
 
-
         $validator = $this->updateService->validator($request->all(), intval($id));
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
-
 
         if (!$result = $this->findService->findBy($id)) {
             return response()->json(['error' => 'user_not_found'], 422);
@@ -186,7 +177,6 @@ class UsersTenantController extends Controller
         }
 
         return response()->json($result, 200);
-
 
     }
 

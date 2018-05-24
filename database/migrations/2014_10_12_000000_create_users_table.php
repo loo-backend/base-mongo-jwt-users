@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('administrator')->default(User::REGULAR_USER);
             $table->boolean('active')->default(false);
+            $table->boolean('verified')->default(false);
+            $table->string('verification_token');
             $table->multiLineString('roles');
             $table->rememberToken();
             $table->timestamps();
