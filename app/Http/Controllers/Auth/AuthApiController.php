@@ -24,6 +24,7 @@ class AuthApiController extends Controller
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
 
+
         if (!$token = JWTAuth::attempt($credentials)) {
 
             return response()->json([

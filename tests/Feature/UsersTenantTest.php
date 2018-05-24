@@ -4,9 +4,11 @@ namespace Tests\Feature;
 
 use App\Role;
 use App\User;
+use Faker\Factory;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class UsersTenantTest extends TestCase
 {
@@ -16,10 +18,16 @@ class UsersTenantTest extends TestCase
     public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
+    }
+
+    public function faker()
+    {
+
+        $faker = Factory::create();
 
         $this->data = [
-            'name' => str_random(10),
-            'email' => str_random(6) . '@mail.com',
+            'name' => $faker->name,
+            'email' => $faker->email,
             'active' => true,
             'password' => 'secret',
             'password_confirmation' => 'secret',
@@ -29,6 +37,9 @@ class UsersTenantTest extends TestCase
 
     public function migrateAndFactory()
     {
+
+        $this->faker();
+
         Artisan::call('migrate', [
             '--path' => "app/database/migrations"
         ]);

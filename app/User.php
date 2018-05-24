@@ -53,7 +53,9 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'verification_token'
+        'password',
+        'remember_token',
+        'verification_token'
     ];
 
     /**
@@ -71,11 +73,10 @@ class User extends Authenticatable implements JWTSubject
     //     return ucwords($name);
     // }
 
-    // public function setEmailAttribute($email)
-    // {
-    //     dd($email);
-    //     $this->attributes['email'] = strtolower($email);
-    // }
+//    public function setEmailAttribute($email)
+//    {
+//        $this->attributes['email'] = strtolower($email);
+//    }
 
     public function isVerified()
     {

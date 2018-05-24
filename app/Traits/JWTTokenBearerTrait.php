@@ -22,7 +22,7 @@ trait JWTTokenBearerTrait {
     {
 
         $service = new UserWhereFirstService();
-        $user = $service->whereFirst(['email' => $request->input('email')]);
+        $user = $service->whereFirst(['email' => strtolower( $request->input('email') )]);
 
         $factory = JWTFactory::customClaims([
             'sub' => $user
