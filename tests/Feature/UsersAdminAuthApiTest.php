@@ -56,9 +56,8 @@ class UsersAdminAuthApiTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->post('/users/admins', $this->data, $headers)
+        $this->post('/users/admins', $this->data, $headers)
                 ->assertStatus(200);
-
 
         $this->assertDatabaseHas('users', [
             'name' => $this->data['name'],
