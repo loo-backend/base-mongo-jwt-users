@@ -52,7 +52,6 @@ class UsersAdminAuthApiTest extends TestCase
 
     }
 
-
     public function testUserCreate()
     {
 
@@ -75,7 +74,6 @@ class UsersAdminAuthApiTest extends TestCase
         ]);
 
     }
-
 
     public function testUserAuthenticateValid() {
 

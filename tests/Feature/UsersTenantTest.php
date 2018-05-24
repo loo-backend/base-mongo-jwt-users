@@ -49,7 +49,6 @@ class UsersTenantTest extends TestCase
 
     }
 
-
     public function testUserCreate()
     {
 
