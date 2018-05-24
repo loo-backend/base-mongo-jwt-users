@@ -9,14 +9,22 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable implements JWTSubject
 {
 
     use SoftDeletes, Notifiable;
 
     const ADMINISTRATOR = true;
+
     const NOT_ADMINISTRATOR = false;
 
+    /**
+     * @var string
+     */
     public $table = 'users';
 
     /**
@@ -44,19 +52,31 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
 
+    /**
+     * @return mixed
+     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
+    /**
+     * @return array
+     */
     public function getJWTCustomClaims()
     {
         return [];
     }
 
+    /**
+     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
+     */
     public function roles()
     {
         return $this->embedsMany(Role::class);
