@@ -18,9 +18,9 @@ class User extends Authenticatable implements JWTSubject
 
     use SoftDeletes, Notifiable;
 
-    const ADMINISTRATOR = true;
+    const ADMINISTRATOR_USER = true;
 
-    const NOT_ADMINISTRATOR = false;
+    const REGULAR_USER = false;
 
     /**
      * @var string
@@ -38,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'remember_token',
-        'is_administrator',
+        'administrator',
         'active',
         'roles'
     ];

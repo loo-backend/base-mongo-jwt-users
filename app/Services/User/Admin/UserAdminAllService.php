@@ -16,7 +16,7 @@ class UserAdminAllService
     {
 
         $filter = [
-            ['is_administrator', true]
+            ['administrator', true]
         ];
 
         if (!$user = User::where($filter)->paginate() ) {

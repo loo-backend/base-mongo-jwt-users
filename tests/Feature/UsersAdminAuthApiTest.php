@@ -22,7 +22,7 @@ class UsersAdminAuthApiTest extends TestCase
             'name' => str_random(10),
             'email' => str_random(6) . '@mail.com',
             'active' => true,
-            'is_administrator' => true,
+            'administrator' => User::ADMINISTRATOR_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -35,7 +35,7 @@ class UsersAdminAuthApiTest extends TestCase
             '--path' => "app/database/migrations"
         ]);
 
-        $users = factory(User::class)->create(['is_administrator' => User::ADMINISTRATOR]);
+        $users = factory(User::class)->create(['administrator' => User::ADMINISTRATOR_USER]);
         $users->roles()->create(Role::ADMINISTRATOR);
 
     }
@@ -46,7 +46,7 @@ class UsersAdminAuthApiTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('administrator', true)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -67,7 +67,7 @@ class UsersAdminAuthApiTest extends TestCase
 
     public function testUserAuthenticateValid() {
 
-        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
         $response = $this->post('/auth/authenticate',
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
@@ -80,7 +80,7 @@ class UsersAdminAuthApiTest extends TestCase
 
     public function testUserAuthenticateInvalid() {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('administrator', true)->first();
         $response = $this->post('/auth/authenticate',
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);

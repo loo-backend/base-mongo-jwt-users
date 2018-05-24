@@ -23,7 +23,7 @@ class UsersAdminTest extends TestCase
             'name' => str_random(10),
             'email' => str_random(6) . '@mail.com',
             'active' => true,
-            'is_administrator' =>  User::ADMINISTRATOR,
+            'administrator' =>  User::ADMINISTRATOR_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -37,7 +37,7 @@ class UsersAdminTest extends TestCase
             '--path' => "app/database/migrations"
         ]);
 
-        $users = factory(User::class)->create(['is_administrator' => true]);
+        $users = factory(User::class)->create(['administrator' => true]);
         $users->roles()->create(Role::ADMINISTRATOR);
 
     }
@@ -52,7 +52,7 @@ class UsersAdminTest extends TestCase
         $data['roles'] = Role::ADMINISTRATOR;
 
 
-        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -67,7 +67,7 @@ class UsersAdminTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'is_administrator' => $data['is_administrator']
+            'administrator' => $data['administrator']
         ]);
 
         $response->assertJsonStructure([
@@ -81,7 +81,7 @@ class UsersAdminTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('is_administrator', true)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -99,7 +99,7 @@ class UsersAdminTest extends TestCase
             'name',
             'email',
             'active',
-            'is_administrator',
+            'administrator',
             'roles' => [
                 '*' => [
                     'name', 'permissions'
@@ -112,7 +112,7 @@ class UsersAdminTest extends TestCase
     public function testAllUsers()
     {
 
-        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -134,7 +134,7 @@ class UsersAdminTest extends TestCase
                     'name',
                     'email',
                     'active',
-                    'is_administrator',
+                    'administrator',
                     'roles' => [
                         '*' => [
                             'name', 'permissions'
@@ -152,7 +152,7 @@ class UsersAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
 
         $data = [
             'name' => str_random(12),
@@ -189,7 +189,7 @@ class UsersAdminTest extends TestCase
         ];
 
 
-        $user = User::where('is_administrator', User::ADMINISTRATOR)->first();
+        $user = User::where('administrator', User::ADMINISTRATOR_USER)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
         $headers = [
@@ -211,7 +211,7 @@ class UsersAdminTest extends TestCase
 //    public function testAddRolesStaffSupport()
 //    {
 //
-//        $user = User::where('is_administrator', true)->first();
+//        $user = User::where('administrator', true)->first();
 //
 //        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 //
@@ -231,7 +231,7 @@ class UsersAdminTest extends TestCase
     public function testDeleteUser()
     {
 
-        $user = User::where('is_administrator',  User::ADMINISTRATOR)->first();
+        $user = User::where('administrator',  User::ADMINISTRATOR_USER)->first();
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
 

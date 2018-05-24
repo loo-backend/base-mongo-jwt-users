@@ -72,7 +72,7 @@ class UserCreateAdminService
             $data['active'] = false;
         }
 
-        $data['is_administrator'] = true;
+        $data['administrator'] = true;
         unset($data['roles']);
 
         if (!$create = User::create($data) ) {

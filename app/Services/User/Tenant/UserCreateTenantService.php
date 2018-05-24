@@ -65,7 +65,7 @@ class UserCreateTenantService
             $data['active'] = false;
         }
 
-        $data['is_administrator'] = false;
+        $data['administrator'] = false;
         unset($data['roles']);
 
         if (!$create = User::create($data) ) {

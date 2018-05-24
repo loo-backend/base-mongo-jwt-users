@@ -16,7 +16,7 @@ class UserTenantAllService
     {
 
         $filter = [
-            ['is_administrator', false]
+            ['administrator', false]
         ];
 
         if (!$user = User::where($filter)->paginate() ) {
