@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Factories\JWTTokenBearerFactory;
-use App\Services\UserCreateTenantService;
-use App\Services\UserFindService;
-use App\Services\UserRemoveService;
-use App\Services\UserTenantAllService;
-use App\Services\UserUpdateService;
+use App\Services\User\UserFindService;
+use App\Services\User\UserRemoveService;
+use App\Services\User\UserUpdateService;
+use App\Services\User\Tenant\UserCreateTenantService;
+use App\Services\User\Tenant\UserTenantAllService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use JWTAuth;

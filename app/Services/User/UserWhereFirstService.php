@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User;
 
 use App\User;
 
-/**
- * Class UserWhereFirstService
- * @package App\Services
- */
 class UserWhereFirstService
 {
 

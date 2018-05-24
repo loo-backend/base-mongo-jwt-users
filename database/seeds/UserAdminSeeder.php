@@ -1,10 +1,11 @@
 <?php
 
+use App\Role;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UserAdminSeeder extends Seeder
 {
-
 
     /**
      * Run the database seeds.
@@ -15,10 +16,10 @@ class UserAdminSeeder extends Seeder
     {
 
         $this->administrator();
-        $this->staffSupport();
-        $this->staffFinance();
-        $this->staffCommercial();
-        $this->staffInitial();
+        $this->adminStaffSupport();
+        $this->adminStaffFinance();
+        $this->adminStaffCommercial();
+        $this->adminStaffInitial();
 
     }
 
@@ -26,13 +27,9 @@ class UserAdminSeeder extends Seeder
     public function administrator()
     {
 
-        $roles = ['name' => 'ADMINISTRATOR',
-            'permissions' => [
-                'ALL'
-            ]
-        ];
+        $roles = Role::ADMINISTRATOR;
 
-        $users = factory(App\User::class,5)->create(['is_administrator' => true]);
+        $users = factory(App\User::class,5)->create(['is_administrator' => User::ADMINISTRATOR]);
 
         $users->each(function ($user) use($roles) {
             $user->roles()->create($roles);
@@ -41,19 +38,12 @@ class UserAdminSeeder extends Seeder
     }
 
 
-    public function staffSupport()
+    public function adminStaffSupport()
     {
 
-        $roles = ['name' => 'ADMIN_STAFF_SUPPORT',
-            'permissions' => [
-                'BROWSER',
-                'READ',
-                'ADD',
-                'EDIT'
-            ]
-        ];
+        $roles = Role::ADMIN_STAFF_SUPPORT;
 
-        $users = factory(App\User::class,50)->create(['is_administrator' => true]);
+        $users = factory(App\User::class,50)->create(['is_administrator' => User::ADMINISTRATOR]);
 
         $users->each(function ($user) use($roles) {
             $user->roles()->create($roles);
@@ -61,19 +51,12 @@ class UserAdminSeeder extends Seeder
 
     }
 
-    public function staffFinance()
+    public function adminStaffFinance()
     {
 
-        $roles = ['name' => 'ADMIN_STAFF_FINANCE',
-            'permissions' => [
-                'BROWSER',
-                'READ',
-                'ADD',
-                'EDIT'
-            ]
-        ];
+        $roles = Role::ADMIN_STAFF_FINANCE;
 
-        $users = factory(App\User::class,50)->create(['is_administrator' => true]);
+        $users = factory(App\User::class,50)->create(['is_administrator' => User::ADMINISTRATOR]);
 
         $users->each(function ($user) use($roles) {
             $user->roles()->create($roles);
@@ -81,19 +64,12 @@ class UserAdminSeeder extends Seeder
 
     }
 
-    public function staffCommercial()
+    public function adminStaffCommercial()
     {
 
-        $roles = ['name' => 'ADMIN_STAFF_COMMERCIAL',
-            'permissions' => [
-                'BROWSER',
-                'READ',
-                'ADD',
-                'EDIT'
-            ]
-        ];
+        $roles = Role::ADMIN_STAFF_COMMERCIAL;
 
-        $users = factory(App\User::class,50)->create(['is_administrator' => true]);
+        $users = factory(App\User::class,50)->create(['is_administrator' => User::ADMINISTRATOR]);
 
         $users->each(function ($user) use($roles) {
             $user->roles()->create($roles);
@@ -102,17 +78,12 @@ class UserAdminSeeder extends Seeder
     }
 
 
-    public function staffInitial()
+    public function adminStaffInitial()
     {
 
-        $roles = ['name' => 'ADMIN_STAFF_INITIAL',
-            'permissions' => [
-                'BROWSER',
-                'READ'
-            ]
-        ];
+        $roles = Role::ADMIN_STAFF_INITIAL;
 
-        $users = factory(App\User::class,50)->create(['is_administrator' => true]);
+        $users = factory(App\User::class,50)->create(['is_administrator' => User::ADMINISTRATOR]);
 
         $users->each(function ($user) use($roles) {
             $user->roles()->create($roles);

@@ -3,7 +3,7 @@
 namespace App\Factories;
 
 use Illuminate\Http\Request;
-use App\Services\UserWhereFirstService;
+use App\Services\User\UserWhereFirstService;
 use JWTAuth;
 use JWTFactory;
 
@@ -35,7 +35,6 @@ class JWTTokenBearerFactory {
      */
     public function generate(Request $request)
     {
-
 
         $user = $this->whereFirstService
             ->whereFirst(['email' => $request->input('email')]);
