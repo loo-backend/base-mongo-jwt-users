@@ -84,7 +84,6 @@ class UsersAdminAuthApiTest extends TestCase
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
 
-
         $response->assertJson(['data' => [
             'HTTP_Authorization' => true
         ]]);
@@ -98,9 +97,8 @@ class UsersAdminAuthApiTest extends TestCase
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);
 
-
         $response->assertJson(['error' => 'invalid_credentials']);
-
+        $response->assertJson(['code' => 401]);
 
     }
 
