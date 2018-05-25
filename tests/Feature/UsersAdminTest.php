@@ -75,8 +75,10 @@ class UsersAdminTest extends TestCase
         ]);
 
         $response->assertJsonStructure([
-            'success',
-            'HTTP_Authorization'
+            'data' => [
+                'success',
+                'HTTP_Authorization'
+            ]
         ]);
 
     }
@@ -96,17 +98,25 @@ class UsersAdminTest extends TestCase
             ->assertStatus(200);
 
         $response->assertJsonStructure([
-            '_id',
-            'user_uuid',
-            'name',
-            'email',
-            'active',
-            'administrator',
-            'roles' => [
+            'data' => [
+
                 '*' => [
-                    'name', 'permissions'
+                    '_id',
+                    'user_uuid',
+                    'name',
+                    'email',
+                    'active',
+                    'administrator',
+                    'roles' => [
+                        '*' => [
+                            'name', 'permissions'
+                        ]
+                    ]
+
                 ]
+
             ]
+
         ]);
 
     }
@@ -125,11 +135,12 @@ class UsersAdminTest extends TestCase
         $response = $this->get('/users/admins', $headers)
             ->assertStatus(200);
 
+
+
         $response->assertJsonStructure([
             'data' => [
 
                 '*' => [
-
                     '_id',
                     'user_uuid',
                     'name',
@@ -239,7 +250,7 @@ class UsersAdminTest extends TestCase
 
         $response->assertStatus(200)
             ->assertExactJson([
-                'response' => 'user_removed'
+                'data' => 'user_removed'
             ]);
 
 

@@ -218,7 +218,7 @@ class UsersTenantTest extends TestCase
 //
 //        $response->assertStatus(200)
 //            ->assertExactJson([
-//                'response' => 'user_removed'
+//                'data' => 'user_removed'
 //            ]);
 //
 //

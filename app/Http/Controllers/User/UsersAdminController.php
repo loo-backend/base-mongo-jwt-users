@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Traits\JWTTokenBearerTrait;
+use App\Http\Controllers\ApiController;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
@@ -13,10 +13,9 @@ use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-class UsersAdminController extends Controller
+class UsersAdminController extends ApiController
 {
 
-    use JWTTokenBearerTrait;
 
     /**
      * @var UserCreateAdminService
@@ -78,10 +77,10 @@ class UsersAdminController extends Controller
 
         if (count($result) <= 0) {
 
-            return response()->json(['error' => 'users_not_found'], 422);
+            return $this->errorResponse('users_not_found', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->showAll($result);
 
     }
 
@@ -105,56 +104,60 @@ class UsersAdminController extends Controller
 
         if (!$result = $this->createAdminService->create($request)) {
 
-            return response()->json(['error' => 'user_not_created'], 500);
+            return $this->errorResponse('user_not_created', 500);
         }
 
         $credentials = $request->only('email', 'password');
 
-
         if (!$token = JWTAuth::attempt($credentials)) {
 
-            return response()->json([
+            $error = [
                 'success' => false,
                 'data' => '',
                 'error' => 'invalid_credentials'
-            ], 401);
+            ];
+
+            return $this->errorResponse($error, 401);
 
         }
 
         $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
-        return response()->json([
+        $success = [
             'success' => true,
             'HTTP_Authorization' => $token
-        ], 200);
+        ];
+
+        return $this->successResponse($success);
 
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     * @return bool
-     * @throws \Exception
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
 
         if (!$result = $this->findService->findBy($id)) {
-            return response()->json(['error' => 'user_not_found'], 422);
+            return $this->errorResponse('user_not_found', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->showOne($result);
 
     }
+
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -167,36 +170,36 @@ class UsersAdminController extends Controller
         }
 
         if (!$result = $this->findService->findBy($id)) {
-            return response()->json(['error' => 'user_not_found'], 422);
+            return $this->errorResponse('user_not_found', 422);
         }
 
         if (!$result = $this->updateService->update($request, $id)) {
-            return response()->json(['error' => 'user_not_updated'], 422);
+            return $this->errorResponse('user_not_updated', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->successResponse($result);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
 
         if (!$result = $this->findService->findBy($id)) {
-            return response()->json(['error' => 'user_not_found'], 422);
+            return $this->errorResponse('user_not_found', 422);
         }
 
         if (!$result = $this->removeService->remove($id)) {
 
-            return response()->json(['error' => 'user_not_removed'], 422);
+            return $this->errorResponse('user_not_removed', 422);
         }
 
-        return response()->json(['response' => 'user_removed'], 200);
+        return $this->successResponse('user_removed');
 
     }
 

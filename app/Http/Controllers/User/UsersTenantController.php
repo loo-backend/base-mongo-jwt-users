@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Traits\JWTTokenBearerTrait;
+use App\Http\Controllers\ApiController;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
@@ -16,10 +16,8 @@ use JWTAuth;
  * Class UsersTenantController
  * @package App\Http\Controllers
  */
-class UsersTenantController extends Controller
+class UsersTenantController extends ApiController
 {
-
-    use JWTTokenBearerTrait;
 
     /**
      * @var UserCreateTenantService
@@ -198,7 +196,7 @@ class UsersTenantController extends Controller
 //            return response()->json(['error' => 'user_not_removed'], 422);
 //        }
 //
-//        return response()->json(['response' => 'user_removed'], 200);
+//        return response()->json(['data' => 'user_removed'], 200);
 //
 //    }
 
