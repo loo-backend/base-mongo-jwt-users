@@ -76,7 +76,6 @@ class UsersAdminTest extends TestCase
 
         $response->assertJsonStructure([
             'data' => [
-                'success',
                 'HTTP_Authorization'
             ]
         ]);
@@ -134,8 +133,6 @@ class UsersAdminTest extends TestCase
 
         $response = $this->get('/users/admins', $headers)
             ->assertStatus(200);
-
-
 
         $response->assertJsonStructure([
             'data' => [

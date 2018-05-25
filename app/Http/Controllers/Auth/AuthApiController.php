@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\ApiController;
 use App\Traits\JWTTokenBearerTrait;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use JWTAuth;
-use JWTFactory;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthApiController extends Controller
+class AuthApiController extends ApiController
 {
 
     use JWTTokenBearerTrait;
@@ -24,22 +23,16 @@ class AuthApiController extends Controller
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
 
-
         if (!$token = JWTAuth::attempt($credentials)) {
-
-            return response()->json([
-                'success' => false,
-                'error' => 'invalid_credentials'
-            ], 401);
+            return $this->errorResponse('invalid_credentials', 401);
         }
 
         $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
-        return response()->json([
-            'success' => true,
+        return $this->successResponse([
             'HTTP_Authorization' => $token
-        ], 200);
+        ]);
 
     }
 

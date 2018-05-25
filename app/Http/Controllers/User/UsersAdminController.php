@@ -111,25 +111,17 @@ class UsersAdminController extends ApiController
 
         if (!$token = JWTAuth::attempt($credentials)) {
 
-            $error = [
-                'success' => false,
-                'data' => '',
-                'error' => 'invalid_credentials'
-            ];
-
-            return $this->errorResponse($error, 401);
+            return $this->errorResponse('invalid_credentials', 401);
 
         }
 
         $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
-        $success = [
-            'success' => true,
-            'HTTP_Authorization' => $token
-        ];
 
-        return $this->successResponse($success);
+        return $this->successResponse([
+            'HTTP_Authorization' => $token
+        ]);
 
     }
 

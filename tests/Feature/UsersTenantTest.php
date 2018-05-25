@@ -75,7 +75,6 @@ class UsersTenantTest extends TestCase
         ]);
 
         $response->assertJsonStructure([
-            'success',
             'HTTP_Authorization'
         ]);
 
