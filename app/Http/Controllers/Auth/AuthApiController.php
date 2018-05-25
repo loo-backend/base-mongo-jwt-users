@@ -27,11 +27,9 @@ class AuthApiController extends ApiController
             return $this->errorResponse('invalid_credentials', 401);
         }
 
-        $token = $this->tokenBearerGenerate($request);
-
         //Authorization || HTTP_Authorization
         return $this->successResponse([
-            'HTTP_Authorization' => $token
+            'HTTP_Authorization' => $this->tokenBearerGenerate($request)
         ]);
 
     }

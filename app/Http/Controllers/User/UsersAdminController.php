@@ -76,7 +76,6 @@ class UsersAdminController extends ApiController
         $result = $this->allService->all();
 
         if (count($result) <= 0) {
-
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -115,12 +114,9 @@ class UsersAdminController extends ApiController
 
         }
 
-        $token = $this->tokenBearerGenerate($request);
-
         //Authorization || HTTP_Authorization
-
         return $this->successResponse([
-            'HTTP_Authorization' => $token
+            'HTTP_Authorization' => $this->tokenBearerGenerate($request)
         ]);
 
     }
@@ -187,7 +183,6 @@ class UsersAdminController extends ApiController
         }
 
         if (!$result = $this->removeService->remove($id)) {
-
             return $this->errorResponse('user_not_removed', 422);
         }
 

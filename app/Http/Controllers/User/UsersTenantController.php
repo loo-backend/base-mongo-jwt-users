@@ -119,11 +119,9 @@ class UsersTenantController extends ApiController
 
         }
 
-        $token = $this->tokenBearerGenerate($request);
-
         //Authorization || HTTP_Authorization
         return $this->successResponse([
-            'HTTP_Authorization' => $token
+            'HTTP_Authorization' => $this->tokenBearerGenerate($request)
         ]);
 
     }
