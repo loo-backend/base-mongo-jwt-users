@@ -75,7 +75,9 @@ class UsersTenantTest extends TestCase
         ]);
 
         $response->assertJsonStructure([
-            'HTTP_Authorization'
+            'data' => [
+                'HTTP_Authorization'
+            ]
         ]);
 
     }
@@ -96,16 +98,25 @@ class UsersTenantTest extends TestCase
 
 
         $response->assertJsonStructure([
-            '_id',
-            'user_uuid',
-            'name',
-            'email',
-            'active',
-            'roles' => [
+            'data' => [
+
                 '*' => [
-                    'name', 'permissions'
+                    '_id',
+                    'user_uuid',
+                    'name',
+                    'email',
+                    'active',
+                    'administrator',
+                    'roles' => [
+                        '*' => [
+                            'name', 'permissions'
+                        ]
+                    ]
+
                 ]
+
             ]
+
         ]);
 
     }

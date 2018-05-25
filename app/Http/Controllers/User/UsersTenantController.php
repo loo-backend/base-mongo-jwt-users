@@ -10,7 +10,7 @@ use App\Services\User\Tenant\UserCreateTenantService;
 use App\Services\User\Tenant\UserTenantAllService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
  * Class UsersTenantController
@@ -81,10 +81,10 @@ class UsersTenantController extends ApiController
 
         if (count($result) <= 0) {
 
-            return response()->json(['error' => 'users_not_found'], 422);
+            return $this->errorResponse('users_not_found', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->showAll($result);
 
     }
 
@@ -107,53 +107,51 @@ class UsersTenantController extends ApiController
         }
 
         if (!$result = $this->createService->create($request)) {
-            return response()->json(['error' => 'user_not_created'], 500);
+
+            return $this->errorResponse('user_not_created', 500);
         }
 
         $credentials = $request->only('email', 'password');
 
         if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json([
-                'success' => false,
-                'data' => '',
-                'error' => 'invalid_credentials'
-            ], 401);
+
+            return $this->errorResponse('invalid_credentials', 401);
+
         }
 
         $token = $this->tokenBearerGenerate($request);
 
         //Authorization || HTTP_Authorization
-        return response()->json([
-            'success' => true,
+        return $this->successResponse([
             'HTTP_Authorization' => $token
-        ], 200);
+        ]);
 
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     * @return bool
-     * @throws \Exception
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
 
         if (!$result = $this->findService->findBy($id)) {
-            return response()->json(['error' => 'user_not_found'], 422);
+            return $this->errorResponse('user_not_found', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->showOne($result);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -166,37 +164,36 @@ class UsersTenantController extends ApiController
         }
 
         if (!$result = $this->findService->findBy($id)) {
-            return response()->json(['error' => 'user_not_found'], 422);
+            return $this->errorResponse('user_not_found', 422);
         }
 
         if (!$result = $this->updateService->update($request, $id)) {
-
-            return response()->json(['error' => 'user_not_updated'], 422);
+            return $this->errorResponse('user_not_updated', 422);
         }
 
-        return response()->json($result, 200);
+        return $this->successResponse($result);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param $id
+//     * @return \Illuminate\Http\JsonResponse
+//     */
 //    public function destroy($id)
 //    {
 //
 //        if (!$result = $this->findService->findBy($id)) {
-//            return response()->json(['error' => 'user_not_found'], 422);
+//            return $this->errorResponse('user_not_found', 422);
 //        }
 //
 //        if (!$result = $this->removeService->remove($id)) {
 //
-//            return response()->json(['error' => 'user_not_removed'], 422);
+//            return $this->errorResponse('user_not_removed', 422);
 //        }
 //
-//        return response()->json(['data' => 'user_removed'], 200);
+//        return $this->successResponse('user_removed');
 //
 //    }
 
