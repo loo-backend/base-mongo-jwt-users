@@ -114,9 +114,7 @@ class UsersTenantController extends ApiController
         $credentials = $request->only('email', 'password');
 
         if (!$token = JWTAuth::attempt($credentials)) {
-
             return $this->errorResponse('invalid_credentials', 401);
-
         }
 
         //Authorization || HTTP_Authorization

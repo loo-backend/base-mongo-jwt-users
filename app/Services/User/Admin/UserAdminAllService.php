@@ -4,6 +4,10 @@ namespace App\Services\User\Admin;
 
 use App\User;
 
+/**
+ * Class UserAdminAllService
+ * @package App\Services\User\Admin
+ */
 class UserAdminAllService
 {
 

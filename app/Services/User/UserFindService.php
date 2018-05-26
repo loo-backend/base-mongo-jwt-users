@@ -4,6 +4,10 @@ namespace App\Services\User;
 
 use App\User;
 
+/**
+ * Class UserFindService
+ * @package App\Services\User
+ */
 class UserFindService
 {
 

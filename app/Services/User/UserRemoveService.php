@@ -4,6 +4,10 @@ namespace App\Services\User;
 
 use App\User;
 
+/**
+ * Class UserRemoveService
+ * @package App\Services\User
+ */
 class UserRemoveService
 {
 

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
-
 /**
  * Class UserCreateAdminService
  * @package App\Services\User\Admin
@@ -47,7 +46,6 @@ class UserCreateAdminService
         ]);
 
     }
-
 
     /**
      * Create User
