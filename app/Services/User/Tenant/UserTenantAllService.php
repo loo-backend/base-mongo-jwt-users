@@ -15,11 +15,10 @@ class UserTenantAllService
     public function all()
     {
 
-        $filter = [
-            ['administrator', false]
-        ];
+        $user = User::where('administrator', User::REGULAR_USER)
+                        ->paginate();
 
-        if (!$user = User::where($filter)->paginate() ) {
+        if (!$user) {
             return false;
         }
 

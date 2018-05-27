@@ -149,18 +149,18 @@
 			}
 		},
 		{
-			"file": "app/Services/User/UserFindService.php",
+			"file": "app/Services/User/Admin/UserCreateAdminService.php",
 			"settings":
 			{
-				"buffer_size": 310,
+				"buffer_size": 1689,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/Services/User/Admin/UserCreateAdminService.php",
+			"file": "app/Services/User/UserFindService.php",
 			"settings":
 			{
-				"buffer_size": 1691,
+				"buffer_size": 373,
 				"line_ending": "Unix"
 			}
 		}
@@ -226,7 +226,6 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Exceptions",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers",
-		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/User",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin",
@@ -593,7 +592,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -632,16 +631,51 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "app/Services/User/Admin/UserCreateAdminService.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								694,
+								694
+							]
+						],
+						"settings":
+						{
+							"SL.21.region_keys":
+							[
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 594.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "app/Services/User/UserFindService.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 310,
+						"buffer_size": 373,
 						"regions":
 						{
 						},
@@ -670,42 +704,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/Services/User/Admin/UserCreateAdminService.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1691,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1138,
-								1138
-							]
-						],
-						"settings":
-						{
-							"SL.30.region_keys":
-							[
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 660.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

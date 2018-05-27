@@ -15,14 +15,18 @@ class UserCreateTenantService
     /**
      * @var array
      */
-    private $roles;
+    private $user;
 
     /**
-     * UserCreateAdminService constructor.
+     * @var array
      */
-    public function __construct()
+    private $role;
+
+
+    public function __construct(User $user, Role $role)
     {
-        $this->roles = Role::TENANT_ADMINISTRATOR;
+        $this->user = $user;
+        $this->role = $role::TENANT_ADMINISTRATOR;
     }
 
     /**
@@ -54,26 +58,28 @@ class UserCreateTenantService
 
         $data = $request->all();
 
-        if (!empty($request['roles'])) {
-            $this->roles = $request['roles'];
+        if ( $request->has('roles') ) {
+            $this->role = $request['roles'];
         }
 
-        $data['password'] = Hash::make($request->all()['password']);
+        if ( $request->has('password') ) {
+            $data['password'] = Hash::make($request['password']);
+        }
+
         $data['user_uuid'] = Uuid::generate(4)->string;
 
-        if (!isset($request['active'])) {
+        if (! $request->has('active') ) {
             $data['active'] = false;
         }
 
-        $data['administrator'] = false;
-        unset($data['roles']);
+        $data['administrator'] = $this->user::REGULAR_USER;
+        unset( $data['roles'] );
 
-        if (!$create = User::create($data) ) {
+        if (!$create = $this->user->create( $data ) ) {
             return false;
         }
 
-        $create->roles()->create($this->roles);
-
+        $create->roles()->create( $this->role );
         return $create;
 
     }

@@ -12,18 +12,17 @@ class UserAdminAllService
 {
 
     /**
-     * All Users
+     * All Users Admin
      *
      * @return bool|array
      */
     public function all()
     {
 
-        $filter = [
-            ['administrator', true]
-        ];
+        $user = User::where('administrator', User::ADMIN_USER)
+                        ->paginate();
 
-        if (!$user = User::where($filter)->paginate() ) {
+        if (!$user) {
             return false;
         }
 

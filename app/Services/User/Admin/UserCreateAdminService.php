@@ -20,14 +20,21 @@ class UserCreateAdminService
     /**
      * @var array
      */
-    private $roles;
+    private $user;
 
     /**
-     * UserCreateAdminService constructor.
+     * @var array
      */
-    public function __construct()
+    private $role;
+
+
+    public function __construct(User $user, Role $role)
     {
-        $this->roles = Role::ADMIN_STAFF_INITIAL;
+
+        $this->user = $user;
+        $this->role = $role::ADMIN_STAFF_INITIAL;
+
+
     }
 
 
@@ -59,25 +66,28 @@ class UserCreateAdminService
 
         $data = $request->all();
 
-        if (!empty($request['roles'])) {
-            $this->roles = $request['roles'];
+        if ( $request->has('roles') ) {
+            $this->role = $request['roles'];
         }
 
-        $data['password'] = Hash::make($request->all()['password']);
+        if ( $request->has('password') ) {
+            $data['password'] = Hash::make($request['password']);
+        }
+
         $data['user_uuid'] = Uuid::generate(4)->string;
 
-        if (!isset($request['active'])) {
+        if (! $request->has('active') ) {
             $data['active'] = false;
         }
 
-        $data['administrator'] = true;
+        $data['administrator'] = $this->user::ADMIN_USER;
         unset($data['roles']);
 
-        if (!$create = User::create($data) ) {
+        if (!$create = $this->user->create($data) ) {
             return false;
         }
 
-        $create->roles()->create($this->roles);
+        $create->roles()->create($this->role);
 
         return $create;
 

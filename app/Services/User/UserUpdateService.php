@@ -52,8 +52,8 @@ class UserUpdateService
 
             $data = $request->all();
 
-            if (isset($request->all()['password'])) {
-                $data['password'] = Hash::make($request->all()['password']);
+            if ($request->has('password')) {
+                $data['password'] = Hash::make($request['password']);
             }
 
             $user->update($data);
