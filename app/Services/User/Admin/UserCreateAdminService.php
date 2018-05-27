@@ -16,7 +16,6 @@ use Webpatser\Uuid\Uuid;
 class UserCreateAdminService
 {
 
-
     /**
      * @var array
      */
@@ -30,11 +29,8 @@ class UserCreateAdminService
 
     public function __construct(User $user, Role $role)
     {
-
         $this->user = $user;
         $this->role = $role::ADMIN_STAFF_INITIAL;
-
-
     }
 
 
@@ -81,6 +77,7 @@ class UserCreateAdminService
         }
 
         $data['administrator'] = $this->user::ADMIN_USER;
+
         unset($data['roles']);
 
         if (!$create = $this->user->create($data) ) {

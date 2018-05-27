@@ -70,7 +70,8 @@ class UsersAdminAuthApiTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => $this->data['name'],
-            'email' => $this->data['email']
+            'email' => $this->data['email'],
+            'administrator' => User::ADMIN_USER
         ]);
 
     }

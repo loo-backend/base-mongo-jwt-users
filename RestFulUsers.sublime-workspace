@@ -140,27 +140,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/Tenant.php",
+			"file": "app/Services/User/UserRemoveService.php",
 			"settings":
 			{
-				"buffer_size": 244,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Services/User/Admin/UserCreateAdminService.php",
-			"settings":
-			{
-				"buffer_size": 1689,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Services/User/UserFindService.php",
-			"settings":
-			{
-				"buffer_size": 373,
+				"buffer_size": 389,
 				"line_ending": "Unix"
 			}
 		}
@@ -226,34 +209,41 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Exceptions",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/User",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant",
 		"/home/williams/Code/Loojas/backend/users/web/app/Traits",
 		"/home/williams/Code/Loojas/backend/users/web/database",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations"
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations",
+		"/home/williams/Code/Loojas/backend/users/web/tests",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature"
 	],
 	"file_history":
 	[
-		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/User/UsersTenantController.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminAuthApiTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Auth/AuthApiController.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserUpdateService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserCreateTenantService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserTenantAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/User.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserAdminAllService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserCreateAdminService.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminAuthApiTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Tenant.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserFindService.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/User/UsersTenantController.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Auth/AuthApiController.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Exceptions/Handler.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Traits/JWTTokenBearerTrait.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersAdminController.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersTenantController.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
 		"/home/williams/Code/Loojas/backend/users/web/database/factories/UserFactory.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_000000_create_users_table.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserAdminSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/.idea/workspace.xml",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserAdminAllService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserCreateAdminService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserCreateTenantService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserTenantAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Factories/JWTTokenBearerFactory.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/UserWhereFirstService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserWhereFirstService.php",
@@ -263,9 +253,7 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/UserFindService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/UserCreateTenantService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/UserCreateAdminService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserFindService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserRemoveService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserUpdateService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Admin/UserAdminAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Tenant/UserWhereFirstService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Tenant/UserUpdateService.php",
@@ -314,7 +302,6 @@
 		"/home/williams/Code/Loojas/web5.6/composer.json",
 		"/home/williams/Code/Loojas/backend/users/web/composer.json",
 		"/home/williams/Code/Loojas/backend/users/web/vendor/jenssegers/mongodb/src/Jenssegers/Mongodb/Eloquent/Model.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Tenant.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Role.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Providers/RouteServiceProvider.php",
 		"/home/williams/Code/Loojas/backend/users/web/routes/web.php",
@@ -366,7 +353,7 @@
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
@@ -416,6 +403,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"'administrator'",
+			"$this->roles",
 			"whereFirst",
 			"invalid_credentials",
 			"\\Tymon\\JWTAuth\\Facades\\JWTAuth:",
@@ -541,8 +530,6 @@
 			"user",
 			"User",
 			"user",
-			"User",
-			"App\\User",
 			"User"
 		],
 		"highlight": true,
@@ -551,6 +538,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"$this->role",
 			"JWTTokenBearerTrait",
 			"Traits",
 			"ADMIN_USER",
@@ -592,106 +580,29 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/Tenant.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 244,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								167,
-								167
-							]
-						],
-						"settings":
-						{
-							"SL.14.region_keys":
-							[
-							],
-							"SL.31.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/Services/User/Admin/UserCreateAdminService.php",
+					"file": "app/Services/User/UserRemoveService.php",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1689,
+						"buffer_size": 389,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								694,
-								694
+								51,
+								51
 							]
 						],
 						"settings":
 						{
-							"SL.21.region_keys":
-							[
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 594.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/Services/User/UserFindService.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 373,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"SL.15.region_keys":
-							[
-							],
-							"SL.20.region_keys":
+							"SL.61.region_keys":
 							[
 							],
 							"editorconfig": true,
@@ -704,7 +615,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -757,7 +668,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 56.0
+		"height": 78.0
 	},
 	"save_all_on_build": true,
 	"select_file":

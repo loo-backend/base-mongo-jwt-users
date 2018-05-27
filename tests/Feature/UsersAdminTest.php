@@ -44,7 +44,7 @@ class UsersAdminTest extends TestCase
             '--path' => "app/database/migrations"
         ]);
 
-        $users = factory(User::class)->create(['administrator' => true]);
+        $users = factory(User::class)->create(['administrator' => User::ADMIN_USER]);
         $users->roles()->create(Role::ADMINISTRATOR);
 
     }
@@ -71,7 +71,7 @@ class UsersAdminTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'administrator' => $data['administrator']
+            'administrator' => User::ADMIN_USER
         ]);
 
         $response->assertJsonStructure([

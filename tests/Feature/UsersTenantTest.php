@@ -29,6 +29,7 @@ class UsersTenantTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
+            'administrator' => User::REGULAR_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -58,7 +59,7 @@ class UsersTenantTest extends TestCase
         $data['roles'] = Role::TENANT_ADMINISTRATOR;
 
 
-        $user = User::where('administrator', false)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -72,6 +73,7 @@ class UsersTenantTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
+            'administrator' => User::REGULAR_USER,
         ]);
 
         $response->assertJsonStructure([
@@ -95,7 +97,6 @@ class UsersTenantTest extends TestCase
 
         $response = $this->get('/users/tenants/'. $user->id, $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             'data' => [
@@ -180,9 +181,10 @@ class UsersTenantTest extends TestCase
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users',[
+            '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            '_id' => $user->id
+            'administrator' => User::REGULAR_USER
         ]);
 
     }
@@ -208,10 +210,11 @@ class UsersTenantTest extends TestCase
         $this->put('/users/tenants/'.$user->id, $data, $headers)
             ->assertStatus(200);
 
-        $this->assertDatabaseMissing('users', [
+         $this->assertDatabaseMissing('users',[
+            '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            '_id' => $user->id
+            'administrator' => User::REGULAR_USER
         ]);
 
     }

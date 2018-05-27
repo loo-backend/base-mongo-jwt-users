@@ -15,7 +15,6 @@ use Illuminate\Validation\Rule;
 class UserUpdateService
 {
 
-
     /**
      * Get a validator for a User Admin.
      *
