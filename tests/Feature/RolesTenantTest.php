@@ -26,7 +26,6 @@ class RolesTenantTest extends TestCase
 
     }
 
-
     public function testRolesTenantAll()
     {
 
@@ -84,7 +83,6 @@ class RolesTenantTest extends TestCase
         $response = $this->get('/roles/tenants/'. $role->id, $headers)
             ->assertStatus(200);
 
-
         $response->assertJson([
 
             'data' => [
@@ -95,7 +93,6 @@ class RolesTenantTest extends TestCase
                 ]
             ]
         ]);
-
 
     }
 

@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Role;
 use App\User;
 use Faker\Factory;
-use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -42,10 +40,7 @@ class UsersAdminAuthApiTest extends TestCase
         $this->restoreDatabase();
         $this->faker();
 
-        $users = factory(User::class)->create([
-            'administrator' => User::ADMIN_USER
-        ]);
-        //$users->roles()->create(Role::ADMINISTRATOR);
+        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
 
     }
 

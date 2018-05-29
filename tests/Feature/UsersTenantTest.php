@@ -137,11 +137,6 @@ class UsersTenantTest extends TestCase
                     'email',
                     'active',
                     'administrator',
-                    // 'roles' => [
-                    //     '*' => [
-                    //         'name', 'permissions'
-                    //     ]
-                    // ]
 
                 ]
 
@@ -217,29 +212,5 @@ class UsersTenantTest extends TestCase
 
     }
 
-//    public function testDeleteUser()
-//    {
-//
-//        $user = User::first();
-//        $token = JWTAuth::fromUser($user);
-//
-//        $response = $this->withHeaders([
-//            'HTTP_Authorization' => 'Bearer '. $token,
-//        ])->json('DELETE', '/users/tenants/'.$user->id);
-//
-//        $response->assertStatus(200)
-//            ->assertExactJson([
-//                'data' => 'user_removed'
-//            ]);
-//
-//
-//        $users = User::all();
-//
-//        foreach ($users as $user) {
-//            User::find($user->id)->forceDelete();
-//        }
-//
-//
-//    }
 
 }

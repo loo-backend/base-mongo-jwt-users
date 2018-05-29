@@ -6,7 +6,6 @@ use App\Role;
 use App\User;
 use Faker\Factory;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersAdminTest extends TestCase
@@ -41,8 +40,7 @@ class UsersAdminTest extends TestCase
         $this->restoreDatabase();
         $this->faker();
 
-        $users = factory(User::class)->create(['administrator' => User::ADMIN_USER]);
-        //$users->roles()->create(Role::ADMINISTRATOR);
+        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
 
     }
 
@@ -210,26 +208,7 @@ class UsersAdminTest extends TestCase
 
     }
 
-//    public function testAddRolesStaffSupport()
-//    {
-//
-//        $user = User::where('administrator', true)->first();
-//
-//        $token = JWTAuth::fromUser($user);
-//
-//        $headers = [
-//            'Accept' => 'application/vnd.laravel.v1+json',
-//            'HTTP_Authorization' => 'Bearer ' . $token
-//        ];
-//
-//        $this->put('/users/admins/'.$user->id, $this->roles_staff_support, $headers)
-//            ->assertStatus(200);
-//
-//    }
 
-    /**
-     *
-     */
     public function testDeleteUser()
     {
 
@@ -244,13 +223,6 @@ class UsersAdminTest extends TestCase
             ->assertExactJson([
                 'data' => 'user_removed'
             ]);
-
-
-//        $users = User::all();
-//
-//        foreach ($users as $user) {
-//            User::find($user->id)->forceDelete();
-//        }
 
 
     }
