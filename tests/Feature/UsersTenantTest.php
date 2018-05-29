@@ -108,17 +108,26 @@ class UsersTenantTest extends TestCase
                     'email',
                     'active',
                     'administrator',
-                    'roles' => [
-                        '*' => [
-                            'name', 'permissions'
-                        ]
-                    ]
+                    // 'roles' => [
+                    //     '*' => [
+                    //         'name', 'permissions'
+                    //     ]
+                    // ]
 
                 ]
 
             ]
 
         ]);
+
+        // $response->assertJson([
+        //     'data' => [
+        //         'data' => [
+        //             'administrator' => User::ADMIN_USER,
+        //         ]
+        //     ]
+        // ]);
+
 
     }
 
@@ -136,6 +145,9 @@ class UsersTenantTest extends TestCase
         $response = $this->get('/users/tenants', $headers)
             ->assertStatus(200);
 
+
+
+
         $response->assertJsonStructure([
             'data' => [
 
@@ -146,16 +158,24 @@ class UsersTenantTest extends TestCase
                     'name',
                     'email',
                     'active',
-                    'roles' => [
-                        '*' => [
-                            'name', 'permissions'
-                        ]
-                    ]
+                    'administrator',
+                    // 'roles' => [
+                    //     '*' => [
+                    //         'name', 'permissions'
+                    //     ]
+                    // ]
 
                 ]
 
             ]
 
+        ]);
+
+
+        $response->assertJson([
+            'data' => [
+                ['administrator' => User::REGULAR_USER]
+            ]
         ]);
 
     }

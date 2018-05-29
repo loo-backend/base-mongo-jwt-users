@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTenantsTable extends Migration
+class CreateTenantUser extends Migration
 {
 
     protected $connection = 'mongodb';
@@ -16,18 +16,15 @@ class CreateTenantsTable extends Migration
      */
     public function up()
     {
-
         Schema::connection($this->connection)
-        ->table('tenants', function (Blueprint $table)
+        ->table('tenant_user', function (Blueprint $table)
         {
 
             $table->uuid('tenant_uuid');
-            $table->string('name');
+            $table->uuid('user_uuid');
             $table->timestamps();
-            $table->softDeletes();
 
         });
-
     }
 
     /**
@@ -37,13 +34,11 @@ class CreateTenantsTable extends Migration
      */
     public function down()
     {
-
-        Schema::connection($this->connection)
-        ->table('tenants', function (Blueprint $table)
+         Schema::connection($this->connection)
+        ->table('tenant_user', function (Blueprint $table)
         {
             $table->dropIndex();
             $table->drop();
         });
-
     }
 }

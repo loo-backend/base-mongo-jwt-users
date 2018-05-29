@@ -106,17 +106,18 @@ class UsersAdminTest extends TestCase
                     'email',
                     'active',
                     'administrator',
-                    'roles' => [
-                        '*' => [
-                            'name', 'permissions'
-                        ]
-                    ]
+                    // 'roles' => [
+                    //     '*' => [
+                    //         'name', 'permissions'
+                    //     ]
+                    // ]
 
                 ]
 
             ]
 
         ]);
+
 
     }
 
@@ -144,16 +145,22 @@ class UsersAdminTest extends TestCase
                     'email',
                     'active',
                     'administrator',
-                    'roles' => [
-                        '*' => [
-                            'name', 'permissions'
-                        ]
-                    ]
+                    // 'roles' => [
+                    //     '*' => [
+                    //         'name', 'permissions'
+                    //     ]
+                    // ]
 
                 ]
 
             ]
 
+        ]);
+
+        $response->assertJson([
+            'data' => [
+                ['administrator' => User::ADMIN_USER]
+            ]
         ]);
 
     }

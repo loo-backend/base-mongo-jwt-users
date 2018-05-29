@@ -117,4 +117,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->embedsMany(Role::class);
     }
 
+
+    public function roless()
+    {
+        return $this->belongsToMany(Role::class, null, 'user_ids', 'role_ids');
+    }
+
 }

@@ -6,21 +6,23 @@ use App\Http\Controllers\ApiController;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
-use App\Services\User\Admin\UserAdminAllService;
-use App\Services\User\Admin\UserCreateAdminService;
+use App\Services\User\Tenant\UserCreateTenantService;
+use App\Services\User\Tenant\UserTenantAllService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-
-class UsersAdminController extends ApiController
+/**
+ * Class UserTenantController
+ * @package App\Http\Controllers
+ */
+class UserTenantController extends ApiController
 {
 
-
     /**
-     * @var UserCreateAdminService
+     * @var UserCreateTenantService
      */
-    private $createAdminService;
+    private $createService;
 
     /**
      * @var UserFindService
@@ -28,7 +30,7 @@ class UsersAdminController extends ApiController
     private $findService;
 
     /**
-     * @var UserAdminAllService
+     * @var UserTenantAllService
      */
     private $allService;
 
@@ -42,23 +44,25 @@ class UsersAdminController extends ApiController
      */
     private $updateService;
 
+
+
     /**
      * UsersController constructor.
-     * @param UserCreateAdminService $createAdminService
+     * @param UserCreateTenantService $createService
      * @param UserFindService $findService
-     * @param UserAdminAllService $allService
+     * @param UserTenantAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
      */
     public function __construct(
-        UserCreateAdminService $createAdminService,
+        UserCreateTenantService $createService,
         UserFindService $findService,
-        UserAdminAllService $allService,
+        UserTenantAllService $allService,
         UserRemoveService $removeService,
         UserUpdateService $updateService
     ) {
 
-        $this->createAdminService = $createAdminService;
+        $this->createService = $createService;
         $this->findService = $findService;
         $this->allService = $allService;
         $this->removeService = $removeService;
@@ -76,6 +80,7 @@ class UsersAdminController extends ApiController
         $result = $this->allService->all();
 
         if (count($result) <= 0) {
+
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -94,14 +99,14 @@ class UsersAdminController extends ApiController
     public function store(Request $request)
     {
 
-        $validator = $this->createAdminService->validator($request->all());
+        $validator = $this->createService->validator($request->all());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
 
-        if (!$result = $this->createAdminService->create($request)) {
+        if (!$result = $this->createService->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }
@@ -109,9 +114,7 @@ class UsersAdminController extends ApiController
         $credentials = $request->only('email', 'password');
 
         if (!$token = JWTAuth::attempt($credentials)) {
-
             return $this->errorResponse('invalid_credentials', 401);
-
         }
 
         //Authorization || HTTP_Authorization
@@ -138,7 +141,6 @@ class UsersAdminController extends ApiController
         return $this->showOne($result);
 
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -169,25 +171,26 @@ class UsersAdminController extends ApiController
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
-    {
-
-        if (!$result = $this->findService->findBy($id)) {
-            return $this->errorResponse('user_not_found', 422);
-        }
-
-        if (!$result = $this->removeService->remove($id)) {
-            return $this->errorResponse('user_not_removed', 422);
-        }
-
-        return $this->successResponse('user_removed');
-
-    }
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param $id
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function destroy($id)
+//    {
+//
+//        if (!$result = $this->findService->findBy($id)) {
+//            return $this->errorResponse('user_not_found', 422);
+//        }
+//
+//        if (!$result = $this->removeService->remove($id)) {
+//
+//            return $this->errorResponse('user_not_removed', 422);
+//        }
+//
+//        return $this->successResponse('user_removed');
+//
+//    }
 
 }

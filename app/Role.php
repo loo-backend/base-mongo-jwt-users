@@ -28,7 +28,6 @@ class Role extends Model
         [
             'name' => 'ADMIN_STAFF_SUPPORT',
             'permissions' => [
-                Permission::BROWSER,
                 Permission::READ,
                 Permission::ADD,
                 Permission::EDIT,
@@ -39,7 +38,6 @@ class Role extends Model
         [
             'name' => 'ADMIN_STAFF_FINANCE',
             'permissions' => [
-                Permission::BROWSER,
                 Permission::READ,
                 Permission::ADD,
                 Permission::EDIT,
@@ -50,7 +48,6 @@ class Role extends Model
         [
             'name' => 'ADMIN_STAFF_COMMERCIAL',
             'permissions' => [
-                Permission::BROWSER,
                 Permission::READ,
                 Permission::ADD,
                 Permission::EDIT,
@@ -69,7 +66,6 @@ class Role extends Model
         [
             'name' => 'TENANT_EDITOR',
             'permissions' => [
-                Permission::BROWSER,
                 Permission::READ,
                 Permission::ADD,
                 Permission::EDIT,
@@ -80,7 +76,6 @@ class Role extends Model
         [
             'name' => 'TENANT_DEVELOP',
             'permissions' => [
-                Permission::BROWSER,
                 Permission::READ,
                 Permission::ADD,
                 Permission::EDIT,
@@ -92,7 +87,16 @@ class Role extends Model
 
     protected $fillable = [
         'name',
-        'permissions'
+        'description',
+        'role_uuid'
     ];
+
+
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, null, 'role_ids', 'user_ids');
+    }
 
 }
