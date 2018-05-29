@@ -3,26 +3,22 @@
 namespace App\Services\Roles;
 
 use App\Role;
-use App\User;
 
 /**
  * Class RoleAdminAllService
  * @package App\Services\Roles
  */
-class RoleAdminAllService
+class RoleAllService
 {
 
-    /**
-     * Get All Roles Admin
-     *
-     * @return mixed
-     */
-    public function getAll()
+    public function all($user)
     {
 
-        return Role::where('administrator', User::ADMIN_USER)
-            ->get();
+        if (!$roles = Role::where('administrator', $user)->get()) {
+            return false;
+        }
 
+        return $roles;
     }
 
 }

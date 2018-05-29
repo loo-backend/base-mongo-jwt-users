@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RolesTenantTest extends TestCase
+class RolesAdminTest extends TestCase
 {
 
 
@@ -17,22 +17,22 @@ class RolesTenantTest extends TestCase
 
         $this->restoreDatabase();
 
-        factory(User::class)->create(['administrator' => User::REGULAR_USER]);
+        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
 
         Artisan::call('db:seed', [
-            '--class'   => 'RoleTenantSeeder',
+            '--class'   => 'RoleAdminSeeder',
             '--force'   => true
         ]);
 
     }
 
 
-    public function testRolesTenantAll()
+    public function testRolesAdminAll()
     {
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::REGULAR_USER)->first();
+        $user = User::where('administrator', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -40,9 +40,8 @@ class RolesTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get('/roles/tenants', $headers)
+        $response = $this->get('/roles/admins', $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             '*' => [
@@ -58,7 +57,7 @@ class RolesTenantTest extends TestCase
 
         $response->assertJson([
             [
-                'administrator' => User::REGULAR_USER,
+                'administrator' => User::ADMIN_USER,
                 'default' => true
             ]
         ]);
@@ -66,12 +65,12 @@ class RolesTenantTest extends TestCase
     }
 
 
-    public function testShowRolesTenant()
+    public function testShowRolesAdmin()
     {
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::REGULAR_USER)->first();
+        $user = User::where('administrator', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -79,9 +78,9 @@ class RolesTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('administrator', User::REGULAR_USER)->first();
+        $role = Role::where('administrator', User::ADMIN_USER)->first();
 
-        $response = $this->get('/roles/tenants/'. $role->id, $headers)
+        $response = $this->get('/roles/admins/'. $role->id, $headers)
             ->assertStatus(200);
 
 
@@ -90,7 +89,7 @@ class RolesTenantTest extends TestCase
             'data' => [
                 'data' => [
                     '_id' => $role->id,
-                    'administrator' => User::REGULAR_USER,
+                    'administrator' => User::ADMIN_USER,
                     'default' => true
                 ]
             ]
@@ -98,5 +97,7 @@ class RolesTenantTest extends TestCase
 
 
     }
+
+
 
 }

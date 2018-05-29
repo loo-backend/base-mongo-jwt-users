@@ -1,15 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: williams
- * Date: 29/05/18
- * Time: 17:03
- */
+
 
 namespace App\Services\Roles;
 
 
-class RoleFindSerice
+use App\Role;
+
+/**
+ * Class RoleFindService
+ * @package App\Services\Roles
+ */
+class RoleFindService
 {
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function findBy($id)
+    {
+
+        if(!$role = Role::find($id)) {
+            return false;
+        }
+
+        return $role;
+
+    }
 
 }

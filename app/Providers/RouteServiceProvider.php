@@ -37,7 +37,8 @@ class RouteServiceProvider extends ServiceProvider
     {
 
         $this->mapApiAuthRoutes();
-        $this->mapApiRoutes();
+        $this->mapApiUsersRoutes();
+        $this->mapApiRolesRoutes();
 
         $this->mapWebRoutes();
 
@@ -59,18 +60,33 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "admin" routes for the application.
+     * Define the "users" routes for the application.
      *
      * These routes are typically stateless.
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiUsersRoutes()
     {
         Route::prefix('users')
              ->middleware('api')
              ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+             ->group(base_path('routes/api-users.php'));
+    }
+
+    /**
+     * Define the "roles" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRolesRoutes()
+    {
+        Route::prefix('roles')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api-roles.php'));
     }
 
     /**

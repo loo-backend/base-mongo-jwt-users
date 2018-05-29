@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Role;
 
 use App\Services\Roles\RoleAllService;
+use App\Services\Roles\RoleFindService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class RoleAdminController extends ApiController
+class RoleTenantController extends ApiController
 {
 
     /**
@@ -16,53 +17,20 @@ class RoleAdminController extends ApiController
      */
     public function index(RoleAllService $service)
     {
-        return $this->showAll($service->all(User::ADMIN_USER));
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return $this->showAll($service->all(User::REGULAR_USER));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @param RoleFindService $service
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($id, RoleFindService $service)
     {
-        //
+        return $this->showOne( $service->findBy($id) );
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

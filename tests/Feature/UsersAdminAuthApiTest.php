@@ -39,11 +39,8 @@ class UsersAdminAuthApiTest extends TestCase
     public function migrateAndFactory()
     {
 
+        $this->restoreDatabase();
         $this->faker();
-
-        Artisan::call('migrate', [
-            '--path' => "app/database/migrations"
-        ]);
 
         $users = factory(User::class)->create([
             'administrator' => User::ADMIN_USER

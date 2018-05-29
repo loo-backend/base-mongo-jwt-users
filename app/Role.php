@@ -5,7 +5,7 @@ namespace App;
 use Jenssegers\Mongodb\Eloquent\Model as Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class Roles extends Model
+class Role extends Model
 {
 
     use SoftDeletes;
@@ -24,7 +24,10 @@ class Roles extends Model
 
     protected $fillable = [
         'name',
-        'company_name'
+        'description',
+        'administrator',
+        'role_uuid',
+        'default'
     ];
 
     protected $dates = ['deleted_at'];
