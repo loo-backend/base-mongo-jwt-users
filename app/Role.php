@@ -3,100 +3,42 @@
 namespace App;
 
 use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
 
-    const ADMINISTRATOR =
-        [
-            'name' => 'ADMINISTRATOR',
-            'permissions' => [
-                Permission::ALL,
-            ]
-        ];
+    use SoftDeletes;
 
-    const ADMIN_STAFF_INITIAL =
-        [
-            'name' => 'ADMIN_STAFF_INITIAL',
-            'permissions' => [
-                Permission::BROWSER,
-                Permission::READ,
-            ]
-        ];
-
-    const ADMIN_STAFF_SUPPORT =
-        [
-            'name' => 'ADMIN_STAFF_SUPPORT',
-            'permissions' => [
-                Permission::READ,
-                Permission::ADD,
-                Permission::EDIT,
-            ]
-        ];
-
-    const ADMIN_STAFF_FINANCE =
-        [
-            'name' => 'ADMIN_STAFF_FINANCE',
-            'permissions' => [
-                Permission::READ,
-                Permission::ADD,
-                Permission::EDIT,
-            ]
-        ];
-
-    const ADMIN_STAFF_COMMERCIAL =
-        [
-            'name' => 'ADMIN_STAFF_COMMERCIAL',
-            'permissions' => [
-                Permission::READ,
-                Permission::ADD,
-                Permission::EDIT,
-            ]
-        ];
-
-    const TENANT_ADMINISTRATOR =
-        [
-            'name' => 'TENANT_ADMINISTRATOR',
-            'permissions' => [
-                Permission::ALL,
-            ]
-        ];
-
-    const TENANT_EDITOR =
-        [
-            'name' => 'TENANT_EDITOR',
-            'permissions' => [
-                Permission::READ,
-                Permission::ADD,
-                Permission::EDIT,
-            ]
-        ];
-
-    const TENANT_DEVELOP =
-        [
-            'name' => 'TENANT_DEVELOP',
-            'permissions' => [
-                Permission::READ,
-                Permission::ADD,
-                Permission::EDIT,
-            ]
-        ];
-
+    const ADMINISTRATOR          = 'ADMINISTRATOR';
+    const ADMIN_STAFF_SUPPORT    = 'ADMIN_STAFF_SUPPORT';
+    const ADMIN_STAFF_FINANCE    = 'ADMIN_STAFF_FINANCE';
+    const ADMIN_STAFF_COMMERCIAL = 'ADMIN_STAFF_COMMERCIAL';
+    const ADMIN_STAFF_INITIAL    = 'ADMIN_STAFF_INITIAL';
+    const TENANT_ADMINISTRATOR   = 'TENANT_ADMINISTRATOR';
+    const TENANT_EDITOR          = 'TENANT_EDITOR';
+    const TENANT_DEVELOP         = 'TENANT_DEVELOP';
+    const TENANT_PARTNER         = 'TENANT_PARTNER';
 
     public $table = 'roles';
 
     protected $fillable = [
         'name',
         'description',
-        'role_uuid'
+        'administrator',
+        'role_uuid',
+        'default'
     ];
 
+    protected $dates = ['deleted_at'];
 
 
-
-    public function users()
+    /**
+     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
+     */
+    public function privilege()
     {
-        return $this->belongsToMany(User::class, null, 'role_ids', 'user_ids');
+        return $this->embedsMany(Privilege::class);
     }
 
 }

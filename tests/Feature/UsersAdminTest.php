@@ -38,11 +38,8 @@ class UsersAdminTest extends TestCase
     public function migrateAndFactory()
     {
 
+        $this->restoreDatabase();
         $this->faker();
-
-        Artisan::call('migrate', [
-            '--path' => "app/database/migrations"
-        ]);
 
         $users = factory(User::class)->create(['administrator' => User::ADMIN_USER]);
         //$users->roles()->create(Role::ADMINISTRATOR);
@@ -96,28 +93,19 @@ class UsersAdminTest extends TestCase
         $response = $this->get('/users/admins/'. $user->id, $headers)
             ->assertStatus(200);
 
-        $response->assertJsonStructure([
+
+        $response->assertJson([
+
             'data' => [
-
-                '*' => [
-                    '_id',
-                    'user_uuid',
-                    'name',
-                    'email',
-                    'active',
-                    'administrator',
-                    // 'roles' => [
-                    //     '*' => [
-                    //         'name', 'permissions'
-                    //     ]
-                    // ]
-
+                'data' => [
+                    '_id' => $user->id,
+                    'user_uuid' => $user->user_uuid,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'administrator' => User::ADMIN_USER
                 ]
-
             ]
-
         ]);
-
 
     }
 
