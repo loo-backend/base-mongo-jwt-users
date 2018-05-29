@@ -45,7 +45,7 @@ class UsersAdminTest extends TestCase
         ]);
 
         $users = factory(User::class)->create(['administrator' => User::ADMIN_USER]);
-        $users->roles()->create(Role::ADMINISTRATOR);
+        //$users->roles()->create(Role::ADMINISTRATOR);
 
     }
 

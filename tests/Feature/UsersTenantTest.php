@@ -46,7 +46,7 @@ class UsersTenantTest extends TestCase
         ]);
 
         $users = factory(User::class)->create();
-        $users->roles()->create(Role::TENANT_ADMINISTRATOR);
+        //$users->roles()->create(Role::TENANT_ADMINISTRATOR);
 
     }
 
@@ -69,6 +69,7 @@ class UsersTenantTest extends TestCase
 
         $response = $this->post('/users/tenants', $data, $headers)
             ->assertStatus(200);
+
 
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
@@ -144,9 +145,6 @@ class UsersTenantTest extends TestCase
 
         $response = $this->get('/users/tenants', $headers)
             ->assertStatus(200);
-
-
-
 
         $response->assertJsonStructure([
             'data' => [

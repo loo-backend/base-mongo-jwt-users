@@ -79,7 +79,7 @@ class UserCreateTenantService
             return false;
         }
 
-        $create->roles()->create( $this->role );
+        //$create->roles()->create( $this->role );
         return $create;
 
     }

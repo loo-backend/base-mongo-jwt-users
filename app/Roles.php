@@ -29,4 +29,13 @@ class Roles extends Model
 
     protected $dates = ['deleted_at'];
 
+
+    /**
+     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
+     */
+    public function privilege()
+    {
+        return $this->embedsMany(Privilege::class);
+    }
+
 }

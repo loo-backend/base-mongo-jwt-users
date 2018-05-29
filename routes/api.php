@@ -1,6 +1,6 @@
 <?php
 
-$this->post('/tenants', 'User\UsersTenantController@store')->name('tenants.store');
+$this->post('/tenants', 'User\UserTenantController@store')->name('tenants.store');
 
 $this->group(['middleware' => ['jwt.auth']], function () {
 
