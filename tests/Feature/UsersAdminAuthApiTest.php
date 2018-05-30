@@ -73,7 +73,7 @@ class UsersAdminAuthApiTest extends TestCase
         $this->faker();
 
         $user = User::where('administrator', User::ADMIN_USER)->first();
-        $response = $this->post(route('authenticate'),
+        $response = $this->post(route('auth.login'),
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
 
@@ -86,7 +86,7 @@ class UsersAdminAuthApiTest extends TestCase
     public function testUserAuthenticateInvalid() {
 
         $user = User::where('administrator', true)->first();
-        $response = $this->post(route('authenticate'),
+        $response = $this->post(route('auth.login'),
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);
 

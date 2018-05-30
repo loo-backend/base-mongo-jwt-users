@@ -41,7 +41,6 @@ class RolesTenantTest extends TestCase
         $response = $this->get(route('roles.tenants.index'), $headers)
             ->assertStatus(200);
 
-
         $response->assertJsonStructure([
             '*' => [
                 '_id',
