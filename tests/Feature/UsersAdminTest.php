@@ -60,7 +60,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->post('/users/admins', $data, $headers)
+        $response = $this->post(route('users.admins.store'), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseHas('users', [
@@ -88,7 +88,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get('/users/admins/'. $user->id, $headers)
+        $response = $this->get(route('users.admins.show', $user->id), $headers)
             ->assertStatus(200);
 
 
@@ -118,7 +118,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get('/users/admins', $headers)
+        $response = $this->get(route('users.admins.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -130,13 +130,7 @@ class UsersAdminTest extends TestCase
                     'name',
                     'email',
                     'active',
-                    'administrator',
-                    // 'roles' => [
-                    //     '*' => [
-                    //         'name', 'permissions'
-                    //     ]
-                    // ]
-
+                    'administrator'
                 ]
 
             ]
@@ -168,7 +162,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put('/users/admins/'.$user->id, $data, $headers)
+        $this->put(route('users.admins.update',$user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users',[
@@ -197,7 +191,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put('/users/admins/'.$user->id, $data, $headers)
+        $this->put(route('users.admins.update',$user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users', [
@@ -217,7 +211,7 @@ class UsersAdminTest extends TestCase
 
         $response = $this->withHeaders([
             'HTTP_Authorization' => 'Bearer '. $token,
-        ])->json('DELETE', '/users/admins/'.$user->id);
+        ])->json('DELETE', route('users.admins.destroy', $user->id));
 
         $response->assertStatus(200)
             ->assertExactJson([
