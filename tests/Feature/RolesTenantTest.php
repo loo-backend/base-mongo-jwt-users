@@ -82,13 +82,10 @@ class RolesTenantTest extends TestCase
             ->assertStatus(200);
 
         $response->assertJson([
-
             'data' => [
-                'data' => [
-                    '_id' => $role->id,
-                    'administrator' => User::REGULAR_USER,
-                    'default' => true
-                ]
+                '_id' => $role->id,
+                'administrator' => User::REGULAR_USER,
+                'default' => true
             ]
         ]);
 

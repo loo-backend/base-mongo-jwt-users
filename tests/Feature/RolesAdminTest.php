@@ -83,15 +83,11 @@ class RolesAdminTest extends TestCase
         $response = $this->get(route('roles.admins.show', $role->id), $headers)
             ->assertStatus(200);
 
-
         $response->assertJson([
-
             'data' => [
-                'data' => [
-                    '_id' => $role->id,
-                    'administrator' => User::ADMIN_USER,
-                    'default' => true
-                ]
+                '_id' => $role->id,
+                'administrator' => User::ADMIN_USER,
+                'default' => true
             ]
         ]);
 

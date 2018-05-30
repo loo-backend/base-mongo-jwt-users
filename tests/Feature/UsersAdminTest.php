@@ -91,17 +91,13 @@ class UsersAdminTest extends TestCase
         $response = $this->get(route('users.admins.show', $user->id), $headers)
             ->assertStatus(200);
 
-
         $response->assertJson([
-
             'data' => [
-                'data' => [
-                    '_id' => $user->id,
-                    'user_uuid' => $user->user_uuid,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'administrator' => User::ADMIN_USER
-                ]
+                '_id' => $user->id,
+                'user_uuid' => $user->user_uuid,
+                'name' => $user->name,
+                'email' => $user->email,
+                'administrator' => User::ADMIN_USER
             ]
         ]);
 

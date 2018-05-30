@@ -50,7 +50,7 @@ trait ApiResponse
      */
     protected function showOne($data, $code = 200)
     {
-        return $this->successResponse(['data' => $data], $code);
+        return $this->successResponse($data, $code);
     }
 
 }
