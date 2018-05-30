@@ -57,7 +57,7 @@ class UsersAdminAuthApiTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->post('/users/admins', $this->data, $headers)
+        $this->post(route('users.admins.store'), $this->data, $headers)
                 ->assertStatus(200);
 
         $this->assertDatabaseHas('users', [
@@ -73,7 +73,7 @@ class UsersAdminAuthApiTest extends TestCase
         $this->faker();
 
         $user = User::where('administrator', User::ADMIN_USER)->first();
-        $response = $this->post('/auth/authenticate',
+        $response = $this->post(route('auth.login'),
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
 
@@ -86,7 +86,7 @@ class UsersAdminAuthApiTest extends TestCase
     public function testUserAuthenticateInvalid() {
 
         $user = User::where('administrator', true)->first();
-        $response = $this->post('/auth/authenticate',
+        $response = $this->post(route('auth.login'),
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);
 

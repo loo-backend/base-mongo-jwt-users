@@ -11,7 +11,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class RolesTenantTest extends TestCase
 {
 
-
     public function migrateAndFactory()
     {
 
@@ -39,9 +38,8 @@ class RolesTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get('/roles/tenants', $headers)
+        $response = $this->get(route('roles.tenants.index'), $headers)
             ->assertStatus(200);
-
 
         $response->assertJsonStructure([
             '*' => [
@@ -80,7 +78,7 @@ class RolesTenantTest extends TestCase
 
         $role = Role::where('administrator', User::REGULAR_USER)->first();
 
-        $response = $this->get('/roles/tenants/'. $role->id, $headers)
+        $response = $this->get(route('roles.tenants.show', $role->id ), $headers)
             ->assertStatus(200);
 
         $response->assertJson([

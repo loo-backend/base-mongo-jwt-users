@@ -40,7 +40,7 @@ class RolesAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get('/roles/admins', $headers)
+        $response = $this->get(route('roles.admins.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -80,7 +80,7 @@ class RolesAdminTest extends TestCase
 
         $role = Role::where('administrator', User::ADMIN_USER)->first();
 
-        $response = $this->get('/roles/admins/'. $role->id, $headers)
+        $response = $this->get(route('roles.admins.show', $role->id), $headers)
             ->assertStatus(200);
 
 
@@ -95,9 +95,6 @@ class RolesAdminTest extends TestCase
             ]
         ]);
 
-
     }
-
-
 
 }

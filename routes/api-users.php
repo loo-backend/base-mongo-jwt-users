@@ -1,15 +1,19 @@
 <?php
 
-$this->post('/tenants', 'User\UserTenantController@store')->name('tenants.store');
+$this->name('users.')->group(function () {
 
-$this->group(['middleware' => ['jwt.auth']], function () {
+    $this->post('/tenants', 'User\UserTenantController@store')->name('tenants.store');
 
-    $this->resource('admins', 'User\UserAdminController')->except([
-        'create', 'edit'
-    ]);
+    $this->group(['middleware' => ['jwt.auth']], function () {
 
-    $this->resource('tenants', 'User\UserTenantController')->except([
-        'create', 'edit', 'store' , 'destroy'
-    ]);
+        $this->resource('admins', 'User\UserAdminController')->except([
+            'create', 'edit'
+        ]);
+
+        $this->resource('tenants', 'User\UserTenantController')->except([
+            'create', 'edit', 'store' , 'destroy'
+        ]);
+
+    });
 
 });

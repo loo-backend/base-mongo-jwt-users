@@ -1,4 +1,4 @@
 <?php
 
 $this->post('authenticate', 'Auth\AuthApiController@authenticate')
-    ->name('authenticate');
+    ->name('auth.login');
