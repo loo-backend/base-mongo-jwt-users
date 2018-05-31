@@ -38,7 +38,7 @@ class PrivilegeTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('roles.privileges.index'), $headers)
+        $response = $this->get(route('privileges.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -67,7 +67,7 @@ class PrivilegeTest extends TestCase
 
         $privilege = Privilege::first();
 
-        $response = $this->get(route('roles.privileges.show', $privilege->id ), $headers)
+        $response = $this->get(route('privileges.show', $privilege->id ), $headers)
             ->assertStatus(200);
 
         $response->assertJson([
