@@ -22,7 +22,7 @@ class TenantSeeder extends Seeder
 
 
         $user = \App\User::first();
-        $user->roless()->attach( \App\Role::first() );
+        // $user->roless()->attach( \App\Role::first() );
 
     }
 }

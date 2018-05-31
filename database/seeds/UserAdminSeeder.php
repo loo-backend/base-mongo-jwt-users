@@ -31,9 +31,9 @@ class UserAdminSeeder extends Seeder
 
         $users = factory(App\User::class,5)->create(['administrator' => User::ADMIN_USER]);
 
-        $users->each(function ($user) use($roles) {
-            $user->roles()->create($roles);
-        });
+//        $users->each(function ($user) use($roles) {
+//            $user->roles()->create($roles);
+//        });
 
     }
 
@@ -45,9 +45,9 @@ class UserAdminSeeder extends Seeder
 
         $users = factory(App\User::class,50)->create(['administrator' => User::ADMIN_USER]);
 
-        $users->each(function ($user) use($roles) {
-            $user->roles()->create($roles);
-        });
+//        $users->each(function ($user) use($roles) {
+//            $user->roles()->create($roles);
+//        });
 
     }
 
@@ -58,9 +58,9 @@ class UserAdminSeeder extends Seeder
 
         $users = factory(App\User::class,50)->create(['administrator' => User::ADMIN_USER]);
 
-        $users->each(function ($user) use($roles) {
-            $user->roles()->create($roles);
-        });
+//        $users->each(function ($user) use($roles) {
+//            $user->roles()->create($roles);
+//        });
 
     }
 
@@ -71,9 +71,9 @@ class UserAdminSeeder extends Seeder
 
         $users = factory(App\User::class,50)->create(['administrator' => User::ADMIN_USER]);
 
-        $users->each(function ($user) use($roles) {
-            $user->roles()->create($roles);
-        });
+//        $users->each(function ($user) use($roles) {
+//            $user->roles()->create($roles);
+//        });
 
     }
 
@@ -84,10 +84,10 @@ class UserAdminSeeder extends Seeder
         $roles = Role::ADMIN_STAFF_INITIAL;
 
         $users = factory(App\User::class,50)->create(['administrator' => User::ADMIN_USER]);
-
-        $users->each(function ($user) use($roles) {
-            $user->roles()->create($roles);
-        });
+//
+//        $users->each(function ($user) use($roles) {
+//            $user->roles()->create($roles);
+//        });
 
     }
 
