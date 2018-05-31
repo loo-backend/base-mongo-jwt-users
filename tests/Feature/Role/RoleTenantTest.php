@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RolesTenantTest extends TestCase
+class RoleTenantTest extends TestCase
 {
 
     public function migrateAndFactory()

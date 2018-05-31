@@ -2,37 +2,35 @@
 
 namespace Tests\Feature;
 
-use App\Role;
+use App\Privilege;
 use App\User;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RolesAdminTest extends TestCase
+class RolePrivilegeTest extends TestCase
 {
-
 
     public function migrateAndFactory()
     {
 
         $this->restoreDatabase();
 
-        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
+        factory(User::class)->create(['administrator' => User::REGULAR_USER]);
 
         Artisan::call('db:seed', [
-            '--class'   => 'RoleAdminSeeder',
+            '--class'   => 'RolePrivilegeSeeder',
             '--force'   => true
         ]);
 
     }
 
-
-    public function testRolesAdminAll()
+    public function testRolePrivilegeAll()
     {
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -40,37 +38,26 @@ class RolesAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('roles.admins.index'), $headers)
+        $response = $this->get(route('roles.privileges.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
             '*' => [
-                '_id',
                 'name',
                 'description',
-                'administrator',
-                'role_uuid',
-                'default'
+                'privilege_uuid',
             ]
 
-        ]);
-
-        $response->assertJson([
-            [
-                'administrator' => User::ADMIN_USER,
-                'default' => true
-            ]
         ]);
 
     }
 
-
-    public function testShowRolesAdmin()
+    public function testShowRolePrivilege()
     {
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -78,16 +65,16 @@ class RolesAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('administrator', User::ADMIN_USER)->first();
+        $privilege = Privilege::first();
 
-        $response = $this->get(route('roles.admins.show', $role->id), $headers)
+        $response = $this->get(route('roles.privileges.show', $privilege->id ), $headers)
             ->assertStatus(200);
 
         $response->assertJson([
             'data' => [
-                '_id' => $role->id,
-                'administrator' => User::ADMIN_USER,
-                'default' => true
+                'name' => $privilege->name,
+                'description' => $privilege->description,
+                'privilege_uuid' => $privilege->privilege_uuid,
             ]
         ]);
 

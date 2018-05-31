@@ -7,7 +7,7 @@ use Faker\Factory;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UsersAdminAuthApiTest extends TestCase
+class UserAdminAuthApiTest extends TestCase
 {
 
     public $data = [];

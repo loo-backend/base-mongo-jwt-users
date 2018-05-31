@@ -16,6 +16,7 @@ abstract class TestCase extends BaseTestCase
 //        Schema::connection(env('DB_CONNECTION'))->drop('roles');
 //        Schema::connection(env('DB_CONNECTION'))->drop('users');
 //        Schema::connection(env('DB_CONNECTION'))->drop('tenants');
+//        Schema::connection(env('DB_CONNECTION'))->drop('privileges');
 
 
         Artisan::call('migrate', [

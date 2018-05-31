@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Role;
 
-use App\Services\Roles\RoleAllService;
-use App\Services\Roles\RoleFindService;
+use App\Services\Role\RoleAllService;
+use App\Services\Role\RoleFindService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;

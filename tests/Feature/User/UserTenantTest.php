@@ -6,9 +6,11 @@ use App\Role;
 use App\User;
 use Faker\Factory;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UsersAdminTest extends TestCase
+
+class UserTenantTest extends TestCase
 {
 
     public $data = [];
@@ -27,7 +29,7 @@ class UsersAdminTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'administrator' => User::ADMIN_USER,
+            'administrator' => User::REGULAR_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -40,7 +42,8 @@ class UsersAdminTest extends TestCase
         $this->restoreDatabase();
         $this->faker();
 
-        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
+        $users = factory(User::class)->create();
+        //$users->roles()->create(Role::TENANT_ADMINISTRATOR);
 
     }
 
@@ -50,9 +53,10 @@ class UsersAdminTest extends TestCase
         $this->migrateAndFactory();
 
         $data = $this->data;
-        $data['roles'] = Role::ADMINISTRATOR;
+        $data['roles'] = Role::TENANT_ADMINISTRATOR;
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -60,13 +64,14 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->post(route('users.admins.store'), $data, $headers)
+        $response = $this->post(route('users.tenants.store'), $data, $headers)
             ->assertStatus(200);
+
 
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'administrator' => User::ADMIN_USER
+            'administrator' => User::REGULAR_USER,
         ]);
 
         $response->assertJsonStructure([
@@ -80,7 +85,7 @@ class UsersAdminTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -88,7 +93,7 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.admins.show', $user->id), $headers)
+        $response = $this->get(route('users.tenants.show', $user->id), $headers)
             ->assertStatus(200);
 
         $response->assertJson([
@@ -97,16 +102,17 @@ class UsersAdminTest extends TestCase
                 'user_uuid' => $user->user_uuid,
                 'name' => $user->name,
                 'email' => $user->email,
-                'administrator' => User::ADMIN_USER
+                'administrator' => User::REGULAR_USER
             ]
         ]);
 
+
     }
 
-    public function testAllUsers()
+    public function testAllUsersTenants()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -114,28 +120,31 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.admins.index'), $headers)
+        $response = $this->get(route('users.tenants.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
             'data' => [
 
                 '*' => [
+
                     '_id',
                     'user_uuid',
                     'name',
                     'email',
                     'active',
-                    'administrator'
+                    'administrator',
+
                 ]
 
             ]
 
         ]);
 
+
         $response->assertJson([
             'data' => [
-                ['administrator' => User::ADMIN_USER]
+                ['administrator' => User::REGULAR_USER]
             ]
         ]);
 
@@ -144,7 +153,7 @@ class UsersAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
 
         $data = [
             'name' => str_random(12),
@@ -158,13 +167,14 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.admins.update',$user->id), $data, $headers)
+        $this->put(route('users.tenants.update', $user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users',[
+            '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            '_id' => $user->id
+            'administrator' => User::REGULAR_USER
         ]);
 
     }
@@ -179,7 +189,7 @@ class UsersAdminTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('administrator', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -187,34 +197,17 @@ class UsersAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.admins.update',$user->id), $data, $headers)
+        $this->put(route('users.tenants.update', $user->id), $data, $headers)
             ->assertStatus(200);
 
-        $this->assertDatabaseMissing('users', [
+         $this->assertDatabaseMissing('users',[
+            '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            '_id' => $user->id
+            'administrator' => User::REGULAR_USER
         ]);
 
     }
 
-
-    public function testDeleteUser()
-    {
-
-        $user = User::where('administrator',  User::ADMIN_USER)->first();
-        $token = JWTAuth::fromUser($user);
-
-        $response = $this->withHeaders([
-            'HTTP_Authorization' => 'Bearer '. $token,
-        ])->json('DELETE', route('users.admins.destroy', $user->id));
-
-        $response->assertStatus(200)
-            ->assertExactJson([
-                'data' => 'user_removed'
-            ]);
-
-
-    }
 
 }

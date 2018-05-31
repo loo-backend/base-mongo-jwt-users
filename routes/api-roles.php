@@ -12,6 +12,11 @@ $this->name('roles.')->group(function () {
             'index', 'show'
         ]);
 
+
+        $this->resource('privileges', 'Role\Privilege\RolePrivilegeController')->only([
+            'index', 'show'
+        ]);
+
     });
 
 });
