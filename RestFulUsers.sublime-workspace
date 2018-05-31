@@ -144,46 +144,28 @@
 	"buffers":
 	[
 		{
-			"file": "routes/api-auth.php",
+			"file": "app/Http/Controllers/Role/RoleAdminController.php",
 			"settings":
 			{
-				"buffer_size": 95,
+				"buffer_size": 780,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "routes/api-roles.php",
+			"file": "app/Http/Controllers/Role/RoleTenantController.php",
 			"settings":
 			{
-				"buffer_size": 352,
+				"buffer_size": 784,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "routes/api-users.php",
+			"file": "app/Http/Controllers/Role/Privilege/RolePrivilegeController.php",
 			"settings":
 			{
-				"buffer_size": 467,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Providers/RouteServiceProvider.php",
-			"settings":
-			{
-				"buffer_size": 2372,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/api-auth.php",
-			"settings":
-			{
-				"buffer_size": 95,
+				"buffer_size": 856,
 				"line_ending": "Unix"
 			}
 		}
@@ -246,27 +228,34 @@
 	[
 		"/home/williams/Code/Loojas/backend/users/web",
 		"/home/williams/Code/Loojas/backend/users/web/app",
-		"/home/williams/Code/Loojas/backend/users/web/app/Providers",
-		"/home/williams/Code/Loojas/backend/users/web/routes",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role",
+		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/Privilege",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Role",
+		"/home/williams/Code/Loojas/backend/users/web/storage",
+		"/home/williams/Code/Loojas/backend/users/web/storage/logs",
 		"/home/williams/Code/Loojas/backend/users/web/tests",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature"
 	],
 	"file_history":
 	[
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/RolesTenantTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/routes/api.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Providers/RouteServiceProvider.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminAuthApiTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/routes/api-users.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/RolesAdminTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/routes/api-roles.php",
-		"/home/williams/Code/Loojas/backend/users/web/routes/api-auth.php",
+		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RoleTenantController.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RoleAdminController.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Traits/ApiResponse.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/RolesAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/RolesTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-auth.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-roles.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers/RouteServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-users.php",
+		"/home/williams/Code/Loojas/backend/users/web/routes/api.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersAdminAuthApiTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/config/app.php",
-		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
 		"/home/williams/Code/Loojas/backend/users/web/app/Role.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleAdminSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleTenantSeeder.php",
@@ -379,12 +368,11 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/UsersController.php",
 		"/home/williams/Code/Loojas/backend/users/web/routes/api-client.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserStoreSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/routes/api-admin.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UserTest.php"
+		"/home/williams/Code/Loojas/backend/users/web/routes/api-admin.php"
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -437,6 +425,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"use App\\Services\\Roles\\",
+			"RoleTenant",
+			"RoleAdmin",
+			"RolePrivilege",
+			"App\\Services\\Role\\RolePrivilegeAllService",
+			"'data' =>",
 			"'authenticate'",
 			"authenticate",
 			"route('users.admin.",
@@ -558,13 +552,7 @@
 			"Client",
 			"user",
 			"User",
-			"'user",
-			"user",
-			"User",
-			"users",
-			"user",
-			"User",
-			"UsersController"
+			"'user"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -572,6 +560,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"use App\\Services\\Role\\",
+			"Role",
+			"RoleAdmin",
+			"RoleTenant",
 			"route('users.admins.",
 			"UserTenantController",
 			"UserAdminController",
@@ -627,24 +619,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "routes/api-auth.php",
+					"file": "app/Http/Controllers/Role/RoleAdminController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 95,
+						"buffer_size": 780,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								73
+								67,
+								45
 							]
 						],
 						"settings":
 						{
-							"SL.111.region_keys":
+							"SL.29.region_keys":
 							[
 							],
 							"editorconfig": true,
@@ -662,24 +654,24 @@
 				},
 				{
 					"buffer": 1,
-					"file": "routes/api-roles.php",
+					"file": "app/Http/Controllers/Role/RoleTenantController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 352,
+						"buffer_size": 784,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								352,
-								352
+								265,
+								265
 							]
 						],
 						"settings":
 						{
-							"SL.119.region_keys":
+							"SL.30.region_keys":
 							[
 							],
 							"editorconfig": true,
@@ -697,82 +689,11 @@
 				},
 				{
 					"buffer": 2,
-					"file": "routes/api-users.php",
-					"semi_transient": false,
+					"file": "app/Http/Controllers/Role/Privilege/RolePrivilegeController.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 467,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								467,
-								467
-							]
-						],
-						"settings":
-						{
-							"SL.120.region_keys":
-							[
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/Providers/RouteServiceProvider.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2372,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2353,
-								2353
-							]
-						],
-						"settings":
-						{
-							"SL.112.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1798.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "routes/api-auth.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 95,
+						"buffer_size": 856,
 						"regions":
 						{
 						},
@@ -785,7 +706,7 @@
 						],
 						"settings":
 						{
-							"SL.118.region_keys":
+							"SL.31.region_keys":
 							[
 							],
 							"editorconfig": true,
@@ -795,10 +716,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 396.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

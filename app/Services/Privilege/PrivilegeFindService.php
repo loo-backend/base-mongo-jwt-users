@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Services\Role\Privilege;
+namespace App\Services\Privilege;
 
 use App\Privilege;
 
 /**
- * Class RolePrivilegeFindService
- * @package App\Services\Role
+ * Class PrivilegeFindService
+ * @package App\Services\Role\Privilege
  */
-class RolePrivilegeFindService
+class PrivilegeFindService
 {
 
     /**

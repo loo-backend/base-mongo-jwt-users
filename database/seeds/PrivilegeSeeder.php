@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Privilege;
 use Webpatser\Uuid\Uuid;
 
-class RolePrivilegeSeeder extends Seeder
+class PrivilegeSeeder extends Seeder
 {
 
     /**

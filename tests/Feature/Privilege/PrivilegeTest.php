@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RolePrivilegeTest extends TestCase
+class PrivilegeTest extends TestCase
 {
 
     public function migrateAndFactory()
@@ -19,7 +19,7 @@ class RolePrivilegeTest extends TestCase
         factory(User::class)->create(['administrator' => User::REGULAR_USER]);
 
         Artisan::call('db:seed', [
-            '--class'   => 'RolePrivilegeSeeder',
+            '--class'   => 'PrivilegeSeeder',
             '--force'   => true
         ]);
 
