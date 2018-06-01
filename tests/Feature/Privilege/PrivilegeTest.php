@@ -14,7 +14,7 @@ class PrivilegeTest extends TestCase
     public function migrateAndFactory()
     {
 
-        factory(User::class)->create(['is_admin' => User::REGULAR_USER]);
+        factory(User::class)->create(['is_tenant' => User::TENANT_USER]);
 
         Artisan::call('db:seed', [
             '--class'   => 'PrivilegeSeeder',
@@ -28,7 +28,7 @@ class PrivilegeTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -55,7 +55,7 @@ class PrivilegeTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [

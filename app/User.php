@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
     const UNVERIFIED_USER = '0';
 
     const ADMIN_USER = true;
+    const TENANT_USER = true;
     const REGULAR_USER = false;
 
     /**
@@ -41,6 +42,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
         'is_admin',
+        'is_tenant',
         'active',
         'verified',
         'verification_token',

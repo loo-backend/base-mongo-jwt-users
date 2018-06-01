@@ -2,6 +2,7 @@
 
 use App\Role;
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UserTenantSeeder extends Seeder
 {
@@ -24,7 +25,9 @@ class UserTenantSeeder extends Seeder
 
         $roles = Role::TENANT_ADMIN;
 
-        $users = factory(App\User::class,5)->create();
+        $users = factory(User::class,5)->create([
+            'is_tenant' => User::TENANT_USER
+        ]);
 //
 //        $users->each(function ($user) use($roles) {
 //            $user->roles()->create($roles);
@@ -45,7 +48,9 @@ class UserTenantSeeder extends Seeder
             ]
         ];
 
-        $users = factory(App\User::class,50)->create();
+        $users = factory(User::class,50)->create([
+            'is_tenant' => User::TENANT_USER
+        ]);
 
 //        $users->each(function ($user) use($roles) {
 //            $user->roles()->create($roles);

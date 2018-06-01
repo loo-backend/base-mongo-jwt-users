@@ -29,7 +29,7 @@ class UserTenantTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'is_admin' => User::REGULAR_USER,
+            'is_tenant' => User::TENANT_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -55,7 +55,7 @@ class UserTenantTest extends TestCase
         $data['roles'] = Role::TENANT_ADMIN;
 
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -70,7 +70,7 @@ class UserTenantTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'is_admin' => User::REGULAR_USER,
+            'is_tenant' => User::TENANT_USER,
         ]);
 
         $response->assertJsonStructure([
@@ -84,7 +84,7 @@ class UserTenantTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -101,7 +101,7 @@ class UserTenantTest extends TestCase
                 'user_uuid' => $user->user_uuid,
                 'name' => $user->name,
                 'email' => $user->email,
-                'is_admin' => User::REGULAR_USER
+                'is_tenant' => User::TENANT_USER
             ]
         ]);
 
@@ -111,7 +111,7 @@ class UserTenantTest extends TestCase
     public function testAllUsersTenants()
     {
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -132,7 +132,7 @@ class UserTenantTest extends TestCase
                     'name',
                     'email',
                     'active',
-                    'is_admin',
+                    'is_tenant',
 
                 ]
 
@@ -143,7 +143,7 @@ class UserTenantTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                ['is_admin' => User::REGULAR_USER]
+                ['is_tenant' => User::TENANT_USER]
             ]
         ]);
 
@@ -152,7 +152,7 @@ class UserTenantTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
 
         $data = [
             'name' => str_random(12),
@@ -173,7 +173,7 @@ class UserTenantTest extends TestCase
             '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'is_admin' => User::REGULAR_USER
+            'is_tenant' => User::TENANT_USER
         ]);
 
     }
@@ -188,7 +188,7 @@ class UserTenantTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-        $user = User::where('is_admin', User::REGULAR_USER)->first();
+        $user = User::where('is_tenant', User::TENANT_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -203,7 +203,7 @@ class UserTenantTest extends TestCase
             '_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'is_admin' => User::REGULAR_USER
+            'is_tenant' => User::TENANT_USER
         ]);
 
     }

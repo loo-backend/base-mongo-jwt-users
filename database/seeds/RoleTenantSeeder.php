@@ -22,7 +22,7 @@ class RoleTenantSeeder extends Seeder
             $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'is_admin' => $data['is_admin'],
+                'is_tenant' => User::TENANT_USER,
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
@@ -96,22 +96,18 @@ class RoleTenantSeeder extends Seeder
             [
                 'name' => Role::TENANT_ADMIN,
                 'description' => 'Administrador',
-                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_EDITOR,
                 'description' => 'Editor',
-                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_EXPEDITION,
                 'description' => 'Expedição',
-                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_PARTNER,
                 'description' => 'Parceiro',
-                'is_admin' => User::REGULAR_USER
             ],
 
         ];

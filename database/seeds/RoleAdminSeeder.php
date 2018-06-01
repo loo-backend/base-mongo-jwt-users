@@ -22,7 +22,7 @@ class RoleAdminSeeder extends Seeder
             $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'is_admin' => $data['is_admin'],
+                'is_admin' => User::ADMIN_USER,
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
@@ -97,32 +97,26 @@ class RoleAdminSeeder extends Seeder
             [
                 'name' => Role::ADMIN,
                 'description' => 'Administrador Geral',
-                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_AUDIT,
                 'description' => 'Departamento de Auditoria',
-                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_FINANCE,
                 'description' => 'Departamento Financeiro',
-                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_COMMERCIAL,
                 'description' => 'Departamento Comercial',
-                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_SUPPORT,
                 'description' => 'Departamento de Suporte',
-                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_INITIAL,
                 'description' => 'Aguardando escolha de Departamento',
-                'is_admin' => User::ADMIN_USER
             ],
 
         ];

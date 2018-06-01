@@ -72,7 +72,7 @@ class UserCreateTenantService
             $data['active'] = false;
         }
 
-        $data['is_admin'] = $this->user::REGULAR_USER;
+        $data['is_tenant'] = $this->user::TENANT_USER;
         unset( $data['roles'] );
 
         if (!$create = $this->user->create( $data ) ) {
