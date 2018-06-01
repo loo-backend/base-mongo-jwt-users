@@ -27,7 +27,7 @@ class UserAdminTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'administrator' => User::ADMIN_USER,
+            'is_admin' => User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -39,7 +39,7 @@ class UserAdminTest extends TestCase
 
         $this->faker();
 
-        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
+        factory(User::class)->create(['is_admin' => User::ADMIN_USER]);
 
     }
 
@@ -49,9 +49,9 @@ class UserAdminTest extends TestCase
         $this->migrateAndFactory();
 
         $data = $this->data;
-        $data['roles'] = Role::ADMINISTRATOR;
+        $data['roles'] = Role::ADMIN;
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -65,7 +65,7 @@ class UserAdminTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'administrator' => User::ADMIN_USER
+            'is_admin' => User::ADMIN_USER
         ]);
 
         $response->assertJsonStructure([
@@ -79,7 +79,7 @@ class UserAdminTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -96,7 +96,7 @@ class UserAdminTest extends TestCase
                 'user_uuid' => $user->user_uuid,
                 'name' => $user->name,
                 'email' => $user->email,
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ]
         ]);
 
@@ -105,7 +105,7 @@ class UserAdminTest extends TestCase
     public function testAllUsers()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -125,7 +125,7 @@ class UserAdminTest extends TestCase
                     'name',
                     'email',
                     'active',
-                    'administrator'
+                    'is_admin'
                 ]
 
             ]
@@ -134,7 +134,7 @@ class UserAdminTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                ['administrator' => User::ADMIN_USER]
+                ['is_admin' => User::ADMIN_USER]
             ]
         ]);
 
@@ -143,7 +143,7 @@ class UserAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
 
         $data = [
             'name' => str_random(12),
@@ -178,7 +178,7 @@ class UserAdminTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -201,7 +201,7 @@ class UserAdminTest extends TestCase
     public function testDeleteUser()
     {
 
-        $user = User::where('administrator',  User::ADMIN_USER)->first();
+        $user = User::where('is_admin',  User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $response = $this->withHeaders([

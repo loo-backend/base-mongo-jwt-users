@@ -23,7 +23,7 @@ class CreateRoles extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->boolean('administrator');
+            $table->boolean('is_admin');
             $table->uuid('role_uuid');
             $table->timestamps();
             $table->softDeletes();

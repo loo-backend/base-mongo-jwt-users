@@ -22,7 +22,7 @@ class UserTenantSeeder extends Seeder
     public function tenantAdmin()
     {
 
-        $roles = Role::TENANT_ADMINISTRATOR;
+        $roles = Role::TENANT_ADMIN;
 
         $users = factory(App\User::class,5)->create();
 //

@@ -26,7 +26,7 @@ class UserCreateTenantService
     public function __construct(User $user, Role $role)
     {
         $this->user = $user;
-        $this->role = $role::TENANT_ADMINISTRATOR;
+        $this->role = $role::TENANT_ADMIN;
     }
 
     /**
@@ -72,7 +72,7 @@ class UserCreateTenantService
             $data['active'] = false;
         }
 
-        $data['administrator'] = $this->user::REGULAR_USER;
+        $data['is_admin'] = $this->user::REGULAR_USER;
         unset( $data['roles'] );
 
         if (!$create = $this->user->create( $data ) ) {

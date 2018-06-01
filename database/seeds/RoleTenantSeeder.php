@@ -22,13 +22,13 @@ class RoleTenantSeeder extends Seeder
             $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'administrator' => $data['administrator'],
+                'is_admin' => $data['is_admin'],
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
 
 
-            if( $data['name'] === Role::TENANT_ADMINISTRATOR ) {
+            if( $data['name'] === Role::TENANT_ADMIN ) {
 
                 $all = Privilege::where('name', Privilege::ALL)->first();
 
@@ -94,24 +94,24 @@ class RoleTenantSeeder extends Seeder
     {
         return [
             [
-                'name' => Role::TENANT_ADMINISTRATOR,
+                'name' => Role::TENANT_ADMIN,
                 'description' => 'Administrador',
-                'administrator' => User::REGULAR_USER
+                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_EDITOR,
                 'description' => 'Editor',
-                'administrator' => User::REGULAR_USER
+                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_EXPEDITION,
                 'description' => 'Expedição',
-                'administrator' => User::REGULAR_USER
+                'is_admin' => User::REGULAR_USER
             ],
             [
                 'name' => Role::TENANT_PARTNER,
                 'description' => 'Parceiro',
-                'administrator' => User::REGULAR_USER
+                'is_admin' => User::REGULAR_USER
             ],
 
         ];

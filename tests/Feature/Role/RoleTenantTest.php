@@ -14,7 +14,7 @@ class RoleTenantTest extends TestCase
     public function migrateAndFactory()
     {
 
-        factory(User::class)->create(['administrator' => User::REGULAR_USER]);
+        factory(User::class)->create(['is_admin' => User::REGULAR_USER]);
 
         Artisan::call('db:seed', [
             '--class'   => 'RoleTenantSeeder',
@@ -28,7 +28,7 @@ class RoleTenantTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::REGULAR_USER)->first();
+        $user = User::where('is_admin', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -44,7 +44,7 @@ class RoleTenantTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'administrator',
+                'is_admin',
                 'role_uuid',
                 'default',
                 'privileges'
@@ -54,7 +54,7 @@ class RoleTenantTest extends TestCase
 
         $response->assertJson([
             [
-                'administrator' => User::REGULAR_USER,
+                'is_admin' => User::REGULAR_USER,
                 'default' => true
             ]
         ]);
@@ -67,7 +67,7 @@ class RoleTenantTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::REGULAR_USER)->first();
+        $user = User::where('is_admin', User::REGULAR_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -75,7 +75,7 @@ class RoleTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('administrator', User::REGULAR_USER)->first();
+        $role = Role::where('is_admin', User::REGULAR_USER)->first();
 
         $response = $this->get(route('roles.tenants.show', $role->id ), $headers)
             ->assertStatus(200);
@@ -83,7 +83,7 @@ class RoleTenantTest extends TestCase
         $response->assertJson([
             'data' => [
                 '_id' => $role->id,
-                'administrator' => User::REGULAR_USER,
+                'is_admin' => User::REGULAR_USER,
                 'default' => true
             ]
         ]);

@@ -34,12 +34,12 @@ class PrivilegeSeeder extends Seeder
             [
                 'name' => Privilege::ALL,
                 'description' => 'Todos',
-                'administrator' => true
+                'is_admin' => true
             ],
             [
                 'name' => Privilege::BROWSER,
                 'description' => 'Browser',
-                'administrator' => true
+                'is_admin' => true
             ],
             [
                 'name' => Privilege::READ,

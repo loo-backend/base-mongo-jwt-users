@@ -15,7 +15,7 @@ class UserTenantAllService
     public function all()
     {
 
-        $user = User::where('administrator', User::REGULAR_USER)
+        $user = User::where('is_admin', User::REGULAR_USER)
                         ->paginate();
 
         if (!$user) {

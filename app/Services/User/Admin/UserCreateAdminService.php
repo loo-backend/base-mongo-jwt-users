@@ -76,7 +76,7 @@ class UserCreateAdminService
             $data['active'] = false;
         }
 
-        $data['administrator'] = $this->user::ADMIN_USER;
+        $data['is_admin'] = $this->user::ADMIN_USER;
 
         unset($data['roles']);
 

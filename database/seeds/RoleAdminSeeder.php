@@ -22,12 +22,12 @@ class RoleAdminSeeder extends Seeder
             $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'administrator' => $data['administrator'],
+                'is_admin' => $data['is_admin'],
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
 
-            if( $data['name'] === Role::ADMINISTRATOR ) {
+            if( $data['name'] === Role::ADMIN ) {
 
                 $all = Privilege::where('name', Privilege::ALL)->first();
 
@@ -95,34 +95,34 @@ class RoleAdminSeeder extends Seeder
         return [
 
             [
-                'name' => Role::ADMINISTRATOR,
+                'name' => Role::ADMIN,
                 'description' => 'Administrador Geral',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_AUDIT,
                 'description' => 'Departamento de Auditoria',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_FINANCE,
                 'description' => 'Departamento Financeiro',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_COMMERCIAL,
                 'description' => 'Departamento Comercial',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_SUPPORT,
                 'description' => 'Departamento de Suporte',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
             [
                 'name' => Role::ADMIN_STAFF_INITIAL,
                 'description' => 'Aguardando escolha de Departamento',
-                'administrator' => User::ADMIN_USER
+                'is_admin' => User::ADMIN_USER
             ],
 
         ];

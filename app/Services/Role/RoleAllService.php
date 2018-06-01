@@ -14,7 +14,7 @@ class RoleAllService
     public function all($user)
     {
 
-        if (!$roles = Role::where('administrator', $user)->get()) {
+        if (!$roles = Role::where('is_admin', $user)->get()) {
             return false;
         }
 
