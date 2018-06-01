@@ -6,8 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
-use App\Services\User\Admin\UserAdminAllService;
-use App\Services\User\Admin\UserCreateAdminService;
+use App\Services\User\UserAllService;
+use App\Services\User\UserCreateService;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -18,7 +19,7 @@ class UserAdminController extends ApiController
 
 
     /**
-     * @var UserCreateAdminService
+     * @var UserCreateService
      */
     private $createAdminService;
 
@@ -28,7 +29,7 @@ class UserAdminController extends ApiController
     private $findService;
 
     /**
-     * @var UserAdminAllService
+     * @var UserAllService
      */
     private $allService;
 
@@ -44,16 +45,16 @@ class UserAdminController extends ApiController
 
     /**
      * UsersController constructor.
-     * @param UserCreateAdminService $createAdminService
+     * @param UserCreateService $createAdminService
      * @param UserFindService $findService
-     * @param UserAdminAllService $allService
+     * @param UserAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
      */
     public function __construct(
-        UserCreateAdminService $createAdminService,
+        UserCreateService $createAdminService,
         UserFindService $findService,
-        UserAdminAllService $allService,
+        UserAllService $allService,
         UserRemoveService $removeService,
         UserUpdateService $updateService
     ) {
@@ -73,7 +74,7 @@ class UserAdminController extends ApiController
     public function index()
     {
 
-        $result = $this->allService->all();
+        $result = $this->allService->admin(User::ADMIN_USER)->all();
 
         if (count($result) <= 0) {
             return $this->errorResponse('users_not_found', 422);
@@ -101,7 +102,7 @@ class UserAdminController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->createAdminService->create($request)) {
+        if (!$result = $this->createAdminService->admin(User::ADMIN_USER)->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }

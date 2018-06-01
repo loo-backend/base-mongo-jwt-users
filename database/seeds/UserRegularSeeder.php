@@ -4,7 +4,7 @@ use App\Role;
 use Illuminate\Database\Seeder;
 use App\User;
 
-class UserTenantSeeder extends Seeder
+class UserRegularSeeder extends Seeder
 {
 
     /**
@@ -14,9 +14,7 @@ class UserTenantSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,5)->create([
-            'is_tenant' => User::TENANT_USER
-        ]);
+        factory(App\User::class,5)->create();
     }
 
 }

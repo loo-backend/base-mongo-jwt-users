@@ -22,7 +22,6 @@ class RoleAdminSeeder extends Seeder
             $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'is_admin' => User::ADMIN_USER,
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
@@ -40,10 +39,10 @@ class RoleAdminSeeder extends Seeder
             } else {
 
                 $browser = Privilege::where('name', Privilege::BROWSER)->first();
-                $read = Privilege::where('name', Privilege::READ)->first();
-                $add = Privilege::where('name', Privilege::ADD)->first();
-                $edit = Privilege::where('name', Privilege::EDIT)->first();
-                $delete = Privilege::where('name', Privilege::DELETE)->first();
+                $read    = Privilege::where('name', Privilege::READ)->first();
+                $add     = Privilege::where('name', Privilege::ADD)->first();
+                $edit    = Privilege::where('name', Privilege::EDIT)->first();
+                $delete  = Privilege::where('name', Privilege::DELETE)->first();
 
                 $role->privileges()->create([
                     'name' => $browser->name,

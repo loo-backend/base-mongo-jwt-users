@@ -41,10 +41,10 @@ class RoleTenantSeeder extends Seeder
             } else {
 
                 $browser = Privilege::where('name', Privilege::BROWSER)->first();
-                $read = Privilege::where('name', Privilege::READ)->first();
-                $add = Privilege::where('name', Privilege::ADD)->first();
-                $edit = Privilege::where('name', Privilege::EDIT)->first();
-                $delete = Privilege::where('name', Privilege::DELETE)->first();
+                $read    = Privilege::where('name', Privilege::READ)->first();
+                $add     = Privilege::where('name', Privilege::ADD)->first();
+                $edit    = Privilege::where('name', Privilege::EDIT)->first();
+                $delete  = Privilege::where('name', Privilege::DELETE)->first();
 
                 $role->privileges()->create([
                     'name' => $browser->name,

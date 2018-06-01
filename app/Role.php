@@ -27,7 +27,6 @@ class Role extends Model
     protected $fillable = [
         'name',
         'description',
-        'is_admin',
         'role_uuid',
         'default',
         'privileges'

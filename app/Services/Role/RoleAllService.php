@@ -14,6 +14,8 @@ class RoleAllService
 
     private $admin;
     private $tenant;
+    private $regular;
+
 
     /**
      * @param mixed $admin
@@ -35,12 +37,34 @@ class RoleAllService
         return $this;
     }
 
+    /**
+     * @param mixed $regular
+     * @return RoleAllService
+     */
+    public function regular($regular)
+    {
+        $this->regular = $regular;
+        return $this;
+    }
+
+    /**
+     * @return Role[]|bool|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
 
         if($this->admin === User::ADMIN_USER) {
 
-            if (!$roles = Role::where('is_admin', User::ADMIN_USER)->get()) {
+            if (!$roles = Role::whereIn('name', [
+
+                Role::ADMIN,
+                Role::ADMIN_STAFF_AUDIT,
+                Role::ADMIN_STAFF_SUPPORT,
+                Role::ADMIN_STAFF_FINANCE,
+                Role::ADMIN_STAFF_COMMERCIAL,
+                Role::ADMIN_STAFF_INITIAL,
+
+            ])->get()) {
                 return false;
             }
 
@@ -50,7 +74,26 @@ class RoleAllService
 
         if($this->tenant === User::TENANT_USER) {
 
-            if (!$roles = Role::where('is_tenant', User::TENANT_USER)->get()) {
+            if (!$roles = Role::whereIn('name', [
+
+                Role::TENANT_ADMIN,
+                Role::TENANT_EDITOR,
+                Role::TENANT_EXPEDITION,
+                Role::TENANT_PARTNER,
+
+            ])->get()) {
+                return false;
+            }
+
+            return $roles;
+
+        }
+
+        if($this->tenant === User::REGULAR_USER) {
+
+            if (!$roles = Role::whereIn('name', [
+                Role::REGULAR_USER,
+            ])->get()) {
                 return false;
             }
 

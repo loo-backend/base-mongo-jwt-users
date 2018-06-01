@@ -87,7 +87,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function isAdmin()
     {
-        return $this->admin == User::ADMIN_USER;
+        return $this->user = User::ADMIN_USER;
     }
 
     public static function generateVerificationCode()

@@ -44,7 +44,6 @@ class RoleTenantTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'is_tenant',
                 'role_uuid',
                 'default',
                 'privileges'
@@ -54,7 +53,7 @@ class RoleTenantTest extends TestCase
 
         $response->assertJson([
             [
-                'is_tenant' => User::TENANT_USER,
+                'name' => Role::TENANT_ADMIN,
                 'default' => true
             ]
         ]);
@@ -75,7 +74,12 @@ class RoleTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('is_tenant', User::TENANT_USER)->first();
+        $role = Role::whereIn('name', [
+
+            Role::TENANT_ADMIN
+
+        ])->first();
+
 
         $response = $this->get(route('roles.tenants.show', $role->id ), $headers)
             ->assertStatus(200);
@@ -83,7 +87,7 @@ class RoleTenantTest extends TestCase
         $response->assertJson([
             'data' => [
                 '_id' => $role->id,
-                'is_tenant' => User::TENANT_USER,
+                'name' => Role::TENANT_ADMIN,
                 'default' => true
             ]
         ]);

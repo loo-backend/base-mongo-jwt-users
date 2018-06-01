@@ -44,7 +44,6 @@ class RoleAdminTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'is_admin',
                 'role_uuid',
                 'default',
                 'privileges'
@@ -54,7 +53,6 @@ class RoleAdminTest extends TestCase
 
         $response->assertJson([
             [
-                'is_admin' => User::ADMIN_USER,
                 'default' => true
             ]
         ]);
@@ -75,7 +73,9 @@ class RoleAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('is_admin', User::ADMIN_USER)->first();
+        $role = Role::whereIn('name', [
+            Role::ADMIN
+        ])->first();
 
         $response = $this->get(route('roles.admins.show', $role->id), $headers)
             ->assertStatus(200);
@@ -83,7 +83,7 @@ class RoleAdminTest extends TestCase
         $response->assertJson([
             'data' => [
                 '_id' => $role->id,
-                'is_admin' => User::ADMIN_USER,
+                'name' => Role::ADMIN,
                 'default' => true
             ]
         ]);
