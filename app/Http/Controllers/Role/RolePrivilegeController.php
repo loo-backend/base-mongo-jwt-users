@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Role;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Role\RoleAllService;
+use App\Services\Role\RolePrivilegeService;
 use App\Services\Role\RoleFindService;
 use App\User;
 
-class RoleAdminController extends ApiController
+class RolePrivilegeController extends ApiController
 {
 
     /**
-     * @param RoleAllService $service
+     * @param RolePrivilegeService $service
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(RoleAllService $service)
+    public function index(RolePrivilegeService $service)
     {
-        return $this->showAll($service->all(User::ADMIN_USER));
+
+        return $this->showAll($service->rolePrivileges(User::ADMIN_USER));
     }
 
     /**

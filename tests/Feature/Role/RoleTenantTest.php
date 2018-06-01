@@ -14,8 +14,6 @@ class RoleTenantTest extends TestCase
     public function migrateAndFactory()
     {
 
-        $this->restoreDatabase();
-
         factory(User::class)->create(['administrator' => User::REGULAR_USER]);
 
         Artisan::call('db:seed', [
@@ -48,7 +46,8 @@ class RoleTenantTest extends TestCase
                 'description',
                 'administrator',
                 'role_uuid',
-                'default'
+                'default',
+                'privileges'
             ]
 
         ]);

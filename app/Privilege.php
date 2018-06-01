@@ -5,7 +5,7 @@ namespace App;
 use Jenssegers\Mongodb\Eloquent\Model as Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class RolePrivilege extends Model
+class Privilege extends Model
 {
 
     use SoftDeletes;

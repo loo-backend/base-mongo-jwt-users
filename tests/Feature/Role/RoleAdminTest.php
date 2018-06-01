@@ -15,8 +15,6 @@ class RoleAdminTest extends TestCase
     public function migrateAndFactory()
     {
 
-        $this->restoreDatabase();
-
         factory(User::class)->create(['administrator' => User::ADMIN_USER]);
 
         Artisan::call('db:seed', [
@@ -43,6 +41,7 @@ class RoleAdminTest extends TestCase
         $response = $this->get(route('roles.admins.index'), $headers)
             ->assertStatus(200);
 
+
         $response->assertJsonStructure([
             '*' => [
                 '_id',
@@ -50,7 +49,8 @@ class RoleAdminTest extends TestCase
                 'description',
                 'administrator',
                 'role_uuid',
-                'default'
+                'default',
+                'privileges'
             ]
 
         ]);

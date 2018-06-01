@@ -1,5 +1,6 @@
 <?php
 
+use App\Privilege;
 use App\User;
 use Illuminate\Database\Seeder;
 use App\Role;
@@ -18,13 +19,72 @@ class RoleTenantSeeder extends Seeder
 
         foreach ($this->dataRoles() as $data) {
 
-            Role::create([
+            $role = Role::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
                 'administrator' => $data['administrator'],
                 'role_uuid' => Uuid::generate(4)->string,
                 'default' => true
             ]);
+
+
+            if( $data['name'] === Role::TENANT_ADMINISTRATOR ) {
+
+                $all = Privilege::where('name', Privilege::ALL)->first();
+
+                $role->privileges()->create([
+                    'name' => $all->name,
+                    'description' => $all->description,
+                    'privilege_uuid' => $all->privilege_uuid,
+                ]);
+
+            } else {
+
+                $browser = Privilege::where('name', Privilege::BROWSER)->first();
+                $read = Privilege::where('name', Privilege::READ)->first();
+                $add = Privilege::where('name', Privilege::ADD)->first();
+                $edit = Privilege::where('name', Privilege::EDIT)->first();
+                $delete = Privilege::where('name', Privilege::DELETE)->first();
+
+                $role->privileges()->create([
+                    'name' => $browser->name,
+                    'description' => $browser->description,
+                    'privilege_uuid' => $browser->privilege_uuid,
+                ]);
+
+                $role->privileges()->create([
+                    'name' => $read->name,
+                    'description' => $read->description,
+                    'privilege_uuid' => $read->privilege_uuid,
+                ]);
+
+                if ($data['name'] !== Role::ADMIN_STAFF_INITIAL) {
+
+                    $role->privileges()->create([
+                        'name' => $add->name,
+                        'description' => $add->description,
+                        'privilege_uuid' => $add->privilege_uuid,
+                    ]);
+
+                    $role->privileges()->create([
+                        'name' => $edit->name,
+                        'description' => $edit->description,
+                        'privilege_uuid' => $edit->privilege_uuid,
+                    ]);
+
+                }
+
+                if ($data['name'] !== Role::TENANT_EXPEDITION) {
+
+                    $role->privileges()->create([
+                        'name' => $delete->name,
+                        'description' => $delete->description,
+                        'privilege_uuid' => $delete->privilege_uuid,
+                    ]);
+
+                }
+
+            }
 
         }
 
@@ -44,8 +104,8 @@ class RoleTenantSeeder extends Seeder
                 'administrator' => User::REGULAR_USER
             ],
             [
-                'name' => Role::TENANT_DEVELOP,
-                'description' => 'Desenvolvedor',
+                'name' => Role::TENANT_EXPEDITION,
+                'description' => 'Expedição',
                 'administrator' => User::REGULAR_USER
             ],
             [

@@ -11,13 +11,14 @@ class Role extends Model
     use SoftDeletes;
 
     const ADMINISTRATOR          = 'ADMINISTRATOR';
+    const ADMIN_STAFF_AUDIT      = 'ADMIN_STAFF_AUDIT';
     const ADMIN_STAFF_SUPPORT    = 'ADMIN_STAFF_SUPPORT';
     const ADMIN_STAFF_FINANCE    = 'ADMIN_STAFF_FINANCE';
     const ADMIN_STAFF_COMMERCIAL = 'ADMIN_STAFF_COMMERCIAL';
     const ADMIN_STAFF_INITIAL    = 'ADMIN_STAFF_INITIAL';
     const TENANT_ADMINISTRATOR   = 'TENANT_ADMINISTRATOR';
     const TENANT_EDITOR          = 'TENANT_EDITOR';
-    const TENANT_DEVELOP         = 'TENANT_DEVELOP';
+    const TENANT_EXPEDITION      = 'TENANT_EXPEDITION';
     const TENANT_PARTNER         = 'TENANT_PARTNER';
 
     public $table = 'roles';
@@ -27,16 +28,16 @@ class Role extends Model
         'description',
         'administrator',
         'role_uuid',
-        'default'
+        'default',
+        'privileges'
     ];
 
     protected $dates = ['deleted_at'];
 
-
     /**
      * @return \Jenssegers\Mongodb\Relations\EmbedsMany
      */
-    public function privilege()
+    public function privileges()
     {
         return $this->embedsMany(Privilege::class);
     }

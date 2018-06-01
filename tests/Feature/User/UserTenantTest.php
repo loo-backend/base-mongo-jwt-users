@@ -39,7 +39,6 @@ class UserTenantTest extends TestCase
     public function migrateAndFactory()
     {
 
-        $this->restoreDatabase();
         $this->faker();
 
         $users = factory(User::class)->create();

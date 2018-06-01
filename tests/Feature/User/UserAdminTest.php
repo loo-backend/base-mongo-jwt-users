@@ -37,7 +37,6 @@ class UserAdminTest extends TestCase
     public function migrateAndFactory()
     {
 
-        $this->restoreDatabase();
         $this->faker();
 
         factory(User::class)->create(['administrator' => User::ADMIN_USER]);

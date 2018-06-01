@@ -14,8 +14,6 @@ class PrivilegeTest extends TestCase
     public function migrateAndFactory()
     {
 
-        $this->restoreDatabase();
-
         factory(User::class)->create(['administrator' => User::REGULAR_USER]);
 
         Artisan::call('db:seed', [
