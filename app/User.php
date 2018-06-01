@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
     const UNVERIFIED_USER = '0';
 
     const ADMIN_USER = true;
+    const TENANT_USER = true;
     const REGULAR_USER = false;
 
     /**
@@ -40,7 +41,8 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'remember_token',
-        'administrator',
+        'is_admin',
+        'is_tenant',
         'active',
         'verified',
         'verification_token',
@@ -85,7 +87,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function isAdmin()
     {
-        return $this->admin == User::ADMIN_USER;
+        return $this->user = User::ADMIN_USER;
     }
 
     public static function generateVerificationCode()

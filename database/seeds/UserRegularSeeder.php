@@ -1,10 +1,10 @@
 <?php
 
 use App\Role;
-use App\User;
 use Illuminate\Database\Seeder;
+use App\User;
 
-class UserAdminSeeder extends Seeder
+class UserRegularSeeder extends Seeder
 {
 
     /**
@@ -14,12 +14,7 @@ class UserAdminSeeder extends Seeder
      */
     public function run()
     {
-
-        factory(App\User::class,5)->create([
-            'is_admin' => User::ADMIN_USER
-        ]);
-
+        factory(App\User::class,5)->create();
     }
-
 
 }

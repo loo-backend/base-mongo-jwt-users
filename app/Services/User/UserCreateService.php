@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Admin;
+namespace App\Services\User;
 
 use App\Role;
 use App\User;
@@ -10,36 +10,43 @@ use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
 /**
- * Class UserCreateAdminService
- * @package App\Services\User\Admin
+ * Class UserCreateService
+ * @package App\Services\User
  */
-class UserCreateAdminService
+class UserCreateService
 {
 
-    /**
-     * @var array
-     */
-    private $user;
+    private $admin;
+    private $tenant;
+    private $regular;
 
-    /**
-     * @var array
-     */
+    private $user;
     private $role;
 
 
-    public function __construct(User $user, Role $role)
+    public function __construct()
     {
-        $this->user = $user;
-        $this->role = $role::ADMIN_STAFF_INITIAL;
+        $this->role = Role::ADMIN_STAFF_INITIAL;
     }
 
+    public function admin($admin)
+    {
+        $this->admin = $admin;
+        return $this;
+    }
 
-    /**
-     * Get a validator for a User Admin.
-     *
-     * @param array $data
-     * @return mixed
-     */
+    public function tenant($tenant)
+    {
+        $this->tenant = $tenant;
+        return $this;
+    }
+
+    public function regular($regular)
+    {
+        $this->regular = $regular;
+        return $this;
+    }
+
     public function validator(array $data)
     {
         return Validator::make($data, [
@@ -76,14 +83,19 @@ class UserCreateAdminService
             $data['active'] = false;
         }
 
-        $data['administrator'] = $this->user::ADMIN_USER;
+        if ($this->admin === User::ADMIN_USER) {
+            $data['is_admin'] = User::ADMIN_USER;
+        }
+
+        if ($this->tenant === User::TENANT_USER) {
+            $data['is_tenant'] = User::TENANT_USER;
+        }
 
         unset($data['roles']);
 
-        if (!$create = $this->user->create($data) ) {
+        if (!$create = User::create($data) ) {
             return false;
         }
-        //$create->roles()->create($this->role);
 
         return $create;
 

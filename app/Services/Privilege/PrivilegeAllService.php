@@ -11,6 +11,9 @@ use App\Privilege;
 class PrivilegeAllService
 {
 
+    /**
+     * @return Privilege[]|bool|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
 

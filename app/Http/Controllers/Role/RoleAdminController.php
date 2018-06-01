@@ -16,7 +16,7 @@ class RoleAdminController extends ApiController
      */
     public function index(RoleAllService $service)
     {
-        return $this->showAll($service->all(User::ADMIN_USER));
+        return $this->showAll($service->admin(User::ADMIN_USER)->all());
     }
 
     /**

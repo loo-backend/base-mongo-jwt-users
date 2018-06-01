@@ -6,8 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
-use App\Services\User\Tenant\UserCreateTenantService;
-use App\Services\User\Tenant\UserTenantAllService;
+use App\Services\User\UserCreateService;
+use App\Services\User\UserAllService;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -20,7 +21,7 @@ class UserTenantController extends ApiController
 {
 
     /**
-     * @var UserCreateTenantService
+     * @var UserCreateService
      */
     private $createService;
 
@@ -30,7 +31,7 @@ class UserTenantController extends ApiController
     private $findService;
 
     /**
-     * @var UserTenantAllService
+     * @var UserAllService
      */
     private $allService;
 
@@ -48,16 +49,16 @@ class UserTenantController extends ApiController
 
     /**
      * UsersController constructor.
-     * @param UserCreateTenantService $createService
+     * @param UserCreateService $createService
      * @param UserFindService $findService
-     * @param UserTenantAllService $allService
+     * @param UserAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
      */
     public function __construct(
-        UserCreateTenantService $createService,
+        UserCreateService $createService,
         UserFindService $findService,
-        UserTenantAllService $allService,
+        UserAllService $allService,
         UserRemoveService $removeService,
         UserUpdateService $updateService
     ) {
@@ -77,7 +78,7 @@ class UserTenantController extends ApiController
     public function index()
     {
 
-        $result = $this->allService->all();
+        $result = $this->allService->tenant(User::TENANT_USER)->all();
 
         if (count($result) <= 0) {
 
@@ -106,7 +107,7 @@ class UserTenantController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->createService->create($request)) {
+        if (!$result = $this->createService->tenant(User::TENANT_USER)->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }

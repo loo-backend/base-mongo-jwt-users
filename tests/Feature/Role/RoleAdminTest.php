@@ -14,7 +14,7 @@ class RoleAdminTest extends TestCase
     public function migrateAndFactory()
     {
 
-        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
+        factory(User::class)->create(['is_admin' => User::ADMIN_USER]);
 
         Artisan::call('db:seed', [
             '--class'   => 'RoleAdminSeeder',
@@ -28,7 +28,7 @@ class RoleAdminTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -44,7 +44,6 @@ class RoleAdminTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'administrator',
                 'role_uuid',
                 'default',
                 'privileges'
@@ -54,7 +53,6 @@ class RoleAdminTest extends TestCase
 
         $response->assertJson([
             [
-                'administrator' => User::ADMIN_USER,
                 'default' => true
             ]
         ]);
@@ -67,7 +65,7 @@ class RoleAdminTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -75,7 +73,9 @@ class RoleAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $role = Role::where('administrator', User::ADMIN_USER)->first();
+        $role = Role::whereIn('name', [
+            Role::ADMIN
+        ])->first();
 
         $response = $this->get(route('roles.admins.show', $role->id), $headers)
             ->assertStatus(200);
@@ -83,7 +83,7 @@ class RoleAdminTest extends TestCase
         $response->assertJson([
             'data' => [
                 '_id' => $role->id,
-                'administrator' => User::ADMIN_USER,
+                'name' => Role::ADMIN,
                 'default' => true
             ]
         ]);

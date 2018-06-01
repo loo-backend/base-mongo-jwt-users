@@ -12,6 +12,8 @@ class PrivilegeFindService
 {
 
     /**
+     * Get ById
+     *
      * @param $id
      * @return bool
      */

@@ -27,7 +27,7 @@ class UserAdminAuthApiTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'administrator' => User::ADMIN_USER,
+            'is_admin' => User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -39,7 +39,7 @@ class UserAdminAuthApiTest extends TestCase
 
         $this->faker();
 
-        factory(User::class)->create(['administrator' => User::ADMIN_USER]);
+        factory(User::class)->create(['is_admin' => User::ADMIN_USER]);
 
     }
 
@@ -48,7 +48,7 @@ class UserAdminAuthApiTest extends TestCase
 
         $this->migrateAndFactory();
 
-        $user = User::where('administrator', true)->first();
+        $user = User::where('is_admin', true)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -62,7 +62,7 @@ class UserAdminAuthApiTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $this->data['name'],
             'email' => $this->data['email'],
-            'administrator' => User::ADMIN_USER
+            'is_admin' => User::ADMIN_USER
         ]);
 
     }
@@ -71,7 +71,7 @@ class UserAdminAuthApiTest extends TestCase
 
         $this->faker();
 
-        $user = User::where('administrator', User::ADMIN_USER)->first();
+        $user = User::where('is_admin', User::ADMIN_USER)->first();
         $response = $this->post(route('auth.login'),
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
@@ -84,7 +84,7 @@ class UserAdminAuthApiTest extends TestCase
 
     public function testUserAuthenticateInvalid() {
 
-        $user = User::where('administrator', true)->first();
+        $user = User::where('is_admin', true)->first();
         $response = $this->post(route('auth.login'),
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);
