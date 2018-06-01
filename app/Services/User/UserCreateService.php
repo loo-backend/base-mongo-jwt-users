@@ -20,7 +20,6 @@ class UserCreateService
     private $tenant;
     private $regular;
 
-    private $user;
     private $role;
 
 

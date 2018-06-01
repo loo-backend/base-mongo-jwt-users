@@ -17,6 +17,6 @@ class ZDeleteTest extends TestCase
     {
         $this->assertTrue(true);
 
-        $this->restoreDatabase();
+        //$this->restoreDatabase();
     }
 }

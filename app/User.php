@@ -25,6 +25,8 @@ class User extends Authenticatable implements JWTSubject
     const TENANT_USER = true;
     const REGULAR_USER = false;
 
+    protected $admin;
+
     /**
      * @var string
      */
@@ -87,7 +89,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function isAdmin()
     {
-        return $this->user = User::ADMIN_USER;
+        return $this->admin === User::ADMIN_USER;
     }
 
     public static function generateVerificationCode()
