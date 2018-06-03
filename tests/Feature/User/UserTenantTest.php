@@ -42,7 +42,6 @@ class UserTenantTest extends TestCase
         $this->faker();
 
         $users = factory(User::class)->create();
-        //$users->roles()->create(Role::TENANT_ADMIN);
 
     }
 

@@ -7,7 +7,7 @@ use Faker\Factory;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UserAdminAuthApiTest extends TestCase
+class AuthenticateUserTest extends TestCase
 {
 
     public $data = [];
@@ -72,6 +72,7 @@ class UserAdminAuthApiTest extends TestCase
         $this->faker();
 
         $user = User::where('is_admin', User::ADMIN_USER)->first();
+
         $response = $this->post(route('auth.login'),
                 ['email'=>  $user->email, 'password' => $this->data['password']])
             ->assertStatus(200);
@@ -79,6 +80,15 @@ class UserAdminAuthApiTest extends TestCase
         $response->assertJson(['data' => [
             'HTTP_Authorization' => true
         ]]);
+
+        $json = json_decode( $response->content() );
+        JWTAuth::setToken($json->data->HTTP_Authorization);
+
+        $token = JWTAuth::getToken();
+        $decode = JWTAuth::decode($token);
+
+        $data = $decode->get('sub');
+        $this->assertEquals($data->email, $user->email);
 
     }
 
