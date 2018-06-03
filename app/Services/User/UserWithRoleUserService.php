@@ -24,11 +24,6 @@ class UserWithRoleUserService
             return false;
         }
 
-        dd( $user->roles );
-
-
-
-
         return $user;
 
     }
