@@ -3,6 +3,7 @@
 namespace App\Services\User;
 
 use App\Role;
+use App\Services\RoleUser\CreateRoleUserService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,13 +21,23 @@ class UserCreateService
     private $tenant;
     private $regular;
 
-    private $user;
     private $role;
+    /**
+     * @var CreateRoleUserService
+     */
+    private $createRoleUserService;
 
 
-    public function __construct()
+    /**
+     * UserCreateService constructor.
+     * @param Role $role
+     * @param CreateRoleUserService $createRoleUserService
+     */
+    public function __construct(Role $role,
+                                CreateRoleUserService $createRoleUserService)
     {
-        $this->role = Role::ADMIN_STAFF_INITIAL;
+        $this->role = $role::ADMIN_STAFF_INITIAL;
+        $this->createRoleUserService = $createRoleUserService;
     }
 
     public function admin($admin)
@@ -93,11 +104,47 @@ class UserCreateService
 
         unset($data['roles']);
 
-        if (!$create = User::create($data) ) {
+        if (!$created = User::create($data) ) {
             return false;
         }
 
-        return $create;
+        if ($this->admin === User::ADMIN_USER) {
+            $this->createRoleUserAdminInitial($created);
+        } else if ($this->tenant === User::TENANT_USER) {
+            $this->createRoleUserTenantAdmin($created);
+        } else {
+            $this->createRoleUserRegular($created);
+        }
+
+        return $created;
+
+    }
+
+    /**
+     * @param User $user
+     */
+    private function createRoleUserAdminInitial(User $user)
+    {
+        $role = Role::where('name', Role::ADMIN_STAFF_INITIAL)->first();
+        $this->createRoleUserService->create($user, $role);
+    }
+
+    /**
+     * @param User $user
+     */
+    private function createRoleUserTenantAdmin(User $user)
+    {
+        $role = Role::where('name', Role::TENANT_ADMIN)->first();
+        $this->createRoleUserService->create($user, $role);
+    }
+
+    /**
+     * @param User $user
+     */
+    private function createRoleUserRegular(User $user)
+    {
+        $role = Role::where('name', Role::REGULAR_USER)->first();
+        $this->createRoleUserService->create($user, $role);
 
     }
 
