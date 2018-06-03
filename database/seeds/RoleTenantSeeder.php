@@ -41,7 +41,6 @@ class RoleTenantSeeder extends Seeder
             'default' => true
         ]);
 
-
         if( $data['name'] === Role::TENANT_ADMIN ) {
 
             $all = Privilege::where('name', Privilege::ALL)->first();

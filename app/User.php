@@ -113,5 +113,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function roleUser()
+    {
+        return $this->embedsOne(RoleUser::class);
+    }
+
 
 }

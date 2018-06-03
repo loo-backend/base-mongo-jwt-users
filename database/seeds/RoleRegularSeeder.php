@@ -83,7 +83,7 @@ class RoleRegularSeeder extends Seeder
         return [
             [
                 'name' => Role::REGULAR_USER,
-                'description' => 'Usuário regular',
+                'description' => 'Usuário Regular',
             ]
 
         ];

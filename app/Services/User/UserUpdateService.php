@@ -40,25 +40,22 @@ class UserUpdateService
      *
      * @param Request $request
      * @param $id
-     * @return bool|array
+     * @return bool
      */
     public function update(Request $request, $id)
     {
 
-        $user = User::find($id);
-
-        if ($user) {
-
-            $data = $request->all();
-
-            if ($request->has('password')) {
-                $data['password'] = Hash::make($request['password']);
-            }
-
-            $user->update($data);
+        if (!$user = User::find($id)) {
+            return false;
         }
 
-        return $user;
+        $data = $request->all();
+
+        if ($request->has('password')) {
+            $data['password'] = Hash::make($request['password']);
+        }
+
+        return $user->update($data);
     }
 
 }
