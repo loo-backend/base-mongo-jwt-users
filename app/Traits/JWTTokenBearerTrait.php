@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\Request;
-use App\Services\User\UserWhereFirstService;
+use App\Services\User\UserWithRoleUserService;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
 
@@ -21,8 +21,8 @@ trait JWTTokenBearerTrait {
     public function tokenBearerGenerate(Request $request)
     {
 
-        $service = new UserWhereFirstService();
-        $user = $service->whereFirst(['email' => strtolower( $request->input('email') )]);
+        $service = new UserWithRoleUserService();
+        $user = $service->userWithRoleUser(['email' => strtolower( $request->input('email') )]);
 
         $factory = JWTFactory::customClaims([
             'sub' => $user

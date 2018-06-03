@@ -18,4 +18,5 @@ class RoleUser extends Model
     {
         return $this->embedsMany(Role::class);
     }
+
 }
