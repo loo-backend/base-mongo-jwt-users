@@ -18,7 +18,7 @@ class UserWithRoleUserService
     public function userWithRoleUser(array $data)
     {
 
-        $user = User::with('roles');
+        $user = User::with('rolesUser');
 
         if (!$user = $user->where($data)->first() ) {
             return false;
