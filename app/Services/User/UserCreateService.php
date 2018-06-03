@@ -120,32 +120,31 @@ class UserCreateService
 
     }
 
-
     /**
-     * @param $created
+     * @param User $user
      */
-    private function createRoleUserAdminInitial($created)
+    private function createRoleUserAdminInitial(User $user)
     {
         $role = Role::where('name', Role::ADMIN_STAFF_INITIAL)->first();
-        $this->createRoleUserService->create($created, $role);
+        $this->createRoleUserService->create($user, $role);
     }
 
     /**
-     * @param $created
+     * @param User $user
      */
-    private function createRoleUserTenantAdmin($created)
+    private function createRoleUserTenantAdmin(User $user)
     {
         $role = Role::where('name', Role::TENANT_ADMIN)->first();
-        $this->createRoleUserService->create($created, $role);
+        $this->createRoleUserService->create($user, $role);
     }
 
     /**
-     * @param $created
+     * @param User $user
      */
-    private function createRoleUserRegular($created)
+    private function createRoleUserRegular(User $user)
     {
         $role = Role::where('name', Role::REGULAR_USER)->first();
-        $this->createRoleUserService->create($created, $role);
+        $this->createRoleUserService->create($user, $role);
 
     }
 

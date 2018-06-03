@@ -38,11 +38,11 @@ class CreateRoleUserService
             'privileges' => $privileges
         ];
 
-        if (!$create = $role_user->roles()->create($data) ) {
+        if (!$created = $role_user->roles()->create($data) ) {
             return false;
         }
 
-        return $create;
+        return $created;
 
     }
 
