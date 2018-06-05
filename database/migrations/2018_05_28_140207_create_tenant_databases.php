@@ -7,8 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTenantDatabases extends Migration
 {
 
-    protected $connection = 'main';
-
     /**
      * Run the migrations.
      *
@@ -17,7 +15,7 @@ class CreateTenantDatabases extends Migration
     public function up()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('tenant_databases', function (Blueprint $table)
         {
 
@@ -37,7 +35,7 @@ class CreateTenantDatabases extends Migration
      */
     public function down()
     {
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('tenant_databases', function (Blueprint $table)
         {
             $table->dropIndex();

@@ -7,8 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreatePasswordResetsTable extends Migration
 {
 
-    protected $connection = 'main';
-
 
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreatePasswordResetsTable extends Migration
     public function up()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('password_resets', function (Blueprint $table)
         {
             $table->string('email')->index();
@@ -34,7 +32,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('password_resets', function (Blueprint $table)
         {
             $table->dropIndex();

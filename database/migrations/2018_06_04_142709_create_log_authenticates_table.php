@@ -7,8 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLogAuthenticatesTable extends Migration
 {
 
-    protected $connection = 'mainlog';
-
     /**
      * Run the migrations.
      *
@@ -17,7 +15,7 @@ class CreateLogAuthenticatesTable extends Migration
     public function up()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION_LOG'))
             ->table('log_authenticates', function (Blueprint $table)
             {
 
@@ -41,7 +39,7 @@ class CreateLogAuthenticatesTable extends Migration
     public function down()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION_LOG'))
             ->table('log_authenticates', function (Blueprint $table)
             {
                 $table->dropIndex();

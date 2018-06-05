@@ -7,8 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreatePrivileges extends Migration
 {
 
-    protected $connection = 'main';
-
     /**
      * Run the migrations.
      *
@@ -17,7 +15,7 @@ class CreatePrivileges extends Migration
     public function up()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('privileges', function (Blueprint $table)
         {
 
@@ -38,7 +36,7 @@ class CreatePrivileges extends Migration
      */
     public function down()
     {
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('privileges', function (Blueprint $table)
         {
             $table->dropIndex();

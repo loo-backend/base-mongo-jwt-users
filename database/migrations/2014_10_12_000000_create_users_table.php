@@ -8,8 +8,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
 
-    protected $connection = 'main';
-
     /**
      * Run the migrations.
      *
@@ -18,7 +16,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('users', function (Blueprint $table)
         {
 
@@ -48,7 +46,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
 
-        Schema::connection($this->connection)
+        Schema::connection(env('DB_CONNECTION'))
         ->table('users', function (Blueprint $table)
         {
             $table->dropIndex();
