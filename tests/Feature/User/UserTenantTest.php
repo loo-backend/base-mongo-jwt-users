@@ -13,7 +13,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class UserTenantTest extends TestCase
 {
 
-    public $data = [];
+    protected $data = [];
 
     protected function setUp()
     {
