@@ -74,7 +74,7 @@ class UserAdminController extends ApiController
     public function index()
     {
 
-        $result = $this->allService->admin(User::ADMIN_USER)->all();
+        $result = $this->allService->admin()->all();
 
         if (count($result) <= 0) {
             return $this->errorResponse('users_not_found', 422);
@@ -102,7 +102,7 @@ class UserAdminController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->createAdminService->admin(User::ADMIN_USER)->create($request)) {
+        if (!$result = $this->createAdminService->admin()->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }

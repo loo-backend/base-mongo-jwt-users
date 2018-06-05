@@ -76,4 +76,10 @@ class PrivilegeTest extends TestCase
 
     }
 
+    public function testRestoreDatabase()
+    {
+        $this->restoreDatabase();
+        $this->assertTrue(true);
+    }
+
 }

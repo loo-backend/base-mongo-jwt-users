@@ -16,7 +16,7 @@ class RoleTenantController extends ApiController
      */
     public function index(RoleAllService $service)
     {
-        return $this->showAll($service->tenant(User::TENANT_USER)->all());
+        return $this->showAll($service->tenant()->all());
     }
 
     /**

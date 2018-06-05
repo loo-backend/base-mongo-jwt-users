@@ -2,36 +2,15 @@
 
 namespace App\Services\User;
 
+use App\Composite\UserRoleComposite;
 use App\User;
 
 /**
  * Class UserAllService
  * @package App\Services\User
  */
-class UserAllService
+class UserAllService extends UserRoleComposite
 {
-
-    private $admin;
-    private $tenant;
-    private $regular;
-
-    public function admin($admin)
-    {
-        $this->admin = $admin;
-        return $this;
-    }
-
-    public function tenant($tenant)
-    {
-        $this->tenant = $tenant;
-        return $this;
-    }
-
-    public function regular($regular)
-    {
-        $this->regular = $regular;
-        return $this;
-    }
 
     public function all()
     {

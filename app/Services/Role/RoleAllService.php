@@ -2,6 +2,7 @@
 
 namespace App\Services\Role;
 
+use App\Composite\UserRoleComposite;
 use App\Role;
 use App\User;
 
@@ -9,43 +10,9 @@ use App\User;
  * Class RoleAdminAllService
  * @package App\Services\Roles
  */
-class RoleAllService
+class RoleAllService extends UserRoleComposite
 {
 
-    private $admin;
-    private $tenant;
-    private $regular;
-
-
-    /**
-     * @param mixed $admin
-     * @return RoleAllService
-     */
-    public function admin($admin)
-    {
-        $this->admin = $admin;
-        return $this;
-    }
-
-    /**
-     * @param mixed $tenant
-     * @return RoleAllService
-     */
-    public function tenant($tenant)
-    {
-        $this->tenant = $tenant;
-        return $this;
-    }
-
-    /**
-     * @param mixed $regular
-     * @return RoleAllService
-     */
-    public function regular($regular)
-    {
-        $this->regular = $regular;
-        return $this;
-    }
 
     /**
      * @return Role[]|bool|\Illuminate\Database\Eloquent\Collection

@@ -9,18 +9,14 @@ use Illuminate\Support\Facades\Schema;
 trait RestoreDatabaseTrait
 {
 
-    protected $connection = 'main';
-
-    public function __construct()
+    public function restoreDatabase()
     {
 
-        Schema::connection($this->connection)->drop('privileges');
-        Schema::connection($this->connection)->drop('roles');
-        Schema::connection($this->connection)->drop('users');
-        Schema::connection($this->connection)->drop('tenants');
-        Schema::connection($this->connection)->drop('role_users');
-
-        //
+        Schema::connection(env('DB_CONNECTION'))->drop('privileges');
+        Schema::connection(env('DB_CONNECTION'))->drop('roles');
+        Schema::connection(env('DB_CONNECTION'))->drop('users');
+        Schema::connection(env('DB_CONNECTION'))->drop('tenants');
+        Schema::connection(env('DB_CONNECTION'))->drop('role_users');
 
         Artisan::call('migrate', [
             '--path' => "app/database/migrations",

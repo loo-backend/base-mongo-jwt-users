@@ -210,4 +210,10 @@ class UserAdminTest extends TestCase
 
     }
 
+    public function testRestoreDatabase()
+    {
+        $this->restoreDatabase();
+        $this->assertTrue(true);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\Composite\UserRoleComposite;
 use App\Role;
 use App\Services\RoleUser\CreateRoleUserService;
 use App\User;
@@ -14,12 +15,8 @@ use Webpatser\Uuid\Uuid;
  * Class UserCreateService
  * @package App\Services\User
  */
-class UserCreateService
+class UserCreateService extends UserRoleComposite
 {
-
-    private $admin;
-    private $tenant;
-    private $regular;
 
     private $role;
     /**
@@ -38,24 +35,6 @@ class UserCreateService
     {
         $this->role = $role::ADMIN_STAFF_INITIAL;
         $this->createRoleUserService = $createRoleUserService;
-    }
-
-    public function admin($admin)
-    {
-        $this->admin = $admin;
-        return $this;
-    }
-
-    public function tenant($tenant)
-    {
-        $this->tenant = $tenant;
-        return $this;
-    }
-
-    public function regular($regular)
-    {
-        $this->regular = $regular;
-        return $this;
     }
 
     public function validator(array $data)

@@ -3,6 +3,7 @@
 namespace App\Services\RoleUser;
 
 
+use App\Composite\UserRoleComposite;
 use App\RoleUser;
 use App\User;
 
@@ -10,7 +11,7 @@ use App\User;
  * Class CreateRoleUserService
  * @package App\Services\RoleUser
  */
-class CreateRoleUserService
+class CreateRoleUserService extends UserRoleComposite
 {
 
     /**

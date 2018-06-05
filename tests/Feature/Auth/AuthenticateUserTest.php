@@ -38,7 +38,6 @@ class AuthenticateUserTest extends TestCase
 
     }
 
-
     public function testUserCreate()
     {
 
@@ -97,5 +96,10 @@ class AuthenticateUserTest extends TestCase
 
     }
 
+    public function testRestoreDatabase()
+    {
+        $this->restoreDatabase();
+        $this->assertTrue(true);
+    }
 
 }
