@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreatePasswordResetsTable extends Migration
 {
 
-    protected $connection = 'mongodb';
+    protected $connection = 'main';
 
 
     /**

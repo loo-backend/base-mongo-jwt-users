@@ -143,31 +143,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "storage/logs/laravel.log",
-			"settings":
-			{
-				"buffer_size": 90354,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tests/TestCase.php",
-			"settings":
-			{
-				"buffer_size": 765,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tests/Feature/ZDeleteTest.php",
-			"settings":
-			{
-				"buffer_size": 377,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -227,26 +202,24 @@
 	[
 		"/home/williams/Code/Loojas/backend/users/web",
 		"/home/williams/Code/Loojas/backend/users/web/app",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/Privilege",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/Role",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/User",
-		"/home/williams/Code/Loojas/backend/users/web/storage",
-		"/home/williams/Code/Loojas/backend/users/web/storage/logs",
+		"/home/williams/Code/Loojas/backend/users/web/database",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds",
 		"/home/williams/Code/Loojas/backend/users/web/tests",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Privilege",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User",
-		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop",
-		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app",
-		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app/Observers",
-		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app/Providers"
+		"/home/williams/Code/Loojas/frontend/app-tenant",
+		"/home/williams/Code/Loojas/frontend/app-tenant/routes"
 	],
 	"file_history":
 	[
-		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app/Providers/AppServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserTenantTest.php",
+		"/home/williams/Code/Loojas/frontend/app-tenant/routes/web.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/ZDeleteTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
+		"/home/williams/Code/Loojas/backend/users/web/tests/TestCase.php",
+		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app/Providers/AppServiceProvider.php",
 		"/home/williams/Code/forum-com-laravel/app/Providers/AppServiceProvider.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/User.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RoleAdminController.php",
@@ -255,7 +228,6 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserCreateService.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserAdminSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleAdminTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserAdminAuthApiTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserAdminTest.php",
@@ -269,7 +241,6 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Privilege.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleTenantSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserCreateTenantService.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserTenantTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Privilege/PrivilegeFindService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Privilege/PrivilegeAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserTenantAllService.php",
@@ -287,7 +258,6 @@
 		"/home/williams/Code/Loojas/backend/users/web/routes/api-privileges.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Providers/RouteServiceProvider.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Privilege/PrivilegeController.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/TestCase.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/TenantSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Traits/ApiResponse.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/UsersTenantTest.php",
@@ -371,12 +341,11 @@
 		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/seotools.php",
 		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/services.php",
 		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/image.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/cache.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Validators/RegisterUserValitador.php"
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/cache.php"
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -635,116 +604,16 @@
 		},
 		{
 			"path": "/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop"
+		},
+		{
+			"path": "/home/williams/Code/Loojas/frontend/app-tenant"
 		}
 	],
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "storage/logs/laravel.log",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 90354,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								249,
-								249
-							]
-						],
-						"settings":
-						{
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "tests/TestCase.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 765,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"SL.175.region_keys":
-							[
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "tests/Feature/ZDeleteTest.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 377,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								343,
-								343
-							]
-						],
-						"settings":
-						{
-							"SL.176.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -795,7 +664,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 78.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":

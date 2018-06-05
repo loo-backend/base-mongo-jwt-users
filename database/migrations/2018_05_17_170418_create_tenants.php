@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTenants extends Migration
 {
 
-    protected $connection = 'mongodb';
+    protected $connection = 'main';
 
     /**
      * Run the migrations.

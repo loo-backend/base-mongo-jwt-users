@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
+use App\Services\Auth\UserAuthenticateService;
 use Illuminate\Http\Request;
-use App\Services\User\UserWithRoleUserService;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
 
@@ -21,8 +21,8 @@ trait JWTTokenBearerTrait {
     public function tokenBearerGenerate(Request $request)
     {
 
-        $service = new UserWithRoleUserService();
-        $user = $service->userWithRoleUser(['email' => strtolower( $request->input('email') )]);
+        $service = new UserAuthenticateService();
+        $user = $service->authenticate(['email' => strtolower( $request->input('email') )]);
 
         $factory = JWTFactory::customClaims([
             'sub' => $user

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\Auth;
 
+use App\Events\Log\User\UserAuthenticateEvent;
 use App\User;
 
 /**
- * Class UserWithRoleUserService
+ * Class UserAuthenticateService
  * @package App\Services\User
  */
-class UserWithRoleUserService
+class UserAuthenticateService
 {
 
     /**
      * @param array $data
      * @return User|bool|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
      */
-    public function userWithRoleUser(array $data)
+    public function authenticate(array $data)
     {
 
         $user = User::with('rolesUser');
@@ -23,6 +24,8 @@ class UserWithRoleUserService
         if (!$user = $user->where($data)->first() ) {
             return false;
         }
+
+        event(new UserAuthenticateEvent($user));
 
         return $user;
 

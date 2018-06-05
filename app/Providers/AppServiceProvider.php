@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Observers\RoleUserObserver;
+use App\Observers\Log\LogUserObserver;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //User::observe(RoleUserObserver::class);
+        User::observe(LogUserObserver::class);
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
 
-    protected $connection = 'mongodb';
+    protected $connection = 'main';
 
     /**
      * Run the migrations.
