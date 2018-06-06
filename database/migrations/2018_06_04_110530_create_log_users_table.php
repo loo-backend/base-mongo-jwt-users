@@ -15,7 +15,6 @@ class CreateLogUsersTable extends Migration
     public function up()
     {
 
-
         Schema::connection(env('DB_CONNECTION_LOG'))
             ->table('log_users', function (Blueprint $table)
             {

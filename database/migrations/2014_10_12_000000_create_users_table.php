@@ -33,6 +33,22 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->index(
+                [
+                    "name" => "text",
+                    "email" => "text"
+                ],
+                'users_full_text',
+                null,
+                [
+                    "weights" => [
+                        "name" => 32,
+                        "email" => 16,
+                    ],
+                    'name' => 'users_full_text'
+                ]
+            );
+
         });
 
     }

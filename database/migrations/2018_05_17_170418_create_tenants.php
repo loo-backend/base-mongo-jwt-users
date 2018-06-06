@@ -26,6 +26,23 @@ class CreateTenants extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+
+            $table->index(
+                [
+                    "companyName" => "text",
+                    "shortCompanyName" => "text"
+                ],
+                'tenants_full_text',
+                null,
+                [
+                    "weights" => [
+                        "companyName" => 32,
+                        "shortCompanyName" => 16,
+                    ],
+                    'name' => 'tenants_full_text'
+                ]
+            );
+
         });
 
     }

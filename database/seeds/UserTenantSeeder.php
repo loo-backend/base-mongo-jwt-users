@@ -1,34 +1,64 @@
 <?php
 
 use App\Role;
-use Illuminate\Database\Seeder;
+use App\Tenant;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTenantSeeder extends Seeder
 {
-
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
-        $this->generateUser(Role::TENANT_ADMIN);
-        $this->generateUser(Role::TENANT_EDITOR);
-        $this->generateUser(Role::TENANT_EXPEDITION);
-        $this->generateUser(Role::TENANT_PARTNER);
+
+        $tenants = Tenant::all();
+        $tenants->each(function ($tenant) {
+
+
+            $this->generateUser($tenant, Role::TENANT_ADMIN);
+
+            if(rand(0,1)===1) {
+                $this->generateUser($tenant, Role::TENANT_EDITOR);
+            }
+
+            if ($tenant->limitUser > 2) {
+
+                $this->generateUser($tenant, Role::TENANT_ADMIN);
+                $this->generateUser($tenant, Role::TENANT_PARTNER);
+
+                if(rand(0,1)===1) {
+                    $this->generateUser($tenant, Role::TENANT_EXPEDITION);
+                }
+            }
+
+            if ($tenant->limitUser > 4) {
+                $this->generateUser($tenant, Role::TENANT_ADMIN);
+            }
+
+        });
+
     }
 
-    private function generateUser($typeRole)
+
+    private function generateUser($tenant, $typeTenant)
     {
 
-        $users = factory(User::class,1)->create();
-        $users->each(function ($user) use($typeRole) {
+        $users = factory(User::class,rand(1,5))->create();
 
-            $roleFirst = Role::where('name', $typeRole)->first();
+        $users->each(function ($user) use ($tenant, $typeTenant) {
+
+            $roleFirst = Role::where('name', $typeTenant)->first();
 
             $role = $user->roles()->create([
                 'name' => $roleFirst->name,
                 'roleUuid' => $roleFirst->uuid,
             ]);
 
-            $rolesAll = Role::where('name', $typeRole)->get();
+            $rolesAll = Role::where('name', $typeTenant)->get();
 
             foreach ($rolesAll as $item) {
 
@@ -44,8 +74,13 @@ class UserTenantSeeder extends Seeder
 
             }
 
+            $user->tenants()->create([
+                'tenantId' => $tenant->id,
+                'tenantUuid' => $tenant->uuid,
+                'roleUuid' => $roleFirst->uuid
+            ]);
+
         });
 
     }
-
 }

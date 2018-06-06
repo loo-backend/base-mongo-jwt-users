@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\User;
-
 
 use App\Composite\UserRoleComposite;
 use App\Role;
@@ -34,7 +32,6 @@ class UserWithRoleUserService extends UserRoleComposite
         });
 
         return $user->first();
-
 
     }
 

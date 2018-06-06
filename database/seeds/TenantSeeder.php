@@ -11,18 +11,24 @@ class TenantSeeder extends Seeder
      */
     public function run()
     {
-//        $tenants = factory(\App\Tenant::class)->create();
-//
-//
-//        $tenants->each(function ($tenant) {
-//            $user = factory(\App\User::class)->create();
-//
-//            $tenant->users($user->id);
-//        });
 
+        $tenants = factory(\App\Tenant::class,5)->create();
+        $tenants->each(function ($tenant) {
 
-        $user = \App\User::first();
-        // $user->roless()->attach( \App\Role::first() );
+            $tenant->databases()->create([
+                'driver' => 'mongodb',
+                'host'     => env('DB_HOST_TENANT', 'localhost'),
+                'port'     => env('DB_PORT_TENANT', 27017),
+                'database' => env('DB_DATABASE_TENANT'),
+                'username' => env('DB_USERNAME_TENANT'),
+                'password' => env('DB_PASSWORD_TENANT'),
+                'options'  => [
+                    'database' => 'admin' // sets the authentication database required by mongo 3
+                ]
+            ]);
+
+        });
 
     }
+
 }
