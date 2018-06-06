@@ -25,9 +25,9 @@ class Role extends Model
     public $table = 'roles';
 
     protected $fillable = [
+        'uuid',
         'name',
         'description',
-        'role_uuid',
         'default',
         'privileges'
     ];

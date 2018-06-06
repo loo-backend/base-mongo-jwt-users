@@ -15,10 +15,10 @@ class RoleUserObserver
     {
 
         $role_user = RoleUser::create([
-            'user_uuid' => $user->user_uuid,
+            'userUuid' => $user->uuid,
         ]);
 
-        if($user->is_admin === User::ADMIN_USER) {
+        if($user->isAdmin === User::ADMIN_USER) {
 
             $role = Role::where('name', Role::ADMIN_STAFF_INITIAL)->first();
 

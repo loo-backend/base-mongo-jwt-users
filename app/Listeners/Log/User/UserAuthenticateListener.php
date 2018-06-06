@@ -19,8 +19,8 @@ class UserAuthenticateListener
     public function handle(UserAuthenticateEvent $event)
     {
         LogAuthenticate::create([
-            'user_id' => $event->user->id,
-            'user_uuid' => $event->user->user_uuid,
+            'userId' => $event->user->id,
+            'userUuid' => $event->user->uuid,
             'headers' => $this->requestHeaders(),
         ]);
     }

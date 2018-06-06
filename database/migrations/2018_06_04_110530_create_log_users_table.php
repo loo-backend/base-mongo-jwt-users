@@ -21,8 +21,8 @@ class CreateLogUsersTable extends Migration
             {
 
                 $table->string('action');
-                $table->strin('user_id');
-                $table->uuid('user_uuid');
+                $table->strin('userId');
+                $table->uuid('userUuid');
                 $table->string('description');
                 $table->timestamps();
                 $table->softDeletes();

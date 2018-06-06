@@ -26,6 +26,8 @@ class User extends Authenticatable implements JWTSubject
     const REGULAR_USER = false;
 
     protected $admin;
+    protected $verified;
+
 
     /**
      * @var string
@@ -38,17 +40,18 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'user_uuid',
+        'uuid',
         'name',
         'email',
         'password',
         'remember_token',
-        'is_admin',
-        'is_tenant',
+        'isAdmin',
         'active',
         'verified',
-        'verification_token',
-        'roles'
+        'verificationToken',
+        'roles',
+        'permissions',
+        'tenants',
     ];
 
     /**
@@ -59,7 +62,7 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
-        'verification_token'
+        'verificationToken'
     ];
 
     /**
@@ -67,16 +70,16 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $dates = ['deleted_at'];
 
-    // public function setNameAttribute($name)
-    // {
-    //     $this->attributes['name'] = strtolower($name);
-    // }
-
-    // public function getNameAttribute($name)
-    // {
-    //     return ucwords($name);
-    // }
-
+//    public function setNameAttribute($name)
+//    {
+//        $this->attributes['name'] = strtolower($name);
+//    }
+//
+//    public function getNameAttribute($name)
+//    {
+//        return ucwords($name);
+//    }
+//
 //    public function setEmailAttribute($email)
 //    {
 //        $this->attributes['email'] = strtolower($email);
@@ -92,30 +95,34 @@ class User extends Authenticatable implements JWTSubject
         return $this->admin === User::ADMIN_USER;
     }
 
+    public function roles()
+    {
+        return $this->embedsMany(Role::class);
+    }
+
+    public function privileges()
+    {
+        return $this->embedsMany(Privilege::class);
+    }
+
+    public function tenants()
+    {
+        return $this->embedsMany(Tenant::class);
+    }
+
     public static function generateVerificationCode()
     {
         return str_random(40);
     }
 
-    /**
-     * @return mixed
-     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    /**
-     * @return array
-     */
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function rolesUser()
-    {
-        return $this->hasMany(RoleUser::class, 'user_uuid', 'user_uuid');
     }
 
 }

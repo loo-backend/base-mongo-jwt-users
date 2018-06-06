@@ -27,7 +27,7 @@ class RoleAdminTest extends TestCase
     public function testRolesAdminAll()
     {
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -43,7 +43,7 @@ class RoleAdminTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'role_uuid',
+                'uuid',
                 'default',
                 'privileges'
             ]
@@ -62,7 +62,7 @@ class RoleAdminTest extends TestCase
     public function testShowRolesAdmin()
     {
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [

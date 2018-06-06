@@ -1,44 +1,51 @@
 <?php
 
 use App\Role;
-use App\Services\RoleUser\CreateRoleUserService;
 use Illuminate\Database\Seeder;
 use App\User;
 
 class UserTenantSeeder extends Seeder
 {
 
-    /**
-     * @var CreateRoleUserService
-     */
-    private $service;
-
-    /**
-     * UserRegularSeeder constructor.
-     * @param CreateRoleUserService $service
-     */
-    public function __construct(CreateRoleUserService $service)
-    {
-        $this->service = $service;
-    }
-
     public function run()
     {
-
-        $users = factory(User::class,5)->create();
-        $users->each(function ($user) {
-            $this->createRoleUserTenant($user);
-        });
-
+        $this->generateUser(Role::TENANT_ADMIN);
+        $this->generateUser(Role::TENANT_EDITOR);
+        $this->generateUser(Role::TENANT_EXPEDITION);
+        $this->generateUser(Role::TENANT_PARTNER);
     }
 
-    /**
-     * @param User $user
-     */
-    private function createRoleUserTenant(User $user)
+    private function generateUser($typeRole)
     {
-        $role = Role::where('name', Role::TENANT_ADMIN)->first();
-        $this->service->create($user, $role);
+
+        $users = factory(User::class,1)->create();
+        $users->each(function ($user) use($typeRole) {
+
+            $roleFirst = Role::where('name', $typeRole)->first();
+
+            $role = $user->roles()->create([
+                'name' => $roleFirst->name,
+                'roleUuid' => $roleFirst->uuid,
+            ]);
+
+            $rolesAll = Role::where('name', $typeRole)->get();
+
+            foreach ($rolesAll as $item) {
+
+                foreach ($item->privileges as $privilege) {
+
+                    $user->privileges()->create([
+                        'roleId' => $role->id,
+                        'roleUuid' => $roleFirst->uuid,
+                        'name' => $privilege->name
+                    ]);
+
+                }
+
+            }
+
+        });
+
     }
 
 }

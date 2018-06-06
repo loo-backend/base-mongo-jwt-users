@@ -32,7 +32,7 @@ class UserAdminTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'is_admin' => User::ADMIN_USER,
+            'isAdmin' => User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -45,7 +45,7 @@ class UserAdminTest extends TestCase
         $data = $this->data;
         $data['roles'] = Role::ADMIN;
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -59,7 +59,7 @@ class UserAdminTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
-            'is_admin' => User::ADMIN_USER
+            'isAdmin' => User::ADMIN_USER
         ]);
 
         $response->assertJsonStructure([
@@ -73,7 +73,7 @@ class UserAdminTest extends TestCase
     public function testShowUser()
     {
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -87,10 +87,10 @@ class UserAdminTest extends TestCase
         $response->assertJson([
             'data' => [
                 '_id' => $user->id,
-                'user_uuid' => $user->user_uuid,
+                'userUuid' => $user->uuid,
                 'name' => $user->name,
                 'email' => $user->email,
-                'is_admin' => User::ADMIN_USER
+                'isAdmin' => User::ADMIN_USER
             ]
         ]);
 
@@ -99,7 +99,7 @@ class UserAdminTest extends TestCase
     public function testAllUsers()
     {
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -115,11 +115,11 @@ class UserAdminTest extends TestCase
 
                 '*' => [
                     '_id',
-                    'user_uuid',
+                    'userUuid',
                     'name',
                     'email',
                     'active',
-                    'is_admin'
+                    'isAdmin'
                 ]
 
             ]
@@ -128,7 +128,7 @@ class UserAdminTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                ['is_admin' => User::ADMIN_USER]
+                ['isAdmin' => User::ADMIN_USER]
             ]
         ]);
 
@@ -137,7 +137,7 @@ class UserAdminTest extends TestCase
     public function testUpdateUserNoPassword()
     {
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
 
         $data = [
             'name' => str_random(12),
@@ -172,7 +172,7 @@ class UserAdminTest extends TestCase
             'password_confirmation' => 123456
         ];
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -195,7 +195,7 @@ class UserAdminTest extends TestCase
     public function testDeleteUser()
     {
 
-        $user = User::where('is_admin',  User::ADMIN_USER)->first();
+        $user = User::where('isAdmin',  User::ADMIN_USER)->first();
         $token = JWTAuth::fromUser($user);
 
         $response = $this->withHeaders([

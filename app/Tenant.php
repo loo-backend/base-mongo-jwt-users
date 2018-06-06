@@ -12,19 +12,13 @@ class Tenant extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tenant_uuid',
-        'company_name'
+        'uuid',
+        'companyName'
     ];
 
     /**
      * @var array
      */
     protected $dates = ['deleted_at'];
-
-
-    public function roles()
-    {
-        return $this->belongsToMany('Role', null, 'user_ids', 'role_ids');
-    }
 
 }

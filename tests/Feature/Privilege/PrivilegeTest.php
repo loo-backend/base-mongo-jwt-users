@@ -28,7 +28,8 @@ class PrivilegeTest extends TestCase
     public function testRolePrivilegeAll()
     {
 
-        $user = User::where('is_tenant', User::TENANT_USER)->first();
+
+        $user = User::first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -43,7 +44,7 @@ class PrivilegeTest extends TestCase
             '*' => [
                 'name',
                 'description',
-                'privilege_uuid',
+                'uuid',
             ]
 
         ]);
@@ -53,7 +54,7 @@ class PrivilegeTest extends TestCase
     public function testShowRolePrivilege()
     {
 
-        $user = User::where('is_tenant', User::TENANT_USER)->first();
+        $user = User::first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -70,7 +71,7 @@ class PrivilegeTest extends TestCase
             'data' => [
                 'name' => $privilege->name,
                 'description' => $privilege->description,
-                'privilege_uuid' => $privilege->privilege_uuid,
+                'uuid' => $privilege->uuid,
             ]
         ]);
 

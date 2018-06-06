@@ -19,9 +19,9 @@ class CreateTenants extends Migration
         ->table('tenants', function (Blueprint $table)
         {
 
-            $table->uuid('tenant_uuid');
-            $table->string('company_name');
-            $table->string('short_company_name');
+            $table->uuid('uuid');
+            $table->string('companyName');
+            $table->string('shortCompanyName');
             $table->multiLineString('databases');
             $table->timestamps();
             $table->softDeletes();

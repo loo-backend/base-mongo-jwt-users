@@ -16,9 +16,9 @@ class UserAllService extends UserRoleComposite
     {
 
 
-        if ($this->admin === User::ADMIN_USER) {
+        if ($this->admin) {
 
-            if (!$user = User::where('is_admin', User::ADMIN_USER)->paginate()) {
+            if (!$user = User::where('isAdmin', User::ADMIN_USER)->paginate()) {
                 return false;
             }
 
@@ -28,7 +28,7 @@ class UserAllService extends UserRoleComposite
 
         if ($this->tenant === User::TENANT_USER) {
 
-            if (!$user = User::where('is_tenant', User::TENANT_USER)->paginate()) {
+            if (!$user = User::paginate()) {
                 return false;
             }
 
@@ -38,7 +38,7 @@ class UserAllService extends UserRoleComposite
 
         if ($this->regular === User::REGULAR_USER) {
 
-            if (!$user = User::whereNull('is_admin')->whereNull('is_tenant')->paginate()) {
+            if (!$user = User::paginate()) {
                 return false;
             }
 

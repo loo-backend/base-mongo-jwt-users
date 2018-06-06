@@ -34,9 +34,9 @@ class RoleAdminSeeder extends Seeder
     private function createRoles($data)
     {
         $role = Role::create([
+            'uuid' => Uuid::generate(4)->string,
             'name' => $data['name'],
             'description' => $data['description'],
-            'role_uuid' => Uuid::generate(4)->string,
             'default' => true
         ]);
 
@@ -45,9 +45,9 @@ class RoleAdminSeeder extends Seeder
             $all = Privilege::where('name', Privilege::ALL)->first();
 
             $role->privileges()->create([
+                'uuid' => $all->uuid,
                 'name' => $all->name,
                 'description' => $all->description,
-                'privilege_uuid' => $all->privilege_uuid,
             ]);
 
         } else {
@@ -59,29 +59,29 @@ class RoleAdminSeeder extends Seeder
             $delete  = Privilege::where('name', Privilege::DELETE)->first();
 
             $role->privileges()->create([
+                'uuid' => $browser->uuid,
                 'name' => $browser->name,
                 'description' => $browser->description,
-                'privilege_uuid' => $browser->privilege_uuid,
             ]);
 
             $role->privileges()->create([
+                'uuid' => $read->uuid,
                 'name' => $read->name,
                 'description' => $read->description,
-                'privilege_uuid' => $read->privilege_uuid,
             ]);
 
             if ($data['name'] !== Role::ADMIN_STAFF_INITIAL) {
 
                 $role->privileges()->create([
+                    'uuid' => $add->uuid,
                     'name' => $add->name,
                     'description' => $add->description,
-                    'privilege_uuid' => $add->privilege_uuid,
                 ]);
 
                 $role->privileges()->create([
+                    'uuid' => $edit->uuid,
                     'name' => $edit->name,
                     'description' => $edit->description,
-                    'privilege_uuid' => $edit->privilege_uuid,
                 ]);
 
             }
@@ -90,9 +90,9 @@ class RoleAdminSeeder extends Seeder
                 && $data['name'] !== Role::ADMIN_STAFF_COMMERCIAL) {
 
                 $role->privileges()->create([
+                    'uuid' => $delete->uuid,
                     'name' => $delete->name,
                     'description' => $delete->description,
-                    'privilege_uuid' => $delete->privilege_uuid,
                 ]);
 
             }
@@ -103,7 +103,6 @@ class RoleAdminSeeder extends Seeder
     public function dataRoles()
     {
         return [
-
             [
                 'name' => Role::ADMIN,
                 'description' => 'Administrador Geral',

@@ -20,9 +20,9 @@ class Privilege extends Model
     public $table = 'privileges';
 
     protected $fillable = [
+        'uuid',
         'name',
         'description',
-        'privilege_uuid'
     ];
 
     protected $dates = ['deleted_at'];

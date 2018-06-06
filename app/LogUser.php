@@ -14,8 +14,8 @@ class LogUser extends Model
 
     protected $fillable = [
         'action',
-        'user_id',
-        'user_uuid',
+        'userId',
+        'userUuid',
         'description',
         'headers',
     ];

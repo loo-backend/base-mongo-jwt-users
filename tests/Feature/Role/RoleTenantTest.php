@@ -28,7 +28,7 @@ class RoleTenantTest extends TestCase
     public function testRolesTenantAll()
     {
 
-        $user = User::where('is_tenant', User::TENANT_USER)->first();
+        $user = User::first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -44,7 +44,7 @@ class RoleTenantTest extends TestCase
                 '_id',
                 'name',
                 'description',
-                'role_uuid',
+                'uuid',
                 'default',
                 'privileges'
             ]
@@ -64,7 +64,7 @@ class RoleTenantTest extends TestCase
     public function testShowRolesTenant()
     {
 
-        $user = User::where('is_tenant', User::TENANT_USER)->first();
+        $user = User::first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [

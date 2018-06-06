@@ -21,7 +21,7 @@ class CreatePrivileges extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->uuid('privilege_uuid');
+            $table->uuid('uuid');
             $table->timestamps();
             $table->softDeletes();
 

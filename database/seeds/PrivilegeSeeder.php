@@ -18,9 +18,9 @@ class PrivilegeSeeder extends Seeder
         foreach ($this->dataPrivileges() as $data) {
 
             Privilege::create([
+                'uuid' => Uuid::generate(4)->string,
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'privilege_uuid' => Uuid::generate(4)->string
             ]);
 
         }

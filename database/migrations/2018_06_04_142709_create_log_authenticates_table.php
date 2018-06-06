@@ -20,8 +20,8 @@ class CreateLogAuthenticatesTable extends Migration
             {
 
                 $table->string('action');
-                $table->strin('user_id');
-                $table->uuid('user_uuid');
+                $table->string('userId');
+                $table->uuid('userUuid');
                 $table->string('description');
                 $table->multiLineString('headers');
                 $table->timestamps();

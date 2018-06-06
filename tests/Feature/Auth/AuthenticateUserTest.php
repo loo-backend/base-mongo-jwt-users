@@ -31,7 +31,7 @@ class AuthenticateUserTest extends TestCase
             'name' => $faker->name,
             'email' => $faker->email,
             'active' => true,
-            'is_admin' => User::ADMIN_USER,
+            'isAdmin' => User::ADMIN_USER,
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
@@ -41,7 +41,7 @@ class AuthenticateUserTest extends TestCase
     public function testUserCreate()
     {
 
-        $user = User::where('is_admin', true)->first();
+        $user = User::where('isAdmin', true)->first();
         $token = JWTAuth::fromUser($user);
 
         $headers = [
@@ -55,7 +55,7 @@ class AuthenticateUserTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => $this->data['name'],
             'email' => $this->data['email'],
-            'is_admin' => User::ADMIN_USER
+            'isAdmin' => User::ADMIN_USER
         ]);
 
     }
@@ -63,7 +63,7 @@ class AuthenticateUserTest extends TestCase
     public function testUserAuthenticateValid() {
 
 
-        $user = User::where('is_admin', User::ADMIN_USER)->first();
+        $user = User::where('isAdmin', User::ADMIN_USER)->first();
 
         $response = $this->post(route('auth.login'),
                 ['email'=>  $user->email, 'password' => $this->data['password']])
@@ -86,7 +86,7 @@ class AuthenticateUserTest extends TestCase
 
     public function testUserAuthenticateInvalid() {
 
-        $user = User::where('is_admin', true)->first();
+        $user = User::where('isAdmin', true)->first();
         $response = $this->post(route('auth.login'),
                 ['email'=>$user->email,'password' => str_random(6)])
             ->assertStatus(401);

@@ -1,45 +1,50 @@
 <?php
 
+use App\Privilege;
 use App\Role;
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Services\RoleUser\CreateRoleUserService;
-
 
 class UserRegularSeeder extends Seeder
 {
 
-    /**
-     * @var CreateRoleUserService
-     */
-    private $service;
-
-    /**
-     * UserRegularSeeder constructor.
-     * @param CreateRoleUserService $service
-     */
-    public function __construct(CreateRoleUserService $service)
-    {
-        $this->service = $service;
-    }
 
     public function run()
+    {
+        $this->userRegular();
+    }
+
+    private function userRegular()
     {
 
         $users = factory(User::class,5)->create();
         $users->each(function ($user) {
-            $this->createRoleUserRegular($user);
+
+            $roleFirst = Role::where('name', Role::REGULAR_USER)->first();
+
+            $role = $user->roles()->create([
+                'name' => $roleFirst->name,
+                'roleUuid' => $roleFirst->uuid,
+            ]);
+
+            $rolesAll = Role::where('name', Role::REGULAR_USER)->get();
+
+            foreach ($rolesAll as $item) {
+
+                foreach ($item->privileges as $privilege) {
+
+                    $user->privileges()->create([
+                        'roleId' => $role->id,
+                        'roleUuid' => $roleFirst->uuid,
+                        'name' => $privilege->name
+                    ]);
+
+                }
+
+            }
+
         });
 
-    }
-
-    /**
-     * @param User $user
-     */
-    private function createRoleUserRegular(User $user)
-    {
-        $role = Role::where('name', Role::REGULAR_USER)->first();
-        $this->service->create($user, $role);
     }
 
 }

@@ -143,6 +143,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "config/jwt.php",
+			"settings":
+			{
+				"buffer_size": 9906,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -202,43 +210,86 @@
 	[
 		"/home/williams/Code/Loojas/backend/users/web",
 		"/home/williams/Code/Loojas/backend/users/web/app",
-		"/home/williams/Code/Loojas/backend/users/web/database",
-		"/home/williams/Code/Loojas/backend/users/web/database/seeds",
+		"/home/williams/Code/Loojas/backend/users/web/app/Composite",
+		"/home/williams/Code/Loojas/backend/users/web/app/Listeners",
+		"/home/williams/Code/Loojas/backend/users/web/app/Listeners/Log",
+		"/home/williams/Code/Loojas/backend/users/web/app/Listeners/Log/User",
+		"/home/williams/Code/Loojas/backend/users/web/app/Observers",
+		"/home/williams/Code/Loojas/backend/users/web/app/Observers/Log",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Auth",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Privilege",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Role",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/RoleUser",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User",
+		"/home/williams/Code/Loojas/backend/users/web/config",
 		"/home/williams/Code/Loojas/backend/users/web/tests",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Auth",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Privilege",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User",
-		"/home/williams/Code/Loojas/frontend/app-tenant",
-		"/home/williams/Code/Loojas/frontend/app-tenant/routes"
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User"
 	],
 	"file_history":
 	[
+		"/home/williams/Code/Loojas/backend/users/web/tests/RestoreDatabaseTrait.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Composite/UserRoleComposite.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Composite/AbstractUserRoleComposite.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserWithRoleUserService.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Infrastructures/Domains/Repositories/Company/EloquentCompanyRepository.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/Role/RoleAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleTenantTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleRegularTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleAdminTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Privilege/PrivilegeTest.php",
+		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Auth/AuthenticateUserTest.php",
+		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/database/factories/ModelFactory.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_17_170418_create_tenants.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_100000_create_password_resets_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_16_134543_create_roles.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_16_134630_create_privileges.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_28_140207_create_tenant_databases.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_06_04_142709_create_log_authenticates_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_17_170512_create_tenant_user.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_06_04_110530_create_log_users_table.php",
+		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleAdminSeeder.php",
+		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
+		"/home/williams/Code/Loojas/backend/users/web/app/LogAuthenticate.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Events/Log/User/EventUserAuthenticate.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Listeners/Log/User/UserAuthenticateListener.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Events/Log/User/UserAuthenticateEvent.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers/EventServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/config/database.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Privilege.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Observers/RoleUserObserver.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Observers/Log/LogUserObserver.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/Providers/AppServiceProvider.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/LogUser.php",
+		"/home/williams/Code/Loojas/backend/users/web/app/User.php",
+		"/home/williams/Code/Loojas/backend/users/web/.env",
+		"/home/williams/Code/Loojas/backend/users/web/.env.testing",
+		"/home/williams/Code/Loojas/backend/users/web/.env.example",
+		"/home/williams/Code/Loojas/backend/users/web/app/LogAuthenticate.phps",
 		"/home/williams/Code/Loojas/frontend/app-tenant/routes/web.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/ZDeleteTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/storage/logs/laravel.log",
 		"/home/williams/Code/Loojas/backend/users/web/tests/TestCase.php",
 		"/media/williams/SAMSUNG1/Curso Williams/Cursos Tecnologia/Laravel/Fórum Real Time com Laravel/forum-realtime-com-laravel-develop/app/Providers/AppServiceProvider.php",
 		"/home/williams/Code/forum-com-laravel/app/Providers/AppServiceProvider.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/User.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RoleAdminController.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/User/UserAdminController.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/Role/RoleAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/UserCreateService.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserAdminSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleAdminTest.php",
 		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserAdminAuthApiTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/User/UserAdminTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleAdminSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserRegularSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleRegularSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Role.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/DatabaseSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/UserTenantSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Role/RoleTenantTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Privilege.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RoleTenantSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserCreateTenantService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/Privilege/PrivilegeFindService.php",
@@ -246,11 +297,8 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Tenant/UserTenantAllService.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RoleTenantController.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserAdminAllService.php",
-		"/home/williams/Code/Loojas/backend/users/web/tests/Feature/Privilege/PrivilegeTest.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_000000_create_users_table.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/factories/UserFactory.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/PrivilegeSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_16_134543_create_roles.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/User/Admin/UserCreateAdminService.php",
 		"/home/williams/Code/Loojas/backend/users/web/routes/api-roles.php",
 		"/home/williams/Code/Loojas/backend/users/web/app/Http/Controllers/Role/RolePrivilegeController.php",
@@ -276,14 +324,6 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Roles.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RolesSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/PrivilegesSeeder.php",
-		"/home/williams/Code/Loojas/backend/users/web/config/database.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2014_10_12_100000_create_password_resets_table.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_16_134630_create_privileges.php",
-		"/home/williams/Code/Loojas/backend/users/web/.env",
-		"/home/williams/Code/Loojas/backend/users/web/.env.testing",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_17_170418_create_tenants.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_17_170512_create_tenant_user.php",
-		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_28_140207_create_tenant_databases.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/PrivilegesRolesTableSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/seeds/RolesTableSeeder.php",
 		"/home/williams/Code/Loojas/backend/users/web/database/migrations/2018_05_17_170418_create_tenants_table.php",
@@ -320,38 +360,19 @@
 		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserCreateTenantService.php",
 		"/home/williams/Code/Testes/tenant/composer.json",
 		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/phones.blade.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserFindService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserUpdateService.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/components/address-sponsors.blade.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/components/address-free.blade.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/page-company/result.blade.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Applications/Http/Services/ViewPhoneNumberService.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/app.blade.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/form.blade.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/app/modules/companies/site/Presentations/resources/views/companies/modules/contact/index.blade.php",
-		"/home/williams/Code/Patterns/ComputerFacade.php",
-		"/home/williams/Code/<?php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserWhereFirstService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/JWTTokenService.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Http/Kernel.php",
-		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserCreateService.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/filesystems.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/database.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/constants.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/seotools.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/services.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/image.php",
-		"/home/williams/Code/GuiaLocaliza/BaseAppVagrant/www/html/localiza/config/cache.php"
+		"/home/williams/Code/Loojas/backend/users/web/app/Services/UserFindService.php"
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
 		"height": 116.0,
 		"where_history":
 		[
+			"/home/williams/Code/Loojas/backend/users/web/tests",
+			"/home/williams/Code/Loojas/backend/users/web/database",
 			"/home/williams/Code/Loojas/backend/users/web",
 			"<project>",
 			"/home/williams/Code/Loojas/backend/users/web/tests",
@@ -408,6 +429,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"with",
+			"',\n",
+			"mongodb",
+			"mongodblogs",
 			"User::isAdmin()",
 			"User::ADMIN_USER",
 			"Role::",
@@ -531,11 +556,7 @@
 			"User::",
 			"User",
 			"user_",
-			"users",
-			"Users",
-			"users",
-			"User",
-			"/auth/authenticate"
+			"users"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -543,6 +564,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"main",
+			"mainlogs",
 			"User::ADMIN_USER",
 			"User::isAdmin()",
 			"is_tenant",
@@ -612,8 +635,44 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "config/jwt.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"SL.17.region_keys":
+							[
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6138.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -702,7 +761,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 327.0,
+	"side_bar_width": 248.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

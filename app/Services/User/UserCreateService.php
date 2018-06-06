@@ -67,18 +67,10 @@ class UserCreateService extends UserRoleComposite
             $data['password'] = Hash::make($request['password']);
         }
 
-        $data['user_uuid'] = Uuid::generate(4)->string;
+        $data['userUuid'] = Uuid::generate(4)->string;
 
         if (! $request->has('active') ) {
             $data['active'] = false;
-        }
-
-        if ($this->admin === User::ADMIN_USER) {
-            $data['is_admin'] = User::ADMIN_USER;
-        }
-
-        if ($this->tenant === User::TENANT_USER) {
-            $data['is_tenant'] = User::TENANT_USER;
         }
 
         unset($data['roles']);
