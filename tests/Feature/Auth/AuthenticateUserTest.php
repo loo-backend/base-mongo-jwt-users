@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Entities\User;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
 use Tests\RestoreDatabaseTrait;

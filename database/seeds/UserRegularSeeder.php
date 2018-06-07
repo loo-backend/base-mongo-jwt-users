@@ -1,9 +1,9 @@
 <?php
 
-use App\Privilege;
-use App\Role;
+use App\Entities\Privilege;
+use App\Entities\Role;
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Entities\User;
 
 class UserRegularSeeder extends Seeder
 {

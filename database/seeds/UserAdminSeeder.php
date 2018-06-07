@@ -1,7 +1,7 @@
 <?php
 
-use App\Role;
-use App\User;
+use App\Entities\Role;
+use App\Entities\User;
 use Illuminate\Database\Seeder;
 
 class UserAdminSeeder extends Seeder

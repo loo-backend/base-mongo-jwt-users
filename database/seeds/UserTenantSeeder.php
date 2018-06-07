@@ -1,8 +1,8 @@
 <?php
 
-use App\Role;
-use App\Tenant;
-use App\User;
+use App\Entities\Role;
+use App\Entities\Tenant;
+use App\Entities\User;
 use Illuminate\Database\Seeder;
 
 class UserTenantSeeder extends Seeder

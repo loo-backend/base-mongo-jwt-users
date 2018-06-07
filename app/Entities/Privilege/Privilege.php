@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Entities\Privilege;
 
-use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Privilege extends Model

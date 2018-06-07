@@ -4,7 +4,7 @@
 namespace App\Services\Role;
 
 
-use App\Role;
+use App\Entities\Role;
 
 /**
  * Class RoleFindService

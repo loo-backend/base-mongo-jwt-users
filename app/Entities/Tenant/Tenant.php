@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Entities\Tenant;
 
-use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Tenant extends Model
@@ -26,6 +26,19 @@ class Tenant extends Model
     public function databases()
     {
         return $this->embedsMany(TenantDatabase::class);
+    }
+
+    public function scopeWhereFullText($query, $search)
+    {
+
+        $query->getQuery()->projections = [
+            'score' => [ '$meta'=>'textScore' ]
+        ];
+
+        return $query->whereRaw([
+            '$text' => [ '$search' => $search ]
+        ]);
+
     }
 
 }

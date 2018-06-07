@@ -3,7 +3,7 @@
 namespace App\Services\User;
 
 use App\Composite\UserRoleComposite;
-use App\User;
+use App\Entities\User;
 
 /**
  * Class UserAllService
@@ -15,7 +15,6 @@ class UserAllService extends UserRoleComposite
     public function all()
     {
 
-
         if ($this->admin) {
 
             if (!$user = User::where('isAdmin', User::ADMIN_USER)->paginate()) {
@@ -25,7 +24,6 @@ class UserAllService extends UserRoleComposite
             return $user;
         }
 
-
         if ($this->tenant === User::TENANT_USER) {
 
             if (!$user = User::paginate()) {
@@ -34,7 +32,6 @@ class UserAllService extends UserRoleComposite
 
             return $user;
         }
-
 
         if ($this->regular === User::REGULAR_USER) {
 

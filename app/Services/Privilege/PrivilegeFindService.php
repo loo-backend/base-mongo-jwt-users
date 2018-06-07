@@ -2,7 +2,7 @@
 
 namespace App\Services\Privilege;
 
-use App\Privilege;
+use App\Entities\Privilege;
 
 /**
  * Class PrivilegeFindService

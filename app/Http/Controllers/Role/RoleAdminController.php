@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Role;
 use App\Http\Controllers\ApiController;
 use App\Services\Role\RoleAllService;
 use App\Services\Role\RoleFindService;
-use App\User;
+use App\Entities\User;
 
 class RoleAdminController extends ApiController
 {

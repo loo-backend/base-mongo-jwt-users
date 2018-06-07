@@ -12,7 +12,7 @@ class TenantSeeder extends Seeder
     public function run()
     {
 
-        $tenants = factory(\App\Tenant::class,5)->create();
+        $tenants = factory(\App\Entities\Tenant::class,5)->create();
         $tenants->each(function ($tenant) {
 
             $tenant->databases()->create([

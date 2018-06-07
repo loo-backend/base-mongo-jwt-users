@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Privilege;
+use App\Entities\Privilege;
 use Webpatser\Uuid\Uuid;
 
 class PrivilegeSeeder extends Seeder

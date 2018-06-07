@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Entities\User;
 use Faker\Generator as Faker;
 
 /*
@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Entities\User::class, function (Faker $faker) {
 
     $active = rand(0,10);
 

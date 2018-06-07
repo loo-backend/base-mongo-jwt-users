@@ -3,7 +3,7 @@
 namespace App\Listeners\Log\User;
 
 use App\Events\Log\User\UserAuthenticateEvent;
-use App\LogAuthenticate;
+use App\Entities\LogAuthenticate;
 use App\Traits\RequestHeadersTrait;
 
 class UserAuthenticateListener

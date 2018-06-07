@@ -3,7 +3,7 @@
 namespace App\Services\Auth;
 
 use App\Events\Log\User\UserAuthenticateEvent;
-use App\User;
+use App\Entities\User;
 
 /**
  * Class UserAuthenticateService

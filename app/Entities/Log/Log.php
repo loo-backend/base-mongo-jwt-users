@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Entities\Log;
 
-use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class LogUser extends Model
+class Log extends Model
 {
 
     use SoftDeletes;

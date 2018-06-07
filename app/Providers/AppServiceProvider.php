@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Entities\User\User;
 use App\Observers\Log\LogUserObserver;
-use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

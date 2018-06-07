@@ -4,7 +4,7 @@
 namespace App\Composite;
 
 
-use App\User;
+use App\Entities\User;
 
 /**
  * Class UserRoleComposite

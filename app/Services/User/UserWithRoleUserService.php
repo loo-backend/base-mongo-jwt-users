@@ -3,8 +3,8 @@
 namespace App\Services\User;
 
 use App\Composite\UserRoleComposite;
-use App\Role;
-use App\User;
+use App\Entities\Role;
+use App\Entities\User;
 
 /**
  * Class UserWithRoleUserService

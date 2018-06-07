@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Entities\User;
 
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
@@ -84,6 +84,20 @@ class User extends Authenticatable implements JWTSubject
 //    {
 //        $this->attributes['email'] = strtolower($email);
 //    }
+
+
+    public function scopeWhereFullText($query, $search)
+    {
+
+        $query->getQuery()->projections = [
+            'score' => [ '$meta'=>'textScore' ]
+        ];
+
+        return $query->whereRaw([
+            '$text' => [ '$search' => $search ]
+        ]);
+
+    }
 
     public function isVerified()
     {

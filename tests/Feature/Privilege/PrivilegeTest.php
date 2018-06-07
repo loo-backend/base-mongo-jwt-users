@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Privilege;
-use App\User;
+use App\Entities\Privilege;
+use App\Entities\User;
 use Illuminate\Support\Facades\Artisan;
 use Tests\RestoreDatabaseTrait;
 use Tests\TestCase;

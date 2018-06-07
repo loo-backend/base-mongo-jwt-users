@@ -1,8 +1,8 @@
 <?php
 
-use App\Privilege;
+use App\Entities\Privilege;
 use Illuminate\Database\Seeder;
-use App\Role;
+use App\Entities\Role;
 use Webpatser\Uuid\Uuid;
 
 class RoleAdminSeeder extends Seeder

@@ -3,9 +3,10 @@
 namespace App\Observers\Log;
 
 
+use App\Entities\Log\LogUser;
+use App\Entities\User\User;
 use App\Traits\RequestHeadersTrait;
-use App\User;
-use App\LogUser;
+
 
 class LogUserObserver
 {

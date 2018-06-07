@@ -8,7 +8,7 @@ use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
 use App\Services\User\UserAllService;
 use App\Services\User\UserCreateService;
-use App\User;
+use App\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;

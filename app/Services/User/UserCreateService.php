@@ -3,9 +3,9 @@
 namespace App\Services\User;
 
 use App\Composite\UserRoleComposite;
-use App\Role;
+use App\Entities\Role;
 use App\Services\RoleUser\CreateRoleUserService;
-use App\User;
+use App\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

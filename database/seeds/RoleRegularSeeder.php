@@ -1,7 +1,7 @@
 <?php
 
-use App\Privilege;
-use App\Role;
+use App\Entities\Privilege;
+use App\Entities\Role;
 use Illuminate\Database\Seeder;
 use Webpatser\Uuid\Uuid;
 

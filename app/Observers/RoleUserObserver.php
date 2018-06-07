@@ -3,10 +3,10 @@
 namespace App\Observers;
 
 
-use App\Privilege;
-use App\Role;
-use App\RoleUser;
-use App\User;
+use App\Entities\Privilege;
+use App\Entities\Role;
+use App\Entities\RoleUser;
+use App\Entities\User;
 
 class RoleUserObserver
 {

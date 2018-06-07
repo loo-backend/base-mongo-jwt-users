@@ -2,7 +2,7 @@
 
 namespace App\Services\User;
 
-use App\User;
+use App\Entities\User;
 
 /**
  * Class UserWhereFirstService
