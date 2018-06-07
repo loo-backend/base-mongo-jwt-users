@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities\Tenant;
+namespace App\Entities;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;

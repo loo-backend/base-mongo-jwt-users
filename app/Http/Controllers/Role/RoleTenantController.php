@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Role;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Role\RoleAllService;
+use App\Services\Role\RoleService;
 use App\Services\Role\RoleFindService;
 use App\Entities\User;
 
@@ -11,10 +11,10 @@ class RoleTenantController extends ApiController
 {
 
     /**
-     * @param RoleAllService $service
+     * @param RoleService $service
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(RoleAllService $service)
+    public function index(RoleService $service)
     {
         return $this->showAll($service->tenant()->all());
     }

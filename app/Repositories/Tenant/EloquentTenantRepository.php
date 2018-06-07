@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Repositories\Privilege;
+namespace App\Repositories\Tenant;
 
-use App\Entities\Privilege\PrivilegeRepository;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class PrivilegeRepositoryEloquent
+class EloquentTenantRepository
     extends BaseEloquentAbstractRepository
-    implements PrivilegeRepository
+    implements TenantRepositoryInterface
 {
 
     public function __construct(Model $model)

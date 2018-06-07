@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Entities\Log;
+namespace App\Entities;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class LogUser extends Model
+class LogAuthenticate extends Model
 {
-
     use SoftDeletes;
 
     protected $connection = 'mainlog';

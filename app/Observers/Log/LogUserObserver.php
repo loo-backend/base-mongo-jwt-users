@@ -3,8 +3,8 @@
 namespace App\Observers\Log;
 
 
-use App\Entities\Log\LogUser;
-use App\Entities\User\User;
+use App\Entities\LogUser;
+use App\Entities\User;
 use App\Traits\RequestHeadersTrait;
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Entities\User\User;
+use App\Entities\User;
 use App\Observers\Log\LogUserObserver;
 use Illuminate\Support\ServiceProvider;
 

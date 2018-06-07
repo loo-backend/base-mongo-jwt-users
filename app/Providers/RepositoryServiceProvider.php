@@ -2,22 +2,21 @@
 
 namespace App\Providers;
 
-
-use App\Entities\Log\Log;
-use App\Entities\Log\LogRepository;
-use App\Entities\Privilege\Privilege;
-use App\Entities\Privilege\PrivilegeRepository;
-use App\Entities\Role\Role;
-use App\Entities\Role\RoleRepository;
-use App\Entities\Tenant\Tenant;
-use App\Entities\Tenant\TenantRepository;
-use App\Entities\User\User;
-use App\Entities\User\UserRepository;
-use App\Repositories\Log\LogRepositoryEloquent;
-use App\Repositories\Privilege\PrivilegeRepositoryEloquent;
-use App\Repositories\Role\RoleRepositoryEloquent;
-use App\Repositories\Tenant\TenantRepositoryEloquent;
-use App\Repositories\User\UserRepositoryEloquent;
+use App\Entities\Log;
+use App\Entities\Privilege;
+use App\Entities\Role;
+use App\Entities\Tenant;
+use App\Entities\User;
+use App\Repositories\Log\EloquentLogRepository;
+use App\Repositories\Log\LogRepositoryInterface;
+use App\Repositories\Privilege\EloquentPrivilegeRepository;
+use App\Repositories\Privilege\PrivilegeRepositoryInterface;
+use App\Repositories\Role\EloquentRoleRepository;
+use App\Repositories\Role\RoleRepositoryInterface;
+use App\Repositories\Tenant\EloquentTenantRepository;
+use App\Repositories\Tenant\TenantRepositoryInterface;
+use App\Repositories\User\EloquentUserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -39,24 +38,24 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(LogRepository::class, function () {
-            return new LogRepositoryEloquent(new Log());
+        $this->app->bind(LogRepositoryInterface::class, function () {
+            return new EloquentLogRepository(new Log());
         });
 
-        $this->app->bind(PrivilegeRepository::class, function () {
-            return new PrivilegeRepositoryEloquent(new Privilege());
+        $this->app->bind(PrivilegeRepositoryInterface::class, function () {
+            return new EloquentPrivilegeRepository(new Privilege());
         });
 
-        $this->app->bind(RoleRepository::class, function () {
-            return new RoleRepositoryEloquent(new Role());
+        $this->app->bind(RoleRepositoryInterface::class, function () {
+            return new EloquentRoleRepository(new Role());
         });
 
-        $this->app->bind(TenantRepository::class, function () {
-            return new TenantRepositoryEloquent(new Tenant());
+        $this->app->bind(TenantRepositoryInterface::class, function () {
+            return new EloquentTenantRepository(new Tenant());
         });
 
-        $this->app->bind(UserRepository::class, function () {
-            return new UserRepositoryEloquent(new User());
+        $this->app->bind(UserRepositoryInterface::class, function () {
+            return new EloquentUserRepository(new User());
         });
     }
 }

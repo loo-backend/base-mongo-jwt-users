@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Privilege;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Privilege\PrivilegeAllService;
-use App\Services\Privilege\PrivilegeFindService;
+use App\Repositories\Privilege\PrivilegeRepositoryInterface;
 
 /**
  * Class PrivilegeController
@@ -12,27 +11,40 @@ use App\Services\Privilege\PrivilegeFindService;
  */
 class PrivilegeController extends ApiController
 {
+
+    /**
+     * @var PrivilegeRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * PrivilegeController constructor.
+     * @param PrivilegeRepositoryInterface $repository
+     */
+    public function __construct(PrivilegeRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @param PrivilegeAllService $service
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(PrivilegeAllService $service)
+    public function index()
     {
-        return $this->showAll($service->all());
+        return $this->showAll($this->repository->all());
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @param PrivilegeFindService $service
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id, PrivilegeFindService $service)
+    public function show($id)
     {
-        return $this->showOne($service->findBy($id));
+        return $this->showOne($this->repository->findById($id));
     }
 
 }

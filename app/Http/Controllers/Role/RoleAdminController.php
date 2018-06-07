@@ -3,32 +3,51 @@
 namespace App\Http\Controllers\Role;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Role\RoleAllService;
-use App\Services\Role\RoleFindService;
-use App\Entities\User;
+use App\Repositories\Role\RoleRepositoryInterface;
+use App\Services\Role\RoleService;
 
 class RoleAdminController extends ApiController
 {
 
     /**
-     * @param RoleAllService $service
+     * @var RoleRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * @var RoleService
+     */
+    private $service;
+
+    /**
+     * RoleAdminController constructor.
+     * @param RoleRepositoryInterface $repository
+     * @param RoleService $service
+     */
+    public function __construct(RoleRepositoryInterface $repository,
+                                RoleService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
+    /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(RoleAllService $service)
+    public function index()
     {
-        return $this->showAll($service->admin()->all());
+        return $this->showAll( $this->service->admin()->all() );
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @param RoleFindService $service
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id, RoleFindService $service)
+    public function show($id)
     {
-        return $this->showOne( $service->findBy($id) );
+        return $this->showOne( $this->repository->findById($id) );
     }
 
 }

@@ -39,10 +39,9 @@ abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInt
 
     public function search($data)
     {
-        return $this->model
-                 ->whereFullText($data)
-                 ->orderBy('score', [ '$meta' => 'textScore' ] )
-                 ->get();
+        return $this->model->whereFullText($data)
+                           ->orderBy('score', [ '$meta' => 'textScore' ] )
+                           ->get();
     }
 
     public function create(array $data)

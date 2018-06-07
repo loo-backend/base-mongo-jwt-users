@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Repositories\Log;
+namespace App\Repositories\Role;
 
-use App\Entities\Log\LogRepository;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class LogRepositoryEloquent
+class EloquentRoleRepository
     extends BaseEloquentAbstractRepository
-    implements LogRepository
+    implements RoleRepositoryInterface
 {
 
     public function __construct(Model $model)

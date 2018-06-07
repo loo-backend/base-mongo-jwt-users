@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Entities\User;
+namespace App\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
-
 
 /**
  * Class User

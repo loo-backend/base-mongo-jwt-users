@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Repositories\Tenant;
+namespace App\Repositories\User;
 
-use App\Entities\Tenant\TenantRepository;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class TenantRepositoryEloquent
+class EloquentUserRepository
     extends BaseEloquentAbstractRepository
-    implements TenantRepository
+    implements UserRepositoryInterface
 {
 
     public function __construct(Model $model)

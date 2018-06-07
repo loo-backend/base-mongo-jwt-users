@@ -6,17 +6,15 @@ use App\Composite\UserRoleComposite;
 use App\Entities\Role;
 use App\Entities\User;
 
+
 /**
  * Class RoleAdminAllService
  * @package App\Services\Roles
  */
-class RoleAllService extends UserRoleComposite
+class RoleService extends UserRoleComposite
 {
 
 
-    /**
-     * @return Role[]|bool|\Illuminate\Database\Eloquent\Collection
-     */
     public function all()
     {
 

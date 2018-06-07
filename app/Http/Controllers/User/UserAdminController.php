@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
+use App\Repositories\User\UserRepositoryInterface;
 use App\Services\User\UserFindService;
 use App\Services\User\UserRemoveService;
 use App\Services\User\UserUpdateService;
@@ -42,6 +43,10 @@ class UserAdminController extends ApiController
      * @var UserUpdateService
      */
     private $updateService;
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $repository;
 
     /**
      * UsersController constructor.
@@ -50,13 +55,15 @@ class UserAdminController extends ApiController
      * @param UserAllService $allService
      * @param UserRemoveService $removeService
      * @param UserUpdateService $updateService
+     * @param UserRepositoryInterface $repository
      */
     public function __construct(
         UserCreateService $createAdminService,
         UserFindService $findService,
         UserAllService $allService,
         UserRemoveService $removeService,
-        UserUpdateService $updateService
+        UserUpdateService $updateService,
+        UserRepositoryInterface $repository
     ) {
 
         $this->createAdminService = $createAdminService;
@@ -64,6 +71,7 @@ class UserAdminController extends ApiController
         $this->allService = $allService;
         $this->removeService = $removeService;
         $this->updateService = $updateService;
+        $this->repository = $repository;
     }
 
 
@@ -132,7 +140,7 @@ class UserAdminController extends ApiController
     public function show($id)
     {
 
-        if (!$result = $this->findService->findBy($id)) {
+        if (!$result = $this->repository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
@@ -158,11 +166,11 @@ class UserAdminController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->findService->findBy($id)) {
+        if (!$result = $this->repository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
-        if (!$result = $this->updateService->update($request, $id)) {
+        if (!$result = $this->repository->update($id, $request->all())) {
             return $this->errorResponse('user_not_updated', 422);
         }
 
@@ -179,11 +187,11 @@ class UserAdminController extends ApiController
     public function destroy($id)
     {
 
-        if (!$result = $this->findService->findBy($id)) {
+        if (!$result = $this->repository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
-        if (!$result = $this->removeService->remove($id)) {
+        if (!$result = $this->repository->delete($id)) {
             return $this->errorResponse('user_not_removed', 422);
         }
 

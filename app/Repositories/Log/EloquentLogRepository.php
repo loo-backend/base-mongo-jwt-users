@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Log;
 
-use App\Entities\User\UserRepository;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class UserRepositoryEloquent
+class EloquentLogRepository
     extends BaseEloquentAbstractRepository
-    implements UserRepository
+    implements LogRepositoryInterface
 {
 
     public function __construct(Model $model)
