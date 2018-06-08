@@ -59,4 +59,23 @@ abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInt
         return $this->model->find($id)->delete();
     }
 
+    public function count($active=true)
+    {
+        $query = $this->model;
+        if ($active === true || $active === false) {
+            return $query->where('active', $active)->count();
+        }
+        return $query->count();
+    }
+
+    public function whereFirst(array $data)
+    {
+        return $this->model->where($data)->get()->first();
+    }
+
+    public function whereExists(array $data)
+    {
+        return $this->model->where($data)->exists();
+    }
+
 }

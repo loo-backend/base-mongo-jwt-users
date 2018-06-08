@@ -2,27 +2,39 @@
 
 namespace App\Services\User;
 
-use App\Entities\User;
+
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-/**
- * Class UserUpdateService
- * @package App\Services\User
- */
+
 class UserUpdateService
 {
 
     /**
-     * Get a validator for a User Admin.
+     * @var UserRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * UserService constructor.
+     * @param UserRepositoryInterface $repository
+     */
+    public function __construct(UserRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Get a validator for a User.
      *
      * @param array $data
      * @param int $id
      * @return mixed
      */
-    public function validator(array $data, int $id)
+    public function validator(array $data, $id)
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -36,7 +48,7 @@ class UserUpdateService
     }
 
     /**
-     * Remove User
+     * Update User
      *
      * @param Request $request
      * @param $id
@@ -45,17 +57,13 @@ class UserUpdateService
     public function update(Request $request, $id)
     {
 
-        if (!$user = User::find($id)) {
-            return false;
-        }
-
         $data = $request->all();
-
         if ($request->has('password')) {
             $data['password'] = Hash::make($request['password']);
         }
 
-        return $user->update($data);
+        return $this->repository->update($id, $data);
+
     }
 
 }

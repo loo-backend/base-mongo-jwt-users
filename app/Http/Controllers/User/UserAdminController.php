@@ -4,76 +4,59 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\User\UserFindService;
-use App\Services\User\UserRemoveService;
+use App\Services\User\UserIndexService;
+use App\Services\User\UserStoreService;
 use App\Services\User\UserUpdateService;
-use App\Services\User\UserAllService;
-use App\Services\User\UserCreateService;
-use App\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-
+/**
+ * Class UserAdminController
+ * @package App\Http\Controllers
+ */
 class UserAdminController extends ApiController
 {
 
-
     /**
-     * @var UserCreateService
+     * @var UserRepositoryInterface
      */
-    private $createAdminService;
-
-    /**
-     * @var UserFindService
-     */
-    private $findService;
-
-    /**
-     * @var UserAllService
-     */
-    private $allService;
-
-    /**
-     * @var UserRemoveService
-     */
-    private $removeService;
+    private $userRepository;
 
     /**
      * @var UserUpdateService
      */
     private $updateService;
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $repository;
 
     /**
-     * UsersController constructor.
-     * @param UserCreateService $createAdminService
-     * @param UserFindService $findService
-     * @param UserAllService $allService
-     * @param UserRemoveService $removeService
+     * @var UserStoreService
+     */
+    private $storeService;
+
+    /**
+     * @var UserIndexService
+     */
+    private $indexService;
+
+    /**
+     * UserAdminController constructor.
+     * @param UserRepositoryInterface $userRepository
      * @param UserUpdateService $updateService
-     * @param UserRepositoryInterface $repository
+     * @param UserStoreService $storeService
+     * @param UserIndexService $indexService
      */
-    public function __construct(
-        UserCreateService $createAdminService,
-        UserFindService $findService,
-        UserAllService $allService,
-        UserRemoveService $removeService,
-        UserUpdateService $updateService,
-        UserRepositoryInterface $repository
-    ) {
+    public function __construct(UserRepositoryInterface $userRepository,
+                                UserUpdateService $updateService,
+                                UserStoreService $storeService,
+                                UserIndexService $indexService)
+    {
 
-        $this->createAdminService = $createAdminService;
-        $this->findService = $findService;
-        $this->allService = $allService;
-        $this->removeService = $removeService;
+        $this->userRepository = $userRepository;
         $this->updateService = $updateService;
-        $this->repository = $repository;
-    }
+        $this->storeService = $storeService;
+        $this->indexService = $indexService;
 
+    }
 
     /**
      * Display a listing of the resource.
@@ -82,9 +65,7 @@ class UserAdminController extends ApiController
     public function index()
     {
 
-        $result = $this->allService->admin()->all();
-
-        if (count($result) <= 0) {
+        if (!$result = $this->indexService->admin()->all()) {
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -103,14 +84,14 @@ class UserAdminController extends ApiController
     public function store(Request $request)
     {
 
-        $validator = $this->createAdminService->validator($request->all());
+        $validator = $this->storeService->validator($request->all());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
 
-        if (!$result = $this->createAdminService->admin()->create($request)) {
+        if (!$result = $this->storeService->admin()->store($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }
@@ -140,7 +121,7 @@ class UserAdminController extends ApiController
     public function show($id)
     {
 
-        if (!$result = $this->repository->findById($id)) {
+        if (!$result = $this->userRepository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
@@ -159,18 +140,18 @@ class UserAdminController extends ApiController
     public function update(Request $request, $id)
     {
 
-        $validator = $this->updateService->validator($request->all(), intval($id));
+        $validator = $this->updateService->validator($request->all(), $id);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
 
-        if (!$result = $this->repository->findById($id)) {
+        if (!$result = $this->userRepository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
-        if (!$result = $this->repository->update($id, $request->all())) {
+        if (!$result = $this->updateService->update($request, $id)) {
             return $this->errorResponse('user_not_updated', 422);
         }
 
@@ -187,11 +168,11 @@ class UserAdminController extends ApiController
     public function destroy($id)
     {
 
-        if (!$result = $this->repository->findById($id)) {
+        if (!$result = $this->userRepository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
-        if (!$result = $this->repository->delete($id)) {
+        if (!$result = $this->userRepository->delete($id)) {
             return $this->errorResponse('user_not_removed', 422);
         }
 

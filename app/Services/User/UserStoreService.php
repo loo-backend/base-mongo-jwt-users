@@ -4,7 +4,6 @@ namespace App\Services\User;
 
 use App\Composite\UserRoleComposite;
 use App\Entities\Role;
-use App\Services\RoleUser\CreateRoleUserService;
 use App\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,26 +14,14 @@ use Webpatser\Uuid\Uuid;
  * Class UserCreateService
  * @package App\Services\User
  */
-class UserCreateService extends UserRoleComposite
+class UserStoreService extends UserRoleComposite
 {
 
     private $role;
-    /**
-     * @var CreateRoleUserService
-     */
-    private $createRoleUserService;
 
-
-    /**
-     * UserCreateService constructor.
-     * @param Role $role
-     * @param CreateRoleUserService $createRoleUserService
-     */
-    public function __construct(Role $role,
-                                CreateRoleUserService $createRoleUserService)
+    public function __construct(Role $role)
     {
         $this->role = $role::ADMIN_STAFF_INITIAL;
-        $this->createRoleUserService = $createRoleUserService;
     }
 
     public function validator(array $data)
@@ -54,7 +41,7 @@ class UserCreateService extends UserRoleComposite
      * @return bool
      * @throws \Exception
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
         $data = $request->all();
@@ -116,7 +103,6 @@ class UserCreateService extends UserRoleComposite
     {
         $role = Role::where('name', Role::REGULAR_USER)->first();
         $this->createRoleUserService->create($user, $role);
-
     }
 
 }

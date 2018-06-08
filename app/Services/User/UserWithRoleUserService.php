@@ -13,10 +13,7 @@ use App\Entities\User;
 class UserWithRoleUserService extends UserRoleComposite
 {
 
-    /**
-     * @param array $data
-     * @return User|bool|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
-     */
+
     public function getUserTenant()
     {
 

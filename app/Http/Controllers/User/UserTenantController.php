@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
-use App\Services\User\UserFindService;
-use App\Services\User\UserRemoveService;
+use App\Repositories\User\UserRepositoryInterface;
+use App\Services\User\UserIndexService;
+use App\Services\User\UserStoreService;
 use App\Services\User\UserUpdateService;
-use App\Services\User\UserCreateService;
-use App\Services\User\UserAllService;
-use App\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -21,55 +19,44 @@ class UserTenantController extends ApiController
 {
 
     /**
-     * @var UserCreateService
+     * @var UserRepositoryInterface
      */
-    private $createService;
-
-    /**
-     * @var UserFindService
-     */
-    private $findService;
-
-    /**
-     * @var UserAllService
-     */
-    private $allService;
-
-    /**
-     * @var UserRemoveService
-     */
-    private $removeService;
+    private $userRepository;
 
     /**
      * @var UserUpdateService
      */
     private $updateService;
 
-
+    /**
+     * @var UserStoreService
+     */
+    private $storeService;
 
     /**
-     * UsersController constructor.
-     * @param UserCreateService $createService
-     * @param UserFindService $findService
-     * @param UserAllService $allService
-     * @param UserRemoveService $removeService
-     * @param UserUpdateService $updateService
+     * @var UserIndexService
      */
-    public function __construct(
-        UserCreateService $createService,
-        UserFindService $findService,
-        UserAllService $allService,
-        UserRemoveService $removeService,
-        UserUpdateService $updateService
-    ) {
+    private $indexService;
 
-        $this->createService = $createService;
-        $this->findService = $findService;
-        $this->allService = $allService;
-        $this->removeService = $removeService;
+    /**
+     * UserAdminController constructor.
+     * @param UserRepositoryInterface $userRepository
+     * @param UserUpdateService $updateService
+     * @param UserStoreService $storeService
+     * @param UserIndexService $indexService
+     */
+    public function __construct(UserRepositoryInterface $userRepository,
+                                UserUpdateService $updateService,
+                                UserStoreService $storeService,
+                                UserIndexService $indexService)
+    {
+
+        $this->userRepository = $userRepository;
         $this->updateService = $updateService;
-    }
+        $this->storeService = $storeService;
+        $this->indexService = $indexService;
 
+    }
 
     /**
      * Display a listing of the resource.
@@ -78,10 +65,7 @@ class UserTenantController extends ApiController
     public function index()
     {
 
-        $result = $this->allService->tenant(User::TENANT_USER)->all();
-
-        if (count($result) <= 0) {
-
+        if (!$result = $this->indexService->tenant()->all()) {
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -100,14 +84,14 @@ class UserTenantController extends ApiController
     public function store(Request $request)
     {
 
-        $validator = $this->createService->validator($request->all());
+        $validator = $this->storeService->validator($request->all());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
 
-        if (!$result = $this->createService->tenant(User::TENANT_USER)->create($request)) {
+        if (!$result = $this->storeService->tenant()->store($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }
@@ -135,7 +119,7 @@ class UserTenantController extends ApiController
     public function show($id)
     {
 
-        if (!$result = $this->findService->findBy($id)) {
+        if (!$result = $this->userRepository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
@@ -160,7 +144,7 @@ class UserTenantController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->findService->findBy($id)) {
+        if (!$result = $this->userRepository->findById($id)) {
             return $this->errorResponse('user_not_found', 422);
         }
 
@@ -171,27 +155,5 @@ class UserTenantController extends ApiController
         return $this->successResponse($result);
 
     }
-
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param $id
-//     * @return \Illuminate\Http\JsonResponse
-//     */
-//    public function destroy($id)
-//    {
-//
-//        if (!$result = $this->findService->findBy($id)) {
-//            return $this->errorResponse('user_not_found', 422);
-//        }
-//
-//        if (!$result = $this->removeService->remove($id)) {
-//
-//            return $this->errorResponse('user_not_removed', 422);
-//        }
-//
-//        return $this->successResponse('user_removed');
-//
-//    }
 
 }

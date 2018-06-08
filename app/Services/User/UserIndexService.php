@@ -4,13 +4,27 @@ namespace App\Services\User;
 
 use App\Composite\UserRoleComposite;
 use App\Entities\User;
+use App\Repositories\User\UserRepositoryInterface;
 
 /**
- * Class UserAllService
+ * Class UserIndexService
  * @package App\Services\User
  */
-class UserAllService extends UserRoleComposite
+class UserIndexService extends UserRoleComposite
 {
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * UserIndexService constructor.
+     * @param UserRepositoryInterface $repository
+     */
+    public function __construct(UserRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
 
     public function all()
     {

@@ -33,7 +33,7 @@ class PrivilegeController extends ApiController
      */
     public function index()
     {
-        return $this->showAll($this->repository->all());
+        return $this->showAll( $this->repository->all() );
     }
 
     /**

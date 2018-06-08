@@ -2,14 +2,9 @@
 
 namespace App\Repositories\Privilege;
 
-interface PrivilegeRepositoryInterface
-{
+use App\Interfaces\IRepository;
 
-    public function all(array $with = []);
-    public function findById($id);
-    public function search($data);
-    public function create(array $data);
-    public function update($id, array $data);
-    public function delete($id);
+interface PrivilegeRepositoryInterface extends IRepository
+{
 
 }
