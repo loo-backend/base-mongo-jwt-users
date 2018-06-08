@@ -28,6 +28,7 @@ class UserAdminGetAllService
         $user = $this->user->whereIn(
             'roles.name',
             [
+
                 Role::ADMIN,
                 Role::ADMIN_STAFF_AUDIT,
                 Role::ADMIN_STAFF_SUPPORT,

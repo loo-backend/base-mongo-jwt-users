@@ -27,7 +27,10 @@ class UserTenantGetAllService
         $user = $this->user->whereIn(
             'roles.name',
             [
-                Role::TENANT_ADMIN
+                Role::TENANT_ADMIN,
+                Role::TENANT_EDITOR,
+                Role::TENANT_EXPEDITION,
+                Role::TENANT_PARTNER
             ]
         );
 

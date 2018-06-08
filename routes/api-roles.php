@@ -12,6 +12,10 @@ $this->name('roles.')->group(function () {
             'index', 'show'
         ]);
 
+        $this->resource('regulars', 'Role\RoleRegularController')->only([
+            'index', 'show'
+        ]);
+
     });
 
 });

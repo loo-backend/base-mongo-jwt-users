@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiUsersRoutes();
         $this->mapApiRolesRoutes();
         $this->mapApiPrivilegesRoutes();
+        $this->mapApiTenantsRoutes();
 
         $this->mapWebRoutes();
 
@@ -103,6 +104,22 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api-privileges.php'));
+    }
+
+
+    /**
+     * Define the "tenants" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiTenantsRoutes()
+    {
+        Route::prefix('api/v1')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api-tenants.php'));
     }
 
     /**
