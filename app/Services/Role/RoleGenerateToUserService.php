@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: williams
- * Date: 08/06/18
- * Time: 13:09
- */
 
 namespace App\Services\Role;
-
 
 use App\Entities\Role;
 use App\Entities\User;
@@ -21,7 +14,7 @@ class RoleGenerateToUserService
      * @param User $users
      * @param $typeRole
      */
-    public function generateRole(User $users, $typeRole)
+    public function generateRole(User $users, string $typeRole)
     {
 
         $users->each(function ($user) use($typeRole) {

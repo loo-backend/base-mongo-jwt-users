@@ -21,7 +21,7 @@ class UserAdminCreateService
     /**
      * @var Role
      */
-    private $role = Role::ADMIN_STAFF_INITIAL;
+    private $role;
 
     /**
      * UserAdminCreateService constructor.
@@ -79,7 +79,7 @@ class UserAdminCreateService
 
         $this->generateToUserService->generateRole(
             $created,
-            $this->role
+            Role::ADMIN_STAFF_INITIAL
         );
 
         return $created;

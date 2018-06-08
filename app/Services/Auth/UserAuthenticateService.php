@@ -19,7 +19,7 @@ class UserAuthenticateService
     public function authenticate(array $data)
     {
 
-        $user = User::with('rolesUser');
+        $user = User::with('roles');
 
         if (!$user = $user->where($data)->first() ) {
             return false;

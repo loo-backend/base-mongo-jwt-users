@@ -11,9 +11,9 @@ class UserTenantGetAllService
     public function getAll()
     {
 
-        $user = User::with('rolesUser')->first();
+        $user = User::with('roles')->first();
 
-        $user->whereHas('rolesUser', function ($q) {
+        $user->whereHas('roles', function ($q) {
             $q->where(
                 'roles',
                 'elemMatch',

@@ -83,4 +83,5 @@ class UserTenantSeeder extends Seeder
         });
 
     }
+
 }

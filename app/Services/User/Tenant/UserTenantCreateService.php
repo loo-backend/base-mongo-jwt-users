@@ -22,7 +22,7 @@ class UserTenantCreateService
     /**
      * @var Role
      */
-    private $role = Role::TENANT_ADMIN;
+    private $role;
 
     /**
      * UserAdminCreateService constructor.
@@ -60,6 +60,8 @@ class UserTenantCreateService
 
         if ($request->has('roles')) {
             $this->role = $request['roles'];
+        } else {
+            $this->role = Role::TENANT_ADMIN;
         }
 
         if ($request->has('password')) {
