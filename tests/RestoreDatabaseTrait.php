@@ -16,7 +16,6 @@ trait RestoreDatabaseTrait
        // Schema::connection(env('DB_CONNECTION'))->drop('roles');
        // Schema::connection(env('DB_CONNECTION'))->drop('users');
        // Schema::connection(env('DB_CONNECTION'))->drop('tenants');
-       // Schema::connection(env('DB_CONNECTION'))->drop('role_users');
 
        Artisan::call('migrate', [
            '--path' => "app/database/migrations",

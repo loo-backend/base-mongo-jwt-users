@@ -4,8 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\User\UserGetAllService;
-use App\Services\User\UserCreateService;
+use App\Services\User\Admin\UserAdminCreateService;
+use App\Services\User\Admin\UserAdminGetAllService;
+use App\Services\User\Admin\UserAdminUpdateService;
 use App\Services\User\UserUpdateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,39 +18,37 @@ use Tymon\JWTAuth\Facades\JWTAuth;
  */
 class UserAdminController extends ApiController
 {
-
     /**
      * @var UserRepositoryInterface
      */
     private $userRepository;
-
     /**
      * @var UserUpdateService
      */
     private $updateService;
-
     /**
-     * @var UserCreateService
+     * @var UserAdminCreateService
      */
     private $createService;
-
     /**
-     * @var UserGetAllService
+     * @var UserAdminGetAllService
      */
     private $getAllService;
+
 
     /**
      * UserAdminController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserUpdateService $updateService
-     * @param UserCreateService $createService
-     * @param UserGetAllService $getAllService
+     * @param UserAdminUpdateService $updateService
+     * @param UserAdminCreateService $createService
+     * @param UserAdminGetAllService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                UserUpdateService $updateService,
-                                UserCreateService $createService,
-                                UserGetAllService $getAllService)
+                                UserAdminUpdateService $updateService,
+                                UserAdminCreateService $createService,
+                                UserAdminGetAllService $getAllService)
     {
+
 
         $this->userRepository = $userRepository;
         $this->updateService = $updateService;
@@ -64,7 +63,7 @@ class UserAdminController extends ApiController
     public function index()
     {
 
-        if (!$result = $this->getAllService->admin()->all()) {
+        if (!$result = $this->getAllService->getAll()) {
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -90,7 +89,7 @@ class UserAdminController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->createService->admin()->store($request)) {
+        if (!$result = $this->createService->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }

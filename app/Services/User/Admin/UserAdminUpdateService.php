@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Services\User;
-
+namespace App\Services\User\Admin;
 
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
@@ -9,8 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-
-class UserUpdateService
+class UserAdminUpdateService
 {
 
     /**

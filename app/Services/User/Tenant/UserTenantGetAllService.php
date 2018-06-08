@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\User\Tenant;
 
-use App\Composite\UserRoleComposite;
 use App\Entities\Role;
 use App\Entities\User;
 
-/**
- * Class UserWithRoleUserService
- * @package App\Services\User
- */
-class UserWithRoleUserService extends UserRoleComposite
+class UserTenantGetAllService
 {
 
-
-    public function getUserTenant()
+    public function getAll()
     {
 
         $user = User::with('rolesUser')->first();
@@ -28,7 +22,7 @@ class UserWithRoleUserService extends UserRoleComposite
 
         });
 
-        return $user->first();
+        return $user->paginate();
 
     }
 

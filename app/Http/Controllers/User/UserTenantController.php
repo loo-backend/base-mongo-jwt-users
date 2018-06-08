@@ -4,6 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Services\User\Tenant\UserTenantCreateService;
+use App\Services\User\Tenant\UserTenantGetAllService;
+use App\Services\User\Tenant\UserTenantUpdateService;
 use App\Services\User\UserGetAllService;
 use App\Services\User\UserCreateService;
 use App\Services\User\UserUpdateService;
@@ -17,38 +20,35 @@ use Tymon\JWTAuth\Facades\JWTAuth;
  */
 class UserTenantController extends ApiController
 {
-
     /**
      * @var UserRepositoryInterface
      */
     private $userRepository;
-
     /**
-     * @var UserUpdateService
+     * @var UserTenantUpdateService
      */
     private $updateService;
-
     /**
-     * @var UserCreateService
+     * @var UserTenantCreateService
      */
     private $createService;
-
     /**
-     * @var UserGetAllService
+     * @var UserTenantGetAllService
      */
     private $getAllService;
 
+
     /**
-     * UserAdminController constructor.
+     * UserTenantController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserUpdateService $updateService
-     * @param UserCreateService $createService
-     * @param UserGetAllService $getAllService
+     * @param UserTenantUpdateService $updateService
+     * @param UserTenantCreateService $createService
+     * @param UserTenantGetAllService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-        UserUpdateService $updateService,
-        UserCreateService $createService,
-        UserGetAllService $getAllService)
+                                UserTenantUpdateService $updateService,
+                                UserTenantCreateService $createService,
+                                UserTenantGetAllService $getAllService)
     {
 
         $this->userRepository = $userRepository;
@@ -64,7 +64,7 @@ class UserTenantController extends ApiController
     public function index()
     {
 
-        if (!$result = $this->getAllService->tenant()->all()) {
+        if (!$result = $this->getAllService->getAll()) {
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -90,7 +90,7 @@ class UserTenantController extends ApiController
             return $errors->toJson();
         }
 
-        if (!$result = $this->createService->tenant()->store($request)) {
+        if (!$result = $this->createService->create($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }
