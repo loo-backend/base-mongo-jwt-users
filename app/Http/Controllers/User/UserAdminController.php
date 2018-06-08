@@ -4,8 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\User\UserIndexService;
-use App\Services\User\UserStoreService;
+use App\Services\User\UserGetAllService;
+use App\Services\User\UserCreateService;
 use App\Services\User\UserUpdateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,33 +29,32 @@ class UserAdminController extends ApiController
     private $updateService;
 
     /**
-     * @var UserStoreService
+     * @var UserCreateService
      */
-    private $storeService;
+    private $createService;
 
     /**
-     * @var UserIndexService
+     * @var UserGetAllService
      */
-    private $indexService;
+    private $getAllService;
 
     /**
      * UserAdminController constructor.
      * @param UserRepositoryInterface $userRepository
      * @param UserUpdateService $updateService
-     * @param UserStoreService $storeService
-     * @param UserIndexService $indexService
+     * @param UserCreateService $createService
+     * @param UserGetAllService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
                                 UserUpdateService $updateService,
-                                UserStoreService $storeService,
-                                UserIndexService $indexService)
+                                UserCreateService $createService,
+                                UserGetAllService $getAllService)
     {
 
         $this->userRepository = $userRepository;
         $this->updateService = $updateService;
-        $this->storeService = $storeService;
-        $this->indexService = $indexService;
-
+        $this->createService = $createService;
+        $this->getAllService = $getAllService;
     }
 
     /**
@@ -65,7 +64,7 @@ class UserAdminController extends ApiController
     public function index()
     {
 
-        if (!$result = $this->indexService->admin()->all()) {
+        if (!$result = $this->getAllService->admin()->all()) {
             return $this->errorResponse('users_not_found', 422);
         }
 
@@ -84,14 +83,14 @@ class UserAdminController extends ApiController
     public function store(Request $request)
     {
 
-        $validator = $this->storeService->validator($request->all());
+        $validator = $this->createService->validator($request->all());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return $errors->toJson();
         }
 
-        if (!$result = $this->storeService->admin()->store($request)) {
+        if (!$result = $this->createService->admin()->store($request)) {
 
             return $this->errorResponse('user_not_created', 500);
         }

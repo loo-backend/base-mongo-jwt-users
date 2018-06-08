@@ -10,7 +10,7 @@ use App\Repositories\User\UserRepositoryInterface;
  * Class UserIndexService
  * @package App\Services\User
  */
-class UserIndexService extends UserRoleComposite
+class UserGetAllService extends UserRoleComposite
 {
     /**
      * @var UserRepositoryInterface

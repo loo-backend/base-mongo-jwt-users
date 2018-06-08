@@ -14,7 +14,7 @@ use Webpatser\Uuid\Uuid;
  * Class UserCreateService
  * @package App\Services\User
  */
-class UserStoreService extends UserRoleComposite
+class UserCreateService extends UserRoleComposite
 {
 
     private $role;
