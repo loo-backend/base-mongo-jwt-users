@@ -44,7 +44,6 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'remember_token',
-        'isAdmin',
         'active',
         'verified',
         'verificationToken',
@@ -101,11 +100,6 @@ class User extends Authenticatable implements JWTSubject
     public function isVerified()
     {
         return $this->verified == User::VERIFIED_USER;
-    }
-
-    public function isAdmin()
-    {
-        return $this->admin === User::ADMIN_USER;
     }
 
     public function roles()

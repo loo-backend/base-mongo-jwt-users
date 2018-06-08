@@ -47,7 +47,7 @@ class UserTenantSeeder extends Seeder
     private function generateUser($tenant, $typeTenant)
     {
 
-        $users = factory(User::class,rand(1,5))->create();
+        $users = factory(User::class,rand(1,500))->create();
 
         $users->each(function ($user) use ($tenant, $typeTenant) {
 

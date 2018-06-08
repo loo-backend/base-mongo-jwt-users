@@ -17,7 +17,7 @@ class UserRegularSeeder extends Seeder
     private function userRegular()
     {
 
-        $users = factory(User::class,5)->create();
+        $users = factory(User::class,500)->create();
         $users->each(function ($user) {
 
             $roleFirst = Role::where('name', Role::REGULAR_USER)->first();

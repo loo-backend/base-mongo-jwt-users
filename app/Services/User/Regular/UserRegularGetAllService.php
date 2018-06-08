@@ -7,20 +7,29 @@ use App\Entities\User;
 
 class UserRegularGetAllService
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * UserAdminGetAllService constructor.
+     * @param User $user
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function getAll()
     {
 
-        $user = User::with('roles')->first();
-
-        $user->whereHas('roles', function ($q) {
-            $q->where(
-                'roles',
-                'elemMatch',
-                [ 'name' => Role::REGULAR_USER ]
-            );
-
-        });
+        $user = $this->user->whereIn(
+            'roles.name',
+            [
+                Role::REGULAR_USER
+            ]
+        );
 
         return $user->paginate();
 

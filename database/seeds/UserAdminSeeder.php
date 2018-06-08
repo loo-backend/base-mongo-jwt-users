@@ -9,7 +9,6 @@ class UserAdminSeeder extends Seeder
 
     public function run()
     {
-        $this->userAdmin();
         $this->generateUser(Role::ADMIN);
         $this->generateUser(Role::ADMIN_STAFF_INITIAL);
         $this->generateUser(Role::ADMIN_STAFF_COMMERCIAL);
@@ -17,19 +16,10 @@ class UserAdminSeeder extends Seeder
         $this->generateUser(Role::ADMIN_STAFF_FINANCE);
     }
 
-
-    private function userAdmin()
-    {
-        factory(User::class,1)->create([
-            'isAdmin' => User::ADMIN_USER
-        ]);
-
-    }
-
     private function generateUser($typeRole)
     {
 
-        $users = factory(User::class,1)->create();
+        $users = factory(User::class,100)->create();
         $users->each(function ($user) use($typeRole) {
 
             $roleFirst = Role::where('name', $typeRole)->first();

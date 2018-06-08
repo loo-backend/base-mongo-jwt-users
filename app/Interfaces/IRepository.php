@@ -5,7 +5,7 @@ namespace App\Interfaces;
 interface IRepository
 {
 
-    public function all(array $with = []);
+    public function all(array $with = [], $limit = 15);
     public function findById($id);
     public function search($data);
     public function create(array $data);
