@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Tenant;
+namespace App\Services\Tenant\User;
 
 use App\Entities\Role;
 use App\Entities\User;
@@ -27,10 +27,7 @@ class UserTenantGetAllService
         $user = $this->user->whereIn(
             'roles.name',
             [
-                Role::TENANT_ADMIN,
-                Role::TENANT_EDITOR,
-                Role::TENANT_EXPEDITION,
-                Role::TENANT_PARTNER
+                Role::TENANT_ADMIN
             ]
         );
 

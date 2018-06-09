@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Services\User\Admin;
-
+namespace App\Services\Adm\User\Admin;
 
 use App\Entities\Role;
 use App\Entities\User;

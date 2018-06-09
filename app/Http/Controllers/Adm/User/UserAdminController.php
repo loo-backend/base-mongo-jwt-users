@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Adm\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\User\Admin\UserAdminCreateService;
-use App\Services\User\Admin\UserAdminGetAllService;
-use App\Services\User\Admin\UserAdminUpdateService;
-use App\Services\User\UserUpdateService;
+use App\Services\Adm\User\Admin\UserAdminCreateService;
+use App\Services\Adm\User\Admin\UserAdminGetAllService;
+use App\Services\Adm\User\Admin\UserAdminUpdateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -22,14 +21,17 @@ class UserAdminController extends ApiController
      * @var UserRepositoryInterface
      */
     private $userRepository;
+
     /**
-     * @var UserUpdateService
+     * @var UserAdminUpdateService
      */
     private $updateService;
+
     /**
      * @var UserAdminCreateService
      */
     private $createService;
+
     /**
      * @var UserAdminGetAllService
      */

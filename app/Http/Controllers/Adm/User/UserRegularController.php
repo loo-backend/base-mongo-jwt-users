@@ -1,59 +1,47 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Adm\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\User\Tenant\UserTenantCreateService;
-use App\Services\User\Tenant\UserTenantGetAllService;
-use App\Services\User\Tenant\UserTenantUpdateService;
-use App\Services\User\UserGetAllService;
-use App\Services\User\UserCreateService;
-use App\Services\User\UserUpdateService;
+use App\Services\Adm\User\Regular\UserRegularGetAllService;
+use App\Services\Adm\User\Regular\UserRegularUpdateService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
- * Class UserTenantController
+ * Class UserRegularController
  * @package App\Http\Controllers
  */
-class UserTenantController extends ApiController
+class UserRegularController extends ApiController
 {
     /**
      * @var UserRepositoryInterface
      */
     private $userRepository;
+
     /**
-     * @var UserTenantUpdateService
+     * @var UserRegularUpdateService
      */
     private $updateService;
+
     /**
-     * @var UserTenantCreateService
-     */
-    private $createService;
-    /**
-     * @var UserTenantGetAllService
+     * @var UserRegularGetAllService
      */
     private $getAllService;
 
-
     /**
-     * UserTenantController constructor.
+     * UserRegularController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserTenantUpdateService $updateService
-     * @param UserTenantCreateService $createService
-     * @param UserTenantGetAllService $getAllService
+     * @param UserRegularUpdateService $updateService
+     * @param UserRegularGetAllService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                UserTenantUpdateService $updateService,
-                                UserTenantCreateService $createService,
-                                UserTenantGetAllService $getAllService)
+                                UserRegularUpdateService $updateService,
+                                UserRegularGetAllService $getAllService)
     {
 
         $this->userRepository = $userRepository;
         $this->updateService = $updateService;
-        $this->createService = $createService;
         $this->getAllService = $getAllService;
     }
 
@@ -71,43 +59,6 @@ class UserTenantController extends ApiController
         return $this->showAll($result);
 
     }
-
-    /**
-     *
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|Response
-     * @throws \Exception
-     */
-    public function store(Request $request)
-    {
-
-        $validator = $this->createService->validator($request->all());
-
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            return $errors->toJson();
-        }
-
-        if (!$result = $this->createService->create($request)) {
-
-            return $this->errorResponse('user_not_created', 500);
-        }
-
-        $credentials = $request->only('email', 'password');
-
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return $this->errorResponse('invalid_credentials', 401);
-        }
-
-        //Authorization || HTTP_Authorization
-        return $this->successResponse([
-            'HTTP_Authorization' => $this->tokenBearerGenerate($request)
-        ]);
-
-    }
-
 
     /**
      * Display the specified resource.

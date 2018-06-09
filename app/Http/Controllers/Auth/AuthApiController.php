@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\ApiController;
-use App\Services\User\Tenant\UserTenantCreateService;
+use App\Services\Adm\User\Tenant\UserTenantCreateService;
 use App\Traits\JWTTokenBearerTrait;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;

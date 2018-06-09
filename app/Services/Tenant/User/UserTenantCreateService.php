@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Admin;
+namespace App\Services\Tenant\User;
 
 use App\Entities\Role;
 use App\Entities\User;
@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
 
-class UserAdminCreateService
+class UserTenantCreateService
 {
 
     /**
      * @var RoleGenerateToUserService
      */
     private $generateToUserService;
+
     /**
      * @var Role
      */
@@ -29,7 +30,7 @@ class UserAdminCreateService
      * @param Role $role
      */
     public function __construct(RoleGenerateToUserService $generateToUserService,
-                                Role $role)
+        Role $role)
     {
         $this->generateToUserService = $generateToUserService;
         $this->role = $role;
@@ -59,6 +60,8 @@ class UserAdminCreateService
 
         if ($request->has('roles')) {
             $this->role = $request['roles'];
+        } else {
+            $this->role = Role::TENANT_ADMIN;
         }
 
         if ($request->has('password')) {
@@ -79,7 +82,7 @@ class UserAdminCreateService
 
         $this->generateToUserService->generateRole(
             $created,
-            Role::ADMIN_STAFF_INITIAL
+            $this->role
         );
 
         return $created;
