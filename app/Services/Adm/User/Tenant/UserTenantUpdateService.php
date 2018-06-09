@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-
+/**
+ * Class UserTenantUpdateService
+ * @package App\Services\Adm\User\Tenant
+ */
 class UserTenantUpdateService
 {
 

@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
-
+/**
+ * Class UserAdminCreateService
+ * @package App\Services\Adm\User\Admin
+ */
 class UserAdminCreateService
 {
 
