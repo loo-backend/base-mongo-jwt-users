@@ -55,7 +55,7 @@ class UserAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->post(route('users.admins.store'), $data, $headers)
+        $response = $this->post(route('adm.users.admins.store'), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseHas('users', [
@@ -83,7 +83,7 @@ class UserAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.admins.show', $user->id), $headers)
+        $response = $this->get(route('adm.users.admins.show', $user->id), $headers)
             ->assertStatus(200);
 
         $response->assertJson([
@@ -109,7 +109,7 @@ class UserAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.admins.index'), $headers)
+        $response = $this->get(route('adm.users.admins.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -153,7 +153,7 @@ class UserAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.admins.update',$user->id), $data, $headers)
+        $this->put(route('adm.users.admins.update',$user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users',[
@@ -182,7 +182,7 @@ class UserAdminTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.admins.update',$user->id), $data, $headers)
+        $this->put(route('adm.users.admins.update',$user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users', [
@@ -202,7 +202,7 @@ class UserAdminTest extends TestCase
 
         $response = $this->withHeaders([
             'HTTP_Authorization' => 'Bearer '. $token,
-        ])->json('DELETE', route('users.admins.destroy', $user->id));
+        ])->json('DELETE', route('adm.users.admins.destroy', $user->id));
 
         $response->assertStatus(200)
             ->assertExactJson([

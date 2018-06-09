@@ -15,11 +15,11 @@ class DatabaseTestSeeder extends Seeder
         $this->call(PrivilegeSeeder::class);
         $this->call(RoleAdminSeeder::class);
         $this->call(RoleTenantSeeder::class);
-        //$this->call(RoleRegularSeeder::class);
+        $this->call(RoleRegularSeeder::class);
 
-        //$this->call(TenantSeeder::class);
-        $this->call(UserAdminSeeder::class);
-        $this->call(UserTenantSeeder::class);
-        //$this->call(UserRegularSeeder::class);
+        $this->call(TenantTestSeeder::class);
+        $this->call(UserAdminTestSeeder::class);
+        $this->call(UserTenantTestSeeder::class);
+        $this->call(UserRegularTestSeeder::class);
     }
 }

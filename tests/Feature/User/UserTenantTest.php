@@ -53,7 +53,7 @@ class UserTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->post(route('users.tenants.store'), $data, $headers)
+        $response = $this->post(route('adm.users.tenants.store'), $data, $headers)
             ->assertStatus(200);
 
 
@@ -81,7 +81,7 @@ class UserTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.tenants.show', $user->id), $headers)
+        $response = $this->get(route('adm.users.tenants.show', $user->id), $headers)
             ->assertStatus(200);
 
         $response->assertJson([
@@ -106,7 +106,7 @@ class UserTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $response = $this->get(route('users.tenants.index'), $headers)
+        $response = $this->get(route('adm.users.tenants.index'), $headers)
             ->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -149,7 +149,7 @@ class UserTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.tenants.update', $user->id), $data, $headers)
+        $this->put(route('adm.users.tenants.update', $user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users', [
@@ -178,7 +178,7 @@ class UserTenantTest extends TestCase
             'HTTP_Authorization' => 'Bearer ' . $token
         ];
 
-        $this->put(route('users.tenants.update', $user->id), $data, $headers)
+        $this->put(route('adm.users.tenants.update', $user->id), $data, $headers)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('users', [

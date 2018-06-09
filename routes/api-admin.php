@@ -1,6 +1,6 @@
 <?php
 
-$this->name('users.')->group(function () {
+$this->name('adm.users.')->group(function () {
 
     $this->post('/tenants', 'User\UserTenantController@store')->name('tenants.store');
 

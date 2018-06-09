@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Role;
 use App\Http\Controllers\ApiController;
 use App\Repositories\Role\RoleRepositoryInterface;
 use App\Services\Role\RoleService;
-use App\Services\Role\RoleFindService;
-use App\Entities\User;
 
 class RoleTenantController extends ApiController
 {

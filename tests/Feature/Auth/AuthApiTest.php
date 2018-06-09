@@ -9,7 +9,7 @@ use Tests\RestoreDatabaseTrait;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthenticateUserTest extends TestCase
+class AuthApiTest extends TestCase
 {
 
     use RestoreDatabaseTrait;
@@ -35,7 +35,7 @@ class AuthenticateUserTest extends TestCase
 
     }
 
-    public function testUserCreate()
+    public function testRegisterNewUserUser()
     {
 
         Artisan::call('db:seed', [
@@ -44,7 +44,7 @@ class AuthenticateUserTest extends TestCase
         ]);
 
 
-        $this->post(route('users.tenants.store'), self::$data)
+        $this->post(route('auth.register'), self::$data)
                 ->assertStatus(200);
 
         $this->assertDatabaseHas('users', [
@@ -54,7 +54,7 @@ class AuthenticateUserTest extends TestCase
 
     }
 
-    public function testUserAuthenticateValid() {
+    public function testAuthenticateUserPasswordAndEmailValid() {
 
 
         $response = $this->post(route('auth.login'),
@@ -78,7 +78,7 @@ class AuthenticateUserTest extends TestCase
 
     }
 
-    public function testUserAuthenticateInvalid() {
+    public function testAuthenticateUserPasswordAndEmailInvalid() {
 
         $response = $this->post(route('auth.login'),
                 ['email'=> self::$data['email'] ,'password' => str_random(8)])
