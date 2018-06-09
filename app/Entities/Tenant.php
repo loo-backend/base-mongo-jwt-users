@@ -15,6 +15,7 @@ class Tenant extends Model
         'companyName',
         'limitUser',
         'databases',
+        'users',
     ];
 
     /**
@@ -26,6 +27,11 @@ class Tenant extends Model
     public function databases()
     {
         return $this->embedsMany(TenantDatabase::class);
+    }
+
+    public function users()
+    {
+        return $this->embedsMany(User::class);
     }
 
     public function scopeWhereFullText($query, $search)
