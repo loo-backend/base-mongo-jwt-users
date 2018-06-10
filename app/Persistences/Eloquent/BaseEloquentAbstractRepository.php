@@ -38,14 +38,6 @@ abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInt
         return $this->model->find($id);
     }
 
-    public function search($data)
-    {
-
-        return User::whereFullText($data)
-                           ->orderBy('score', [ '$meta' => 'textScore' ] )
-                           ->get();
-    }
-
     public function create(array $data)
     {
         return $this->model->create($data);
@@ -78,6 +70,14 @@ abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInt
     public function whereExists(array $data)
     {
         return $this->model->where($data)->exists();
+    }
+
+    public function search($data)
+    {
+
+        return $this->model->whereFullText($data)
+                           ->orderBy('score', [ '$meta' => 'textScore' ] )
+                           ->get();
     }
 
 }

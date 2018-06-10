@@ -128,4 +128,22 @@ class EloquentLogRepositoryTest extends TestCase
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function test_log_repository_count()
+    {
+
+        factory(Log::class, 5)->create();
+        $res = $this->repository->count(null);
+
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
+
+    }
+
+
 }

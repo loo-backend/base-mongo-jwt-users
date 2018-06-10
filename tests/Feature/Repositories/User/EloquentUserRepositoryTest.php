@@ -14,6 +14,9 @@ class EloquentUserRepositoryTest extends TestCase
 
     protected $repository;
 
+    /**
+     * @throws \Exception
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -139,6 +142,31 @@ class EloquentUserRepositoryTest extends TestCase
             'name' => $data['name'],
             'email' => $data['email'],
         ]);
+
+    }
+
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_count()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email,
+            'password' => bcrypt('secret')
+        ];
+
+        $this->repository->create( $data );
+        $res = $this->repository->count( $data );
+
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
 
     }
 

@@ -130,4 +130,27 @@ class EloquentTenantRepositoryTest extends TestCase
 
     }
 
+
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_count()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $this->repository->create( $data );
+        $res = $this->repository->count( $data );
+
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
+
+    }
+
 }

@@ -138,4 +138,26 @@ class EloquentRoleRepositoryTest extends TestCase
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function test_role_repository_count()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+        ];
+
+        $this->repository->create( $data );
+        $res = $this->repository->count( $data );
+
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
+
+    }
+
 }
