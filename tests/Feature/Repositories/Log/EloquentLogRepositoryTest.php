@@ -181,5 +181,4 @@ class EloquentLogRepositoryTest extends TestCase
 
     }
 
-
 }

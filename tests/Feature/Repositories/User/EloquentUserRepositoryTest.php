@@ -207,4 +207,27 @@ class EloquentUserRepositoryTest extends TestCase
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_search()
+    {
+
+        Artisan::call('migrate:refresh');
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+
+        $response = $this->repository->search( $data['name'] );
+        foreach ($response as $re) {
+            $this->assertArrayHasKey('name', $re);
+        }
+
+    }
+
 }

@@ -13,6 +13,5 @@ interface IRepository
     public function count($active=true);
     public function whereFirst(array $data);
     public function whereExists(array $data);
-    public function search($data);
 
 }

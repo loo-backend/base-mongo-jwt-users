@@ -6,5 +6,5 @@ use App\Interfaces\IRepository;
 
 interface UserRepositoryInterface extends IRepository
 {
-
+    public function search($data);
 }
