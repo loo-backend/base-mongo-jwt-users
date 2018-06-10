@@ -12,6 +12,11 @@ use Tests\TestCase;
 class EloquentRoleRepositoryTest extends TestCase
 {
 
+    protected $repository;
+
+    /**
+     * @throws \Exception
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -22,6 +27,31 @@ class EloquentRoleRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
+        $this->repository = new EloquentRoleRepository(new Role());
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_all()
+    {
+
+        Artisan::call('db:seed', [
+            '--class'   => 'PrivilegeSeeder',
+            '--force'   => true
+        ]);
+
+        Artisan::call('db:seed', [
+            '--class'   => 'RoleAdminSeeder',
+            '--force'   => true
+        ]);
+
+        $res = $this->repository->all();
+        foreach ($res as $re) {
+            $this->assertArrayHasKey('name', $re);
+        }
+
     }
 
     /**
@@ -30,14 +60,12 @@ class EloquentRoleRepositoryTest extends TestCase
     public function test_role_repository_create()
     {
 
-        $repository = new EloquentRoleRepository(new Role());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $repository->create( $data );
+        $this->repository->create( $data );
 
         $this->assertDatabaseHas('roles', [
             'name' => $data['name'],
@@ -51,16 +79,14 @@ class EloquentRoleRepositoryTest extends TestCase
     public function test_role_repository_find_by_id()
     {
 
-        $repository = new EloquentRoleRepository(new Role());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
-        $res = $repository->findById($obj->id);
+        $res = $this->repository->findById($obj->id);
         $this->assertEquals($obj->name, $res->name);
 
     }
@@ -72,20 +98,18 @@ class EloquentRoleRepositoryTest extends TestCase
     public function test_role_repository_update()
     {
 
-        $repository = new EloquentRoleRepository(new Role());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
         $data2 = [
             'name' =>  $faker->name,
         ];
 
-        $repository->update($obj->id, $data2);
+        $this->repository->update($obj->id, $data2);
 
         $this->assertDatabaseMissing('roles', [
             'name' => $data['name'],
@@ -100,16 +124,14 @@ class EloquentRoleRepositoryTest extends TestCase
     public function test_role_repository_delete()
     {
 
-        $repository = new EloquentRoleRepository(new Role());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
-        $repository->delete($obj->id);
+        $this->repository->delete($obj->id);
         $this->assertSoftDeleted('roles', [
             'name' => $data['name'],
         ]);

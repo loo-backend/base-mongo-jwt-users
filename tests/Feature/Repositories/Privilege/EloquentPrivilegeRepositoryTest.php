@@ -12,6 +12,11 @@ use Tests\TestCase;
 class EloquentPrivilegeRepositoryTest extends TestCase
 {
 
+    protected $repository;
+
+    /**
+     * @throws \Exception
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -22,6 +27,26 @@ class EloquentPrivilegeRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
+        $this->repository = new EloquentPrivilegeRepository(new Privilege());
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_privilege_repository_all()
+    {
+
+        Artisan::call('db:seed', [
+            '--class'   => 'PrivilegeSeeder',
+            '--force'   => true
+        ]);
+
+        $res = $this->repository->all();
+        foreach ($res as $re) {
+            $this->assertArrayHasKey('name', $re);
+        }
+
     }
 
     /**
@@ -30,14 +55,12 @@ class EloquentPrivilegeRepositoryTest extends TestCase
     public function test_privilege_repository_create()
     {
 
-        $repository = new EloquentPrivilegeRepository(new Privilege());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $repository->create( $data );
+        $this->repository->create( $data );
 
         $this->assertDatabaseHas('privileges', [
             'name' => $data['name'],
@@ -51,16 +74,14 @@ class EloquentPrivilegeRepositoryTest extends TestCase
     public function test_privilege_repository_find_by_id()
     {
 
-        $repository = new EloquentPrivilegeRepository(new Privilege());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
-        $res = $repository->findById($obj->id);
+        $res = $this->repository->findById($obj->id);
         $this->assertEquals($obj->name, $res->name);
 
     }
@@ -72,20 +93,18 @@ class EloquentPrivilegeRepositoryTest extends TestCase
     public function test_privilege_repository_update()
     {
 
-        $repository = new EloquentPrivilegeRepository(new Privilege());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
         $data2 = [
             'name' =>  $faker->name,
         ];
 
-        $repository->update($obj->id, $data2);
+        $this->repository->update($obj->id, $data2);
 
         $this->assertDatabaseMissing('privileges', [
             'name' => $data['name'],
@@ -100,16 +119,14 @@ class EloquentPrivilegeRepositoryTest extends TestCase
     public function test_privilege_repository_delete()
     {
 
-        $repository = new EloquentPrivilegeRepository(new Privilege());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
         ];
 
-        $obj = $repository->create( $data );
-        
-        $repository->delete($obj->id);
+        $obj = $this->repository->create( $data );
+
+        $this->repository->delete($obj->id);
         $this->assertSoftDeleted('privileges', [
             'name' => $data['name'],
         ]);
