@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
 
             $table->uuid('uuuid');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->boolean('active')->default(false);
             $table->boolean('verified')->default(false);
@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique('email');
 
             $table->index(
                 [

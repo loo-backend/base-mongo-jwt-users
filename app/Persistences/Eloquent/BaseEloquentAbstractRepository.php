@@ -3,6 +3,7 @@
 namespace App\Persistences\Eloquent;
 
 
+use App\Entities\User;
 use Exception;
 use Jenssegers\Mongodb\Eloquent\Model as Model;
 
@@ -39,7 +40,8 @@ abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInt
 
     public function search($data)
     {
-        return $this->model->whereFullText($data)
+
+        return User::whereFullText($data)
                            ->orderBy('score', [ '$meta' => 'textScore' ] )
                            ->get();
     }
