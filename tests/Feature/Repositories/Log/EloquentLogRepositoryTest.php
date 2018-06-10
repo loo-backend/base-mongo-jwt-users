@@ -146,4 +146,40 @@ class EloquentLogRepositoryTest extends TestCase
     }
 
 
+    /**
+     * @throws \Exception
+     */
+    public function test_log_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'action' =>  $faker->name,
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->action, $data['action']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_log_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'action' =>  $faker->name,
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
+
+    }
+
+
 }

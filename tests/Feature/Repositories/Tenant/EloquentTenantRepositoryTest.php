@@ -153,4 +153,39 @@ class EloquentTenantRepositoryTest extends TestCase
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->companyName, $data['companyName']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
+
+    }
+
 }

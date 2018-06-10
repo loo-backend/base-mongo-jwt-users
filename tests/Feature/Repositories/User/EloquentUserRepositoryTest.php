@@ -145,7 +145,6 @@ class EloquentUserRepositoryTest extends TestCase
 
     }
 
-
     /**
      * @throws \Exception
      */
@@ -167,6 +166,44 @@ class EloquentUserRepositoryTest extends TestCase
         } else {
             $this->assertTrue(false);
         }
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->name, $data['name']);
+        $this->assertEquals($obj->email, $data['email']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
 
     }
 

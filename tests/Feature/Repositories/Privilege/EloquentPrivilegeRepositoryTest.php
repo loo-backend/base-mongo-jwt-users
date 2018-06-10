@@ -156,4 +156,41 @@ class EloquentPrivilegeRepositoryTest extends TestCase
 
     }
 
+
+    /**
+     * @throws \Exception
+     */
+    public function test_privilege_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->name, $data['name']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_privilege_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
+
+    }
+
+
 }
