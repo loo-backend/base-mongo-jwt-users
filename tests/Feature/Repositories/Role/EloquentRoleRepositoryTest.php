@@ -1,21 +1,21 @@
 <?php
 
-namespace Tests\Feature\Repositories\User;
+namespace Tests\Feature\Repositories\Role;
 
+use App\Entities\Role;
+use App\Repositories\Role\EloquentRoleRepository;
 use Faker\Factory;
-use App\Entities\User;
-use App\Repositories\User\EloquentUserRepository;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentUserRepositoryTest extends TestCase
+class EloquentRoleRepositoryTest extends TestCase
 {
 
     protected function setUp()
     {
         parent::setUp();
-        Schema::connection(env('DB_CONNECTION'))->drop('users');
+        Schema::connection(env('DB_CONNECTION'))->drop('roles');
 
         Artisan::call('migrate', [
             '--path' => "app/database/migrations",
@@ -27,23 +27,20 @@ class EloquentUserRepositoryTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_user_repository_create()
+    public function test_role_repository_create()
     {
 
-        $repository = new EloquentUserRepository(new User());
+        $repository = new EloquentRoleRepository(new Role());
 
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
-            'email' => $faker->email,
-            'password' => bcrypt('secret')
         ];
 
         $repository->create( $data );
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas('roles', [
             'name' => $data['name'],
-            'email' => $data['email'],
         ]);
 
     }
@@ -51,23 +48,20 @@ class EloquentUserRepositoryTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_user_repository_find_by_id()
+    public function test_role_repository_find_by_id()
     {
 
-        $repository = new EloquentUserRepository(new User());
+        $repository = new EloquentRoleRepository(new Role());
 
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
-            'email' => $faker->email,
-            'password' => bcrypt('secret')
         ];
 
         $obj = $repository->create( $data );
 
         $res = $repository->findById($obj->id);
         $this->assertEquals($obj->name, $res->name);
-        $this->assertEquals($data['email'], $res->email);
 
     }
 
@@ -75,31 +69,26 @@ class EloquentUserRepositoryTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_user_repository_update()
+    public function test_role_repository_update()
     {
 
-        $repository = new EloquentUserRepository(new User());
+        $repository = new EloquentRoleRepository(new Role());
 
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
-            'email' => $faker->email,
-            'password' => bcrypt('secret')
         ];
 
         $obj = $repository->create( $data );
 
         $data2 = [
             'name' =>  $faker->name,
-            'email' => $faker->email,
-            'password' => bcrypt('secret')
         ];
 
         $repository->update($obj->id, $data2);
 
-        $this->assertDatabaseMissing('users', [
+        $this->assertDatabaseMissing('roles', [
             'name' => $data['name'],
-            'email' => $data['email'],
         ]);
 
     }
@@ -108,25 +97,21 @@ class EloquentUserRepositoryTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_user_repository_delete()
+    public function test_role_repository_delete()
     {
 
-        $repository = new EloquentUserRepository(new User());
+        $repository = new EloquentRoleRepository(new Role());
 
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
-            'email' => $faker->email,
-            'password' => bcrypt('secret')
         ];
 
         $obj = $repository->create( $data );
 
         $repository->delete($obj->id);
-
-        $this->assertSoftDeleted('users', [
+        $this->assertSoftDeleted('roles', [
             'name' => $data['name'],
-            'email' => $data['email'],
         ]);
 
     }
