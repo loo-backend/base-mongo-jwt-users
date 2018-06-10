@@ -5,6 +5,10 @@ namespace App\Services\Adm\User\Regular;
 use App\Entities\Role;
 use App\Entities\User;
 
+/**
+ * Class UserRegularGetAllService
+ * @package App\Services\Adm\User\Regular
+ */
 class UserRegularGetAllService
 {
     /**

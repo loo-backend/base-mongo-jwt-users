@@ -6,10 +6,9 @@ use App\Composite\UserRoleComposite;
 use App\Entities\Role;
 use App\Entities\User;
 
-
 /**
- * Class RoleAdminAllService
- * @package App\Services\Roles
+ * Class RoleService
+ * @package App\Services\Role
  */
 class RoleService extends UserRoleComposite
 {

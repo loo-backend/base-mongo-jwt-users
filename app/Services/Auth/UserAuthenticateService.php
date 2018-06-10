@@ -7,7 +7,7 @@ use App\Entities\User;
 
 /**
  * Class UserAuthenticateService
- * @package App\Services\User
+ * @package App\Services\Auth
  */
 class UserAuthenticateService
 {

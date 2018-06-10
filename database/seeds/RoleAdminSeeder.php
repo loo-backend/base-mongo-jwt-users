@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 use App\Entities\Role;
 use Webpatser\Uuid\Uuid;
 
+
 class RoleAdminSeeder extends Seeder
 {
 

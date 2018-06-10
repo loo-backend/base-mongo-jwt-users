@@ -5,6 +5,10 @@ namespace App\Services\Tenant\User;
 use App\Entities\Role;
 use App\Entities\User;
 
+/**
+ * Class UserTenantGetAllService
+ * @package App\Services\Tenant\User
+ */
 class UserTenantGetAllService
 {
     /**
