@@ -12,6 +12,11 @@ use Tests\TestCase;
 class EloquentTenantRepositoryTest extends TestCase
 {
 
+    protected $repository;
+
+    /**
+     * @throws \Exception
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -22,7 +27,24 @@ class EloquentTenantRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
+        $this->repository = new EloquentTenantRepository(new Tenant());
+
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_role_repository_all()
+    {
+
+        factory(Tenant::class, 10)->create();
+        $res = $this->repository->all([], 2);
+        foreach ($res as $re) {
+            $this->assertArrayHasKey('companyName', $re);
+        }
+
+    }
+
 
     /**
      * @throws \Exception
@@ -30,14 +52,12 @@ class EloquentTenantRepositoryTest extends TestCase
     public function test_tenant_repository_create()
     {
 
-        $repository = new EloquentTenantRepository(new Tenant());
-
         $faker = Factory::create();
         $data = [
             'companyName' =>  $faker->company,
         ];
 
-        $repository->create( $data );
+        $this->repository->create( $data );
 
         $this->assertDatabaseHas('tenants', [
             'companyName' => $data['companyName'],
@@ -51,16 +71,14 @@ class EloquentTenantRepositoryTest extends TestCase
     public function test_tenant_repository_find_by_id()
     {
 
-        $repository = new EloquentTenantRepository(new Tenant());
-
         $faker = Factory::create();
         $data = [
             'companyName' =>  $faker->company,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
-        $res = $repository->findById($obj->id);
+        $res = $this->repository->findById($obj->id);
         $this->assertEquals($obj->name, $res->name);
 
     }
@@ -72,20 +90,18 @@ class EloquentTenantRepositoryTest extends TestCase
     public function test_tenant_repository_update()
     {
 
-        $repository = new EloquentTenantRepository(new Tenant());
-
         $faker = Factory::create();
         $data = [
             'companyName' =>  $faker->company,
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
         $data2 = [
             'companyName' =>  $faker->company,
         ];
 
-        $repository->update($obj->id, $data2);
+        $this->repository->update($obj->id, $data2);
 
         $this->assertDatabaseMissing('tenants', [
             'companyName' => $data['companyName'],
@@ -100,19 +116,75 @@ class EloquentTenantRepositoryTest extends TestCase
     public function test_tenant_repository_delete()
     {
 
-        $repository = new EloquentTenantRepository(new Tenant());
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $obj = $this->repository->create( $data );
+
+        $this->repository->delete($obj->id);
+        $this->assertSoftDeleted('tenants', [
+            'companyName' => $data['companyName'],
+        ]);
+
+    }
+
+
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_count()
+    {
 
         $faker = Factory::create();
         $data = [
             'companyName' =>  $faker->company,
         ];
 
-        $obj = $repository->create( $data );
+        $this->repository->create( $data );
+        $res = $this->repository->count( $data );
 
-        $repository->delete($obj->id);
-        $this->assertSoftDeleted('tenants', [
-            'companyName' => $data['companyName'],
-        ]);
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->companyName, $data['companyName']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_tenant_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'companyName' =>  $faker->company,
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
 
     }
 

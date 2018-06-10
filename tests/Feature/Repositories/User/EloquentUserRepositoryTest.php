@@ -12,6 +12,11 @@ use Tests\TestCase;
 class EloquentUserRepositoryTest extends TestCase
 {
 
+    protected $repository;
+
+    /**
+     * @throws \Exception
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -22,6 +27,23 @@ class EloquentUserRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
+        $this->repository = new EloquentUserRepository(new User());
+
+    }
+
+
+     /**
+     * @throws \Exception
+     */
+    public function test_user_repository_all()
+    {
+
+        factory(User::class, 10)->create();
+        $res = $this->repository->all([], 2);
+        foreach ($res as $re) {
+            $this->assertArrayHasKey('userUuid', $re);
+        }
+
     }
 
     /**
@@ -30,8 +52,6 @@ class EloquentUserRepositoryTest extends TestCase
     public function test_user_repository_create()
     {
 
-        $repository = new EloquentUserRepository(new User());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
@@ -39,7 +59,7 @@ class EloquentUserRepositoryTest extends TestCase
             'password' => bcrypt('secret')
         ];
 
-        $repository->create( $data );
+        $this->repository->create( $data );
 
         $this->assertDatabaseHas('users', [
             'name' => $data['name'],
@@ -54,8 +74,6 @@ class EloquentUserRepositoryTest extends TestCase
     public function test_user_repository_find_by_id()
     {
 
-        $repository = new EloquentUserRepository(new User());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
@@ -63,9 +81,9 @@ class EloquentUserRepositoryTest extends TestCase
             'password' => bcrypt('secret')
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
-        $res = $repository->findById($obj->id);
+        $res = $this->repository->findById($obj->id);
         $this->assertEquals($obj->name, $res->name);
         $this->assertEquals($data['email'], $res->email);
 
@@ -78,8 +96,6 @@ class EloquentUserRepositoryTest extends TestCase
     public function test_user_repository_update()
     {
 
-        $repository = new EloquentUserRepository(new User());
-
         $faker = Factory::create();
         $data = [
             'name' =>  $faker->name,
@@ -87,7 +103,7 @@ class EloquentUserRepositoryTest extends TestCase
             'password' => bcrypt('secret')
         ];
 
-        $obj = $repository->create( $data );
+        $obj = $this->repository->create( $data );
 
         $data2 = [
             'name' =>  $faker->name,
@@ -95,7 +111,7 @@ class EloquentUserRepositoryTest extends TestCase
             'password' => bcrypt('secret')
         ];
 
-        $repository->update($obj->id, $data2);
+        $this->repository->update($obj->id, $data2);
 
         $this->assertDatabaseMissing('users', [
             'name' => $data['name'],
@@ -111,7 +127,29 @@ class EloquentUserRepositoryTest extends TestCase
     public function test_user_repository_delete()
     {
 
-        $repository = new EloquentUserRepository(new User());
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email,
+            'password' => bcrypt('secret')
+        ];
+
+        $obj = $this->repository->create( $data );
+
+        $this->repository->delete($obj->id);
+
+        $this->assertSoftDeleted('users', [
+            'name' => $data['name'],
+            'email' => $data['email'],
+        ]);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_count()
+    {
 
         $faker = Factory::create();
         $data = [
@@ -120,14 +158,75 @@ class EloquentUserRepositoryTest extends TestCase
             'password' => bcrypt('secret')
         ];
 
-        $obj = $repository->create( $data );
+        $this->repository->create( $data );
+        $res = $this->repository->count( $data );
 
-        $repository->delete($obj->id);
+        if($res  > 0) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
 
-        $this->assertSoftDeleted('users', [
-            'name' => $data['name'],
-            'email' => $data['email'],
-        ]);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_where_first()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+        $obj = $this->repository->whereFirst( $data );
+
+        $this->assertEquals($obj->name, $data['name']);
+        $this->assertEquals($obj->email, $data['email']);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_where_exists()
+    {
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+        $exists = $this->repository->whereExists( $data );
+        $this->assertTrue($exists);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_user_repository_search()
+    {
+
+        Artisan::call('migrate:refresh');
+
+        $faker = Factory::create();
+        $data = [
+            'name' =>  $faker->name,
+            'email' => $faker->email
+        ];
+
+        $this->repository->create( $data );
+
+        $response = $this->repository->search( $data['name'] );
+        foreach ($response as $re) {
+            $this->assertArrayHasKey('name', $re);
+        }
 
     }
 

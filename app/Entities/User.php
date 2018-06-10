@@ -86,7 +86,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function scopeWhereFullText($query, $search)
     {
-
         $query->getQuery()->projections = [
             'score' => [ '$meta'=>'textScore' ]
         ];
