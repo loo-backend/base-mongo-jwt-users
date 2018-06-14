@@ -2,12 +2,11 @@
 
 namespace App\Repositories\User;
 
-use App\Entities\User;
-use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
+use App\Persistences\Mongodb\BaseMongodbAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class UserMongodbRepository
-    extends BaseEloquentAbstractRepository
+    extends BaseMongodbAbstractRepository
     implements UserRepositoryInterface
 {
 

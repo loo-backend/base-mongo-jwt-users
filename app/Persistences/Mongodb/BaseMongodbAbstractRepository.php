@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Persistences\Eloquent;
+namespace App\Persistences\Mongodb;
 
-
-use App\Entities\User;
 use Exception;
-use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 /**
- * Class BaseEloquentAbstractRepository
+ * Class BaseMongodbAbstractRepository
  * @package App\Persistences\Eloquent
  */
-abstract class BaseEloquentAbstractRepository implements BaseEloquentAbstractInterface
+abstract class BaseMongodbAbstractRepository implements BaseAbstractRepository
 {
 
     protected $model;
 
     /**
-     * BaseEloquentAbstractRepository constructor.
+     * BaseMongodbAbstractRepository constructor.
      * @param $model
      * @throws Exception
      */

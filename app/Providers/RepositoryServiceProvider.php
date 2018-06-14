@@ -7,7 +7,7 @@ use App\Entities\Privilege;
 use App\Entities\Role;
 use App\Entities\Tenant;
 use App\Entities\User;
-use App\Repositories\Log\EloquentLogRepository;
+use App\Repositories\Log\LogMongodbRepository;
 use App\Repositories\Log\LogRepositoryInterface;
 use App\Repositories\Privilege\PrivilegeMongodbRepository;
 use App\Repositories\Privilege\PrivilegeRepositoryInterface;
@@ -39,7 +39,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(LogRepositoryInterface::class, function () {
-            return new EloquentLogRepository(new Log());
+            return new LogMongodbRepository(new Log());
         });
 
         $this->app->bind(PrivilegeRepositoryInterface::class, function () {
