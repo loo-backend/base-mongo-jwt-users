@@ -4,12 +4,12 @@ namespace Tests\Feature\Repositories\User;
 
 use Faker\Factory;
 use App\Entities\User;
-use App\Repositories\User\EloquentUserRepository;
+use App\Repositories\User\UserMongodbRepository;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentUserRepositoryTest extends TestCase
+class UserMongodbRepositoryTest extends TestCase
 {
 
     protected $repository;
@@ -27,7 +27,7 @@ class EloquentUserRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
-        $this->repository = new EloquentUserRepository(new User());
+        $this->repository = new UserMongodbRepository(new User());
 
     }
 

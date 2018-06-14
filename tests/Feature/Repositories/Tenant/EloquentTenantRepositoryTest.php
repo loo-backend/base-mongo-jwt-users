@@ -3,13 +3,13 @@
 namespace Tests\Feature\Repositories\Tenant;
 
 use App\Entities\Tenant;
-use App\Repositories\Tenant\EloquentTenantRepository;
+use App\Repositories\Tenant\TenantMongodbRepository;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentTenantRepositoryTest extends TestCase
+class TenantMongodbRepositoryTest extends TestCase
 {
 
     protected $repository;
@@ -27,7 +27,7 @@ class EloquentTenantRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
-        $this->repository = new EloquentTenantRepository(new Tenant());
+        $this->repository = new TenantMongodbRepository(new Tenant());
 
     }
 

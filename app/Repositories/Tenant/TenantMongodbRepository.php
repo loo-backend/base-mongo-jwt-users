@@ -5,7 +5,7 @@ namespace App\Repositories\Tenant;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentTenantRepository
+class TenantMongodbRepository
     extends BaseEloquentAbstractRepository
     implements TenantRepositoryInterface
 {

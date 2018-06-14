@@ -6,7 +6,7 @@ use App\Entities\User;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentUserRepository
+class UserMongodbRepository
     extends BaseEloquentAbstractRepository
     implements UserRepositoryInterface
 {
