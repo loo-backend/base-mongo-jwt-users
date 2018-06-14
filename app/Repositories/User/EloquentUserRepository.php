@@ -18,7 +18,7 @@ class EloquentUserRepository
 
     public function search($data)
     {
-        return User::whereFullText($data)
+        return $this->model->whereFullText($data)
             ->orderBy('score', [ '$meta' => 'textScore' ] )
             ->get();
     }
