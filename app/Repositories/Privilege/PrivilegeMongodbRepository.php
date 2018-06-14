@@ -5,7 +5,7 @@ namespace App\Repositories\Privilege;
 use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentPrivilegeRepository
+class PrivilegeMongodbRepository
     extends BaseEloquentAbstractRepository
     implements PrivilegeRepositoryInterface
 {

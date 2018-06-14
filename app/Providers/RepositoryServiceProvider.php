@@ -9,7 +9,7 @@ use App\Entities\Tenant;
 use App\Entities\User;
 use App\Repositories\Log\EloquentLogRepository;
 use App\Repositories\Log\LogRepositoryInterface;
-use App\Repositories\Privilege\EloquentPrivilegeRepository;
+use App\Repositories\Privilege\PrivilegeMongodbRepository;
 use App\Repositories\Privilege\PrivilegeRepositoryInterface;
 use App\Repositories\Role\RoleMongodbRepository;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -43,7 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(PrivilegeRepositoryInterface::class, function () {
-            return new EloquentPrivilegeRepository(new Privilege());
+            return new PrivilegeMongodbRepository(new Privilege());
         });
 
         $this->app->bind(RoleRepositoryInterface::class, function () {
