@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Tenant;
 
-use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
+use App\Persistences\Mongodb\BaseMongodbAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentTenantRepository
-    extends BaseEloquentAbstractRepository
+class TenantMongodbRepository
+    extends BaseMongodbAbstractRepository
     implements TenantRepositoryInterface
 {
 

@@ -3,13 +3,13 @@
 namespace Tests\Feature\Repositories\Role;
 
 use App\Entities\Role;
-use App\Repositories\Role\EloquentRoleRepository;
+use App\Repositories\Role\RoleMongodbRepository;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentRoleRepositoryTest extends TestCase
+class RoleMongodbRepositoryTest extends TestCase
 {
 
     protected $repository;
@@ -27,7 +27,7 @@ class EloquentRoleRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
-        $this->repository = new EloquentRoleRepository(new Role());
+        $this->repository = new RoleMongodbRepository(new Role());
 
     }
 

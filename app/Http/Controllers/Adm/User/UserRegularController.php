@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Adm\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\Adm\User\Regular\UserRegularGetAllService;
-use App\Services\Adm\User\Regular\UserRegularUpdateService;
+use App\Services\Adm\User\Regular\GetAllUserRegularService;
+use App\Services\Adm\User\Regular\UpdateUserRegularService;
 use Illuminate\Http\Request;
 
 /**
@@ -20,24 +20,24 @@ class UserRegularController extends ApiController
     private $userRepository;
 
     /**
-     * @var UserRegularUpdateService
+     * @var UpdateUserRegularService
      */
     private $updateService;
 
     /**
-     * @var UserRegularGetAllService
+     * @var GetAllUserRegularService
      */
     private $getAllService;
 
     /**
      * UserRegularController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserRegularUpdateService $updateService
-     * @param UserRegularGetAllService $getAllService
+     * @param UpdateUserRegularService $updateService
+     * @param GetAllUserRegularService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                UserRegularUpdateService $updateService,
-                                UserRegularGetAllService $getAllService)
+                                UpdateUserRegularService $updateService,
+                                GetAllUserRegularService $getAllService)
     {
 
         $this->userRepository = $userRepository;

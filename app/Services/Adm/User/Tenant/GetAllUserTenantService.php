@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Services\Adm\User\Regular;
+namespace App\Services\Adm\User\Tenant;
 
 use App\Entities\Role;
 use App\Entities\User;
 
-/**
- * Class UserRegularGetAllService
- * @package App\Services\Adm\User\Regular
- */
-class UserRegularGetAllService
+class GetAllUserTenantService
 {
     /**
      * @var User
@@ -17,7 +13,7 @@ class UserRegularGetAllService
     private $user;
 
     /**
-     * UserAdminGetAllService constructor.
+     * GetAllUserAdminService constructor.
      * @param User $user
      */
     public function __construct(User $user)
@@ -31,7 +27,7 @@ class UserRegularGetAllService
         $user = $this->user->whereIn(
             'roles.name',
             [
-                Role::REGULAR_USER
+                Role::TENANT_ADMIN
             ]
         );
 

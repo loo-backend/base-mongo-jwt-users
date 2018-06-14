@@ -3,13 +3,13 @@
 namespace Tests\Feature\Repositories\Privilege;
 
 use App\Entities\Privilege;
-use App\Repositories\Privilege\EloquentPrivilegeRepository;
+use App\Repositories\Privilege\PrivilegeMongodbRepository;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentPrivilegeRepositoryTest extends TestCase
+class PrivilegeMongodbRepositoryTest extends TestCase
 {
 
     protected $repository;
@@ -27,7 +27,7 @@ class EloquentPrivilegeRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
-        $this->repository = new EloquentPrivilegeRepository(new Privilege());
+        $this->repository = new PrivilegeMongodbRepository(new Privilege());
 
     }
 

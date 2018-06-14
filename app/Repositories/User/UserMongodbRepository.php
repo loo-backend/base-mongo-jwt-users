@@ -2,12 +2,11 @@
 
 namespace App\Repositories\User;
 
-use App\Entities\User;
-use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
+use App\Persistences\Mongodb\BaseMongodbAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentUserRepository
-    extends BaseEloquentAbstractRepository
+class UserMongodbRepository
+    extends BaseMongodbAbstractRepository
     implements UserRepositoryInterface
 {
 
@@ -18,7 +17,7 @@ class EloquentUserRepository
 
     public function search($data)
     {
-        return User::whereFullText($data)
+        return $this->model->whereFullText($data)
             ->orderBy('score', [ '$meta' => 'textScore' ] )
             ->get();
     }

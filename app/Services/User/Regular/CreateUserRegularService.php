@@ -4,31 +4,31 @@ namespace App\Services\User\Regular;
 
 use App\Entities\Role;
 use App\Entities\User;
-use App\Services\Role\RoleGenerateToUserService;
+use App\Factories\GenerateRoleUserFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
 /**
- * Class UserRegularCreateService
+ * Class CreateUserRegularService
  * @package App\Services\User\Regular
  */
-class UserRegularCreateService
+class CreateUserRegularService
 {
 
     /**
-     * @var RoleGenerateToUserService
+     * @var GenerateRoleUserFactory
      */
-    private $generateToUserService;
+    private $generateRoleUserFactory;
 
     /**
-     * UserAdminCreateService constructor.
-     * @param RoleGenerateToUserService $generateToUserService
+     * CreateUserAdminService constructor.
+     * @param GenerateRoleUserFactory $generateRoleUserFactory
      */
-    public function __construct(RoleGenerateToUserService $generateToUserService)
+    public function __construct(GenerateRoleUserFactory $generateRoleUserFactory)
     {
-        $this->generateToUserService = $generateToUserService;
+        $this->generateRoleUserFactory = $generateRoleUserFactory;
     }
 
     public function validator(array $data)
@@ -68,7 +68,7 @@ class UserRegularCreateService
             return false;
         }
 
-        $this->generateToUserService->generateRole(
+        $this->generateRoleUserFactory->generate(
             $created, Role::REGULAR_USER
         );
 

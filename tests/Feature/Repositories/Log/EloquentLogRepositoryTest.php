@@ -3,13 +3,13 @@
 namespace Tests\Feature\Repositories\Log;
 
 use App\Entities\Log;
-use App\Repositories\Log\EloquentLogRepository;
+use App\Repositories\Log\LogMongodbRepository;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
-class EloquentLogRepositoryTest extends TestCase
+class LogMongodbRepositoryTest extends TestCase
 {
 
     protected $repository;
@@ -27,7 +27,7 @@ class EloquentLogRepositoryTest extends TestCase
             '--force'   => true
         ]);
 
-        $this->repository = new EloquentLogRepository(new Log());
+        $this->repository = new LogMongodbRepository(new Log());
 
     }
 

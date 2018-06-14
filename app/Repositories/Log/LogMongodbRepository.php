@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Log;
 
-use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
+use App\Persistences\Mongodb\BaseMongodbAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentLogRepository
-    extends BaseEloquentAbstractRepository
+class LogMongodbRepository
+    extends BaseMongodbAbstractRepository
     implements LogRepositoryInterface
 {
 

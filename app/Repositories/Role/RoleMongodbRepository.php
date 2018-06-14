@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Role;
 
-use App\Persistences\Eloquent\BaseEloquentAbstractRepository;
+use App\Persistences\Mongodb\BaseMongodbAbstractRepository;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class EloquentRoleRepository
-    extends BaseEloquentAbstractRepository
+class RoleMongodbRepository
+    extends BaseMongodbAbstractRepository
     implements RoleRepositoryInterface
 {
 

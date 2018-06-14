@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Regular;
+namespace App\Services\Adm\User\Tenant;
 
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-
-class UserRegularUpdateService
+/**
+ * Class UpdateUserTenantService
+ * @package App\Services\Adm\User\Tenant
+ */
+class UpdateUserTenantService
 {
 
     /**

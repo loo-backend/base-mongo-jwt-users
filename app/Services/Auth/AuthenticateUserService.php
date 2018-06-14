@@ -6,10 +6,10 @@ use App\Events\Log\User\UserAuthenticateEvent;
 use App\Entities\User;
 
 /**
- * Class UserAuthenticateService
+ * Class AuthenticateUserService
  * @package App\Services\Auth
  */
-class UserAuthenticateService
+class AuthenticateUserService
 {
 
     /**

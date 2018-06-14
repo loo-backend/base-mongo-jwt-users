@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Services\Adm\User\Tenant;
+namespace App\Services\Tenant\User;
 
 use App\Entities\Role;
 use App\Entities\User;
 
-class UserTenantGetAllService
+/**
+ * Class GetAllUserTenantService
+ * @package App\Services\Tenant\User
+ */
+class GetAllUserTenantService
 {
     /**
      * @var User
@@ -13,7 +17,7 @@ class UserTenantGetAllService
     private $user;
 
     /**
-     * UserAdminGetAllService constructor.
+     * GetAllUserAdminService constructor.
      * @param User $user
      */
     public function __construct(User $user)
