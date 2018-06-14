@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Role;
+namespace App\Factories;
 
 use App\Entities\Role;
 use App\Entities\User;
 
-class RoleGenerateToUserService
+class GenerateRoleUserFactory
 {
 
     /**
@@ -14,7 +14,7 @@ class RoleGenerateToUserService
      * @param User $users
      * @param $typeRole
      */
-    public function generateRole(User $users, string $typeRole)
+    public function generate(User $users, string $typeRole)
     {
 
         $users->each(function ($user) use($typeRole) {
@@ -26,9 +26,9 @@ class RoleGenerateToUserService
                 'roleUuid' => $roleFirst->uuid,
             ]);
 
-            $rolesAll = Role::where('name', $typeRole)->get();
+            $roles = Role::where('name', $typeRole)->get();
 
-            foreach ($rolesAll as $item) {
+            $roles->each(function ($item) use($role, $user) {
 
                 foreach ($item->privileges as $privilege) {
 
@@ -40,11 +40,10 @@ class RoleGenerateToUserService
 
                 }
 
-            }
+            });
 
         });
 
     }
-
 
 }

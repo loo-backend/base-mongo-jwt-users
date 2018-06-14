@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 /**
- * Class UserAdminUpdateService
+ * Class UpdateUserAdminService
  * @package App\Services\Adm\User\Admin
  */
-class UserAdminUpdateService
+class UpdateUserAdminService
 {
 
     /**

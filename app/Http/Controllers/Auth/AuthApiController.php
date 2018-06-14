@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Adm\User\Tenant\UserTenantCreateService;
+use App\Services\Adm\User\Tenant\CreateUserTenantService;
 use App\Traits\JWTTokenBearerTrait;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -14,16 +14,16 @@ class AuthApiController extends ApiController
     use JWTTokenBearerTrait;
 
     /**
-     * @var UserTenantCreateService
+     * @var CreateUserTenantService
      */
     private $createService;
 
 
     /**
      * AuthApiController constructor.
-     * @param UserTenantCreateService $createService
+     * @param CreateUserTenantService $createService
      */
-    public function __construct(UserTenantCreateService $createService)
+    public function __construct(CreateUserTenantService $createService)
     {
         $this->createService = $createService;
     }

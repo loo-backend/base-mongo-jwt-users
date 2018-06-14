@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Adm\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\Adm\User\Admin\UserAdminCreateService;
-use App\Services\Adm\User\Admin\UserAdminGetAllService;
-use App\Services\Adm\User\Admin\UserAdminUpdateService;
+use App\Services\Adm\User\Admin\CreateUserAdminService;
+use App\Services\Adm\User\Admin\GetAllUserAdminService;
+use App\Services\Adm\User\Admin\UpdateUserAdminService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -23,17 +23,17 @@ class UserAdminController extends ApiController
     private $userRepository;
 
     /**
-     * @var UserAdminUpdateService
+     * @var UpdateUserAdminService
      */
     private $updateService;
 
     /**
-     * @var UserAdminCreateService
+     * @var CreateUserAdminService
      */
     private $createService;
 
     /**
-     * @var UserAdminGetAllService
+     * @var GetAllUserAdminService
      */
     private $getAllService;
 
@@ -41,14 +41,14 @@ class UserAdminController extends ApiController
     /**
      * UserAdminController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserAdminUpdateService $updateService
-     * @param UserAdminCreateService $createService
-     * @param UserAdminGetAllService $getAllService
+     * @param UpdateUserAdminService $updateService
+     * @param CreateUserAdminService $createService
+     * @param GetAllUserAdminService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                UserAdminUpdateService $updateService,
-                                UserAdminCreateService $createService,
-                                UserAdminGetAllService $getAllService)
+                                UpdateUserAdminService $updateService,
+                                CreateUserAdminService $createService,
+                                GetAllUserAdminService $getAllService)
     {
 
 

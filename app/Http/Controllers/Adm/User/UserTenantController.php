@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Adm\User;
 
 use App\Http\Controllers\ApiController;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\Adm\User\Tenant\UserTenantGetAllService;
-use App\Services\Adm\User\Tenant\UserTenantUpdateService;
+use App\Services\Adm\User\Tenant\GetAllUserTenantService;
+use App\Services\Adm\User\Tenant\UpdateUserTenantService;
 use Illuminate\Http\Request;
 
 /**
@@ -20,24 +20,24 @@ class UserTenantController extends ApiController
     private $userRepository;
 
     /**
-     * @var UserTenantUpdateService
+     * @var UpdateUserTenantService
      */
     private $updateService;
 
     /**
-     * @var UserTenantGetAllService
+     * @var GetAllUserTenantService
      */
     private $getAllService;
 
     /**
      * UserTenantController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UserTenantUpdateService $updateService
-     * @param UserTenantGetAllService $getAllService
+     * @param UpdateUserTenantService $updateService
+     * @param GetAllUserTenantService $getAllService
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                UserTenantUpdateService $updateService,
-                                UserTenantGetAllService $getAllService)
+                                UpdateUserTenantService $updateService,
+                                GetAllUserTenantService $getAllService)
     {
 
         $this->userRepository = $userRepository;

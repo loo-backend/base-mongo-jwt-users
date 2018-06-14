@@ -4,37 +4,37 @@ namespace App\Services\Adm\User\Admin;
 
 use App\Entities\Role;
 use App\Entities\User;
-use App\Services\Role\RoleGenerateToUserService;
+use App\Factories\GenerateRoleUserFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
 /**
- * Class UserAdminCreateService
+ * Class CreateUserAdminService
  * @package App\Services\Adm\User\Admin
  */
-class UserAdminCreateService
+class CreateUserAdminService
 {
 
     /**
-     * @var RoleGenerateToUserService
+     * @var GenerateRoleUserFactory
      */
-    private $generateToUserService;
+    private $generateRoleUserFactory;
     /**
      * @var Role
      */
     private $role;
 
     /**
-     * UserAdminCreateService constructor.
-     * @param RoleGenerateToUserService $generateToUserService
+     * CreateUserAdminService constructor.
+     * @param GenerateRoleUserFactory $generateRoleUserFactory
      * @param Role $role
      */
-    public function __construct(RoleGenerateToUserService $generateToUserService,
+    public function __construct(GenerateRoleUserFactory $generateRoleUserFactory,
                                 Role $role)
     {
-        $this->generateToUserService = $generateToUserService;
+        $this->generateRoleUserFactory = $generateRoleUserFactory;
         $this->role = $role;
     }
 
@@ -80,7 +80,7 @@ class UserAdminCreateService
             return false;
         }
 
-        $this->generateToUserService->generateRole(
+        $this->generateRoleUserFactory->generate(
             $created,
             Role::ADMIN_STAFF_INITIAL
         );

@@ -6,10 +6,10 @@ use App\Entities\Role;
 use App\Entities\User;
 
 /**
- * Class UserAdminGetAllService
+ * Class GetAllUserAdminService
  * @package App\Services\Adm\User\Admin
  */
-class UserAdminGetAllService
+class GetAllUserAdminService
 {
     /**
      * @var User
@@ -17,7 +17,7 @@ class UserAdminGetAllService
     private $user;
 
     /**
-     * UserAdminGetAllService constructor.
+     * GetAllUserAdminService constructor.
      * @param User $user
      */
     public function __construct(User $user)
